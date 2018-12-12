@@ -1,0 +1,48 @@
+<% if (success_msg) { %>
+    <div class="alert student-alert"><%= success_msg %></div>
+<% } %>
+<div class="c-admin__teacher">
+    <div class="title1">
+        <h4>Create New Teacher</h4>
+    </div>
+    <div class="c-form">
+        <form role="form" method="POST" action="/admin/teacher">
+            <div class="row">
+                <div class="col-25">
+                    <p>Username:</p>
+                </div>
+                <div class="col-75">
+                    <input type="text" placeholder="Username" name="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Email:</p>
+                </div>
+                <div class="col-75">
+                    <input type="email" placeholder="Email" name="email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Password: </p>
+                </div>
+                <div class="col-75">
+                    <input type="password" placeholder="Password" name="password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Channel Link: </p>
+                </div>
+                <div class="col-75">
+                    <input type="text" placeholder="Channel Link" name="cLink">
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn1 btn1--color2">Submit</button>
+                <button type="reset" class="btn1 btn1--color3">Cancle</button>
+            </div>
+        </form>
+    </div>
+</div>

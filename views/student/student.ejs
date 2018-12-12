@@ -1,0 +1,135 @@
+<% if (success_msg) { %>
+    <div class="alert student-alert"><%= success_msg %></div>
+<% } %>
+
+<section class="c-class">
+    <div class="title3">
+        <p>Class Available</p>
+    </div>
+    <div class="c-class__content">
+        <% for( var i = 0; i < data1.length ; i++){%>
+            <div class="c-class__item" value="<%= data1[i]._id%>">
+                <div class="c-class__meta">
+                    <div class="photo">
+                        <img src="../img/image-class.png" alt=""/>
+                        <ul class="details">
+                            <li class="author">
+                                <a href="#">
+                                    <% for(var j = 0 ; j < data1[i].inventory.length ; j++){ %>
+                                        Dr.<%= data1[i].inventory[j].lname%>
+                                    <% }; %>
+                                </a>
+                            </li>
+                            <li class="date">
+                                <%= (data1[i].date).toLocaleDateString('en-US') %>
+                            </li>
+                            <li class="tags">
+                                <%= data1[i].coursename%>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="c-class__description">
+                    <input type="hidden" class="inputtype" value="<%= data1[i]._id%>"/>
+                    <h1><%= data1[i].coursename%></h1>
+                    <h2>
+                        <% for(var j = 0 ; j < data1[i].inventory.length ; j++){ %>
+                            <%= data1[i].inventory[j].fname%> <%= data1[i].inventory[j].lname%>
+                        <% }; %>
+                    </h2>
+                    <p><%= data1[i].description%></p>
+                    <div class="readmore-btn">
+                        <a class="test" href="/student/registClass/<%= data1[i]._id; %>">Register</a>
+                    </div>
+                </div>
+            </div>
+        <% }; %>  
+    </div>
+</section>
+
+<section class="c-news">
+    <div class="title3">
+        <p>News Information</p>
+    </div>
+    <div class="c-news__content">
+        <div class="c-news__item">
+            <div class="c-news__text">
+                <h2>News Title</h2>
+                <a href="#_">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                        survived not only five centuries.
+                    </p>
+                </a>
+            </div>
+            <div class="readmore-icon">
+                <a href="#_">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="c-news__item">
+            <div class="c-news__text">
+                <h2>News Title</h2>
+                <a href="#_">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                        survived not only five centuries.
+                    </p>
+                </a>
+            </div>
+            <div class="readmore-icon">
+                <a href="#_">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="c-news__item">
+            <div class="c-news__text">
+                <h2>News Title</h2>
+                <a href="#_">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                        survived not only five centuries.
+                    </p>
+                </a>
+            </div>
+            <div class="readmore-icon">
+                <a href="#_">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="c-news__item">
+            <div class="c-news__text">
+                <h2>News Title</h2>
+                <a href="#_">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                        survived not only five centuries.
+                    </p>
+                </a>
+            </div>
+            <div class="readmore-icon">
+                <a href="#_">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+   
+    var dataClass = <%- JSON.stringify(dataClass) %>;
+    $('.c-class__item').each(function(){
+        for( var i = 0 ; i < dataClass.length ; i++){
+            if( dataClass[i].courseid == $(this).find('.inputtype').val()){
+                $(this).find('.test').text('Registed').addClass('registed');
+            }
+        }
+    });
+    
+</script>
+
+

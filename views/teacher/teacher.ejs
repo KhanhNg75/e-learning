@@ -1,0 +1,42 @@
+<% if (success_msg) { %>
+    <div class="alert student-alert">
+        <%= success_msg %>
+    </div>
+    <% } %>
+
+        <div class="c-table">
+            <div class="title2">
+                <h4>List Of Course</h4>
+            </div>
+            <div class="c-table__content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Semester</th>
+                            <th>Year</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for( var i = 0; i < data1.length ; i++){%>
+                            <tr>
+                                <td>
+                                    <%= data1[i].coursename%>
+                                </td>
+                                <td>
+                                    <%= data1[i].semester%>
+                                </td>
+                                <td>
+                                    <%= data1[i].year%>
+                                </td>
+                                <td>
+                                    <a href="/teacher/listOfStudent/<%= data1[i]._id; %>" class="btn1 btn1--color2">View</a>
+                                </td>
+                            </tr>
+                            <% }; %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>

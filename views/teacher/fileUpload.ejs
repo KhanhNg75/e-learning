@@ -1,0 +1,24 @@
+<div class="c-files">
+    <div class="l-side">
+        <h3>Choose File To Upload</h3>
+        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+            <div class="c-files__upload">
+                <label for="uploadfile">Choose File:</label>
+                <input id="slideButton" type="file" name="uploadfile">
+                <ul class="choose-file"></ul>
+            </div>
+            <div class="c-files__btn">
+                <button type="submit" class="btn1 btn1--color2" id="btnSubmit">Upload</button>
+                <button type="button" class="btn1 btn1--color3 ml-10" id="btnGetFiles">Files</button>
+            </div>
+        </form>
+
+        <div class="c-files__file" id="listFiles">
+
+        </div>
+    </div>
+
+    <div class="l-main">
+        <iframe id="mySlide" src="" frameborder="0"></iframe>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+<% if (success_msg) { %>
+    <div class="alert admin-alert"><%= success_msg %></div>
+<% } %>
+<div class="c-admin__course">
+    <div class="title1">
+        <h4>Create New Course</h4>
+    </div>
+    <div class="c-form">
+        <form role="form" method="POST" action="/admin/course">
+            <div class="row">
+                <div class="col-25">
+                    <p>Course ID:</p>
+                </div>
+                <div class="col-75">
+                    <input type="text" class="form-control" name="courseid" placeholder="Course ID">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Course Name:</p>
+                </div>
+                <div class="col-75">
+                    <input type="text" class="form-control" name="coursename" placeholder="Course Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Number of Credit:</p>
+                </div>
+                <div class="col-75">
+                    <select name="coursecredit">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Semester: </p>
+                </div>
+                <div class="col-75">
+                    <input type="text" class="sem" name="semester" value="" readonly/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Year:</p>
+                </div>
+                <div class="col-75">
+                    <input type="text" class="year" name="year" value="" readonly> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Teacher Name:</p>
+                </div>
+                <div class="col-75">
+                    <select name="teacher">
+                    <% result.forEach(function(results){%>
+                        <option value="<%= results._id%>"><%= results.fname%> <%= results.lname%></option>
+                    <% }); %>
+                </select>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-25">
+                    <p>Date Start:</p>
+                </div>
+                <div class="col-75">
+                    <input type="date" name="datestart" placeholder="01/01/2018"> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <p>Description:</p>
+                </div>
+                <div class="col-75">
+                    <input type="text" class="form-control" name="description" placeholder="Course Description">
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn1 btn1--color2">Submit</button>
+                <button type="reset" class="btn1 btn1--color3 ml-10">Cancle</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    
+    //Admin Create Course
+    var currentDate = new Date();
+
+    //Get this year and next year
+    var y1 = moment().year();
+    var y2 = moment().add(1, 'years').format("YYYY");
+    $('.year').val(y1 + ' - ' + y2);
+    //Sem 1
+    var minDates1 = new Date('08/01/2018');
+    var maxDates1 = new Date('01/31/2019');
+    //Sem 2
+    var minDates2 = new Date('02/01/2019');
+    var maxDates2 = new Date('05/31/2019');
+    //Summer Sem
+    var minDatess = new Date('06/01/2019');
+    var maxDatess = new Date('07/31/2019');
+
+    var sem1 = $('.sem');
+
+    if (currentDate > minDates1 && currentDate < maxDates1) {
+        sem1.val('Semester 1');
+    } else if (currentDate > minDates2 && currentDate < maxDates2) {
+        sem1.val('Semester 2');
+    } else if (currentDate > minDatess && currentDate < maxDatess) {
+        sem1.val('Semester 3');
+    }
+
+</script>

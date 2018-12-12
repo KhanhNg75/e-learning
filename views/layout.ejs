@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
+    <link rel="stylesheet" href="/js/vendor/vegas.css">
+    <title>E-learning</title>
+</head>
+
+<body>
+    <!--Preloader Page -->
+    <div class="pageloader" id="preloader">
+        <div class="pageloader__body">
+            <div class="pageloader__css">
+                <div class="pageloader__inner pageloader__one"></div>
+                <div class="pageloader__inner pageloader__two"></div>
+                <div class="pageloader__inner pageloader__three"></div>
+            </div>
+        </div>
+    </div>
+    <!--Preloader Page-->
+
+    <main class="c-login">
+        <!--Vegas Slider-->
+        <div class="c-banner__wrap"></div>
+        <!-- main -->
+        <div class="c-banner__main">
+            <% if (success_msg) { %>
+                <div class="alert login-alert">
+                    <%= success_msg %>
+                </div>
+                <% } %>
+                    <div class="main agileits-w3layouts">
+                        <div class="main-agileinfo">
+                            <div class="agileui-forms">
+                                <div class="container-form">
+                                    <div class="form-item log-in">
+                                        <!-- login form-->
+                                        <div class="w3table agileinfo">
+                                            <div class="w3table-cell register">
+                                                <div class="w3table-tophead">
+                                                    <h2>Sign in</h2>
+                                                </div>
+                                                <form method="post" action="/users/login">
+                                                    <div class="fields-grid">
+                                                        <div class="styled-input agile-styled-input-top">
+                                                            <input type="text" name="username" required="">
+                                                            <label>Username</label>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="styled-input">
+                                                            <input type="Password" name="password" required="">
+                                                            <label>Password</label>
+                                                            <span></span>
+                                                        </div>
+                                                        <a href="#">Forgot password?</a>
+                                                        <input type="submit" value="Sign in">
+                                                    </div>
+                                                    <div class="social-grids">
+                                                        <div class="social-text">
+                                                            <p>Or Sign in with</p>
+                                                        </div>
+                                                        <div class="social-icons">
+                                                            <ul>
+                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-item sign-up">
+                                        <!-- sign-up form-->
+                                        <div class="w3table w3-agileits">
+                                            <div class="w3table-cell register">
+                                                <h3>Sign up</h3>
+                                                <form method="post" action="/users/register">
+                                                    <div class="fields-grid">
+                                                        <div class="styled-input">
+                                                            <input type="text" name="username" required="">
+                                                            <label>Username</label>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="styled-input">
+                                                            <input type="email" name="email" required="">
+                                                            <label>Email</label>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="styled-input">
+                                                            <input type="password" name="password" required="">
+                                                            <label>Password</label>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="styled-input">
+                                                            <input type="password" name="password2" required="">
+                                                            <label>Confirm Password</label>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="clear"> </div>
+                                                    </div>
+                                                    <input id="regist-btn" type="submit" value="Sign up">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-info">
+                                    <div class="info-w3lsitem">
+                                        <div class="w3table">
+                                            <div class="w3table-cell">
+                                                <p> Have an account? </p>
+                                                <div class="btn"> Sign in </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-w3lsitem">
+                                        <div class="w3table">
+                                            <div class="w3table-cell">
+                                                <p> Don't have an account?</p>
+                                                <div class="btn">Sign up</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </main>
+</body>
+
+<script src="/js/vendor/vegas.min.js"></script>
+<script src="/js/vendor/jquery.inview.min.js"></script>
+<script src="/js/vendor/jquery.rippler.min.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/vegas.js"></script>
+
+</html>

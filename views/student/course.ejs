@@ -1,0 +1,42 @@
+<div class="c-table">
+    <div class="title2">
+        <h4>Courses</h4>
+    </div>
+    <div class="c-table__content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Semester</th>
+                    <th>Year</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for( var i = 0; i < result.length ; i++){%>
+                    <tr>
+                        <td>
+                            <%= result[i].courseid%>
+                        </td>
+                        <td>
+                            <%= result[i].coursename%>
+                        </td>
+                        <td>
+                            <%= result[i].semester%>
+                        </td>
+                        <td>
+                            <%= result[i].year%>
+                        </td>
+                        <td>
+                            <a href="/student/watch/<%= result[i]._id%>" type="submit" class="btn1 btn1--color2">View</a>
+                        </td>
+                    </tr>
+                    <% }; %>
+            </tbody>
+        </table>
+    </div>
+    <div class="btn1 btn1--color3">
+        <a href="/dashboard">Go Back</a>
+    </div>
+</div>

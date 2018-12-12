@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./partials/headStudent %>
+</head>
+
+<body>
+
+    <header class="c-header c-stuHeader">
+        <div class="l-container">
+            <div class="c-header__logo">
+                <a href="/dashboard">
+                    <img src="/img/logo.png" alt="">
+                </a>
+            </div>
+            <div class="c-gnav dropbtn">
+                <% for( var i = 0; i < data.length ; i++){%>
+                    <ul>
+                        <li>
+                            <a href="#_">
+                            <img src="<%= data[i].userimage %>" alt=""/>
+                        </a>
+                            <div id="myDropdown" class="dropdown-content">
+                                <ul>
+                                    <li>
+                                        <a href="/dashboard">
+                                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/student/course">
+                                            <i class="far fa-user"></i> Course
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/logout">
+                                            <i class="fas fa-power-off"></i> Log Out
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <%= data[i].username%>
+                        </li>
+                    </ul>
+                    <% }; %>
+            </div>
+        </div>
+    </header>
+
+    <main class="c-student">
+        <div class="l-container">
+            <%- body %>
+        </div>
+    </main>
+
+    <footer class="c-footer">
+        <% include ./partials/footer %>
+    </footer>
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+<script src="/js/firebase.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/socket.js"></script>
+
+</html>

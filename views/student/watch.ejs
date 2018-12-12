@@ -1,0 +1,71 @@
+<% for(var i = 0; i< data1.length ; i++) { %>
+    <input id="linkroom" type="hidden" style="width:400px;" value="<%= data1[i]._id %>" />
+<%}%>
+<% for(var i = 0; i< data.length ; i++) { %>
+    <input type="hidden" id="username" name="username" value="<%= data[i].fname %>" />
+<%}%>
+
+<div class="c-stream">
+    <div class="title1">
+        <h4>Live Lesson</h4>
+    </div>
+    <div class="c-student__watchContent">
+        <div class="l-main">
+        
+            <div class="stream-video">
+                <img src="" alt="" id="play">
+                <div id="logger" style="display:none"></div>
+            </div>
+                <!--Preloader Page 
+            <% for(var i = 0; i< data2.length ; i++) { %> 
+                <iframe src="https://player.twitch.tv/?channel=<%= data2[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" style="width:100%;height:320px;background:#cfcfcf;" frameborder="0"></iframe> 
+            <%}%>-->
+        </div>
+        <div class="l-side">
+            <h4 id="roomHienTai">...</h4>
+
+            <div class="c-stream__chat">
+                <div class="c-stream__contentChat" id="right">
+                    <ul>
+                        
+                    </ul>
+                </div>
+                <div class="c-stream__box">
+                    <input type="text" id="txtMessage" />
+                    <input type="button" id="btnChat" value="Chat" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="c-student__slide">
+    <div class="title1">
+        <h4>SLide</h4>
+    </div>
+    <div class="c-student__slideContent">
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data" id="fileUploadForm">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <button type="button" class="btn1 btn1--color3" id="btnGetFiles">Files</button>
+                </div>
+            </div>
+        </form>
+        <hr/>
+        <div class="c-files__file" id="listFiles">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var socket = io();
+    socket.on('stream', function(image) {
+        var img = document.getElementById("play");
+        img.src = image;
+        // var log = document.getElementById("logger");
+        // log.text(image);
+        // $("#logger").text(image);
+    });
+</script>
