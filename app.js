@@ -78,20 +78,20 @@ https://github.com/socketio/socket.io/blob/master/docs/emit.md
 
 io.on('connection', function(socket) {
 
-    socket.on("creat-room", function(data) {
+    socket.on("creat-room", (data) => {
         socket.join(data)
         socket.Phong = data
         socket.emit("server-send-room-socket", data)
     });
 
-    socket.on('stream', function(image) {
+    socket.on('stream', (image) => {
         // io.sockets.in(socket.Phong).emit('stream', image);
         io.in(socket.Phong).emit('stream', image);
         // io.to(socket.Phong).emit('stream', image);
         // socket.broadcast.to(socket.Phong).emit('stream', image);
     });
 
-    socket.on("user-chat", function(data) {
+    socket.on("user-chat", (data) => {
         io.sockets.in(socket.Phong).emit("server-chat", data)
     });
 
