@@ -262,7 +262,8 @@ a {
 
 .dropdown-content li .fas,
 .dropdown-content li .far {
-    margin-right: 6px;
+    /* margin-right: 6px; */
+    width: 20px;
 }
 
 .dropdown-content li:hover a {
@@ -2496,7 +2497,6 @@ input[type="submit"]:focus {
 }
 
 .c-student .l-container {
-    margin-top: 84px;
     padding: 60px 0 40px;
     position: relative;
 }
@@ -2979,4 +2979,123 @@ input[type="submit"]:focus {
 
 .of-h {
     overflow: hidden;
+}
+
+
+/*------------------------------------------------------------
+    Student Header
+------------------------------------------------------------*/
+
+.c-headerStu {
+    position: fixed;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 0 0;
+    line-height: 1;
+    z-index: 10;
+}
+
+.c-headerStu:after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
+    width: 1170px;
+    margin: 30px auto 0;
+}
+
+.c-headerStu .l-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.c-headerStu .logo a {
+    display: inline-block;
+}
+
+.c-headerStu .logo a img {
+    width: 148px;
+}
+
+.global-nav ul {
+    display: flex;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.global-nav li {
+    position: relative;
+}
+
+.global-nav ul li a {
+    padding: 0 30px;
+}
+
+.global-nav ul li:after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    bottom: -20px;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3 ease;
+    -o-transition: all 0.3 ease;
+}
+
+.global-nav ul li:hover a {
+    color: #0178bc;
+}
+
+
+/* transition */
+
+.c-headerStu,
+.c-headerStu:after,
+.c-headerStu .logo,
+.global-nav ul li,
+.global-nav ul li a {
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+
+/* Fixed */
+
+.c-headerStu.fixed {
+    padding-top: 15px;
+    background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
+}
+
+.c-headerStu.fixed:after {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.c-headerStu.fixed .global-nav ul li a {
+    padding: 0 20px;
+}
+
+.c-headerStu.fixed .global-nav ul li:hover a {
+    color: #fff;
+}
+
+.c-headerStu.fixed .global-nav ul li:hover:after {
+    background: #fff;
+    bottom: -20px;
+}
+
+.c-headerStu.fixed .global-nav ul li:after {
+    bottom: -10px;
+}
+
+.main-visual {
+    background: url('../img/student-visual.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 700px;
 }

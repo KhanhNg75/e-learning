@@ -72,6 +72,7 @@ io.on('connection', socket => {
 });
 https://github.com/socketio/socket.io
 https://github.com/socketio/socket.io-client/blob/master/docs/API.md#socket
+https://github.com/socketio/socket.io/blob/master/docs/emit.md
 
 */
 
@@ -84,13 +85,17 @@ io.on('connection', function(socket) {
     });
 
     socket.on('stream', function(image) {
-        io.sockets.in(socket.Phong).emit('stream', image);
+        // io.sockets.in(socket.Phong).emit('stream', image);
+        io.in(socket.Phong).emit('stream', image);
+        // io.to(socket.Phong).emit('stream', image);
         // socket.broadcast.to(socket.Phong).emit('stream', image);
     });
 
     socket.on("user-chat", function(data) {
         io.sockets.in(socket.Phong).emit("server-chat", data)
     });
+
+    socket.on('error', () => console.log('errored'));
 })
 
 // Passport init
