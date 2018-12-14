@@ -1114,7 +1114,7 @@ video {
 .main-agileinfo .radio {
     display: inline-block;
     margin-bottom: 1em;
-    float: left;
+    /* float: left; */
     width: 22%;
 }
 
@@ -2122,7 +2122,7 @@ input[type="submit"]:focus {
 /* List Of Files */
 
 .c-files__file ul {
-    margin-top: 10px;
+    padding: 0 40px;
 }
 
 .c-files__file li {
@@ -2146,6 +2146,7 @@ input[type="submit"]:focus {
     color: #ccc;
     position: absolute;
     right: 0;
+    cursor: pointer;
 }
 
 .c-files__file li a {
@@ -2499,6 +2500,7 @@ input[type="submit"]:focus {
 }
 
 .c-student .l-container {
+    margin-top: 84px;
     padding: 60px 0 40px;
     position: relative;
 }
@@ -2521,6 +2523,12 @@ input[type="submit"]:focus {
 
 .c-student__slide {
     margin-top: 40px;
+}
+
+.c-student__slide .title1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .c-student__slideContent {
@@ -3135,4 +3143,8 @@ input[type="submit"]:focus {
 .btn-4:hover:after {
     left: 120%;
     transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.c-deleteLater .dropdown-content {
+    top: 84px;
 }

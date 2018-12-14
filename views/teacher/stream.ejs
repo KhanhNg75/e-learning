@@ -11,13 +11,11 @@
 
             <video src="" id="video" style="width:100px;height:100px;background:#ccc;" autoplay="true"></video>
             <canvas style="display:none" id="preview"></canvas>
-            <div id="logger"></div>
+            <div id="logger" style="display:none"></div>
         </div>
-        <!-- 
         <% for(var i = 0; i< data.length ; i++) { %>
             <iframe src="https://player.twitch.tv/?channel=<%= data[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" style="width:100%;height:320px;background:#cfcfcf;" frameborder="0"></iframe> 
         <%}%>
-        -->
     </div>
     <div class="l-side">
         <h4 id="roomHienTai">...</h4>
@@ -53,13 +51,13 @@
 
     var socket = io();
 
-    function looger(msg) {
+    function logger(msg) {
         $("#logger").text(msg);
     }
 
     function loadCam(stream) {
         video.srcObject = stream;
-        logger("Camera is connected");
+        logger("Camera is connected!");
     }
 
     function loadFail() {

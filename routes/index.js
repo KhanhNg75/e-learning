@@ -72,7 +72,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                                             data1: resultCourse,
                                             data: resultStudent,
                                             dataClass: registerdClass,
-                                            layout: 'layoutmainStudent',
+                                            layout: 'layoutStudent',
                                             message: req.flash('success_msg')
                                         })
                                         client.close()
