@@ -2,12 +2,12 @@ var express = require('express')
 var router = express.Router()
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID
-
+var config = require('../config/database')
 
 // // Connection URL
-var url = process.env.MONGODB_URL || 'mongodb://KhanhNg:Khanh7596@ds161653.mlab.com:61653/elearning-web'
+var url = process.env.MONGODB_URL || config.database
     // // Database Name
-var dbName = process.env.MONGODB_NAME || 'elearning-web'
+var dbName = process.env.MONGODB_NAME || config.name
 
 var User = require('../models/user')
 var Class = require('../models/class')
