@@ -13,7 +13,9 @@ var User = require('../models/user')
 var Class = require('../models/class')
 
 router.get('/test', function(req, res) {
-    console.log('aaa');
+    res.render('layout', {
+        layout: 'layoutError',
+    })
 })
 
 // Get Homepage
@@ -72,7 +74,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                                             data1: resultCourse,
                                             data: resultStudent,
                                             dataClass: registerdClass,
-                                            layout: 'layoutStudent',
+                                            layout: 'layoutmainStudent',
                                             message: req.flash('success_msg')
                                         })
                                         client.close()

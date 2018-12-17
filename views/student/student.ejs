@@ -8,7 +8,7 @@
     </div>
     <div class="c-class__content">
         <% for( var i = 0; i < data1.length ; i++){%>
-            <div class="c-class__item" value="<%= data1[i]._id%>">
+            <div class="c-class__item" onclick="location.href='/student/watch/<%= data1[i]._id%>';">
                 <div class="c-class__meta">
                     <div class="photo">
                         <img src="../img/image-class.png" alt=""/>

@@ -9,506 +9,209 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
-    <link rel="stylesheet" href="/js/vendor/vegas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js">
     <title>E-learning</title>
+    <script>
+      particlesJS("particles-js", {
+  "particles": {
+    "number": {
+      "value": 5,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#fcfcfc"
+    },
+    "shape": {
+      "type": "circle",
+    },
+    "opacity": {
+      "value": 0.5,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.2,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 140,
+      "random": false,
+      "anim": {
+        "enable": true,
+        "speed": 10,
+        "size_min": 40,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": false,
+    },
+    "move": {
+      "enable": true,
+      "speed": 8,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+    }
+  },
+    "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": false
+      },
+      "onclick": {
+        "enable": false
+      },
+      "resize": true
+    }
+  },
+  "retina_detect": true
+});
+    </script>
     <style>
-        body {
-  background-color: #ff7f2e;
-  font-family: "Concert One", cursive;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-}
+        html, body {
+          height: 100%;
+          overflow: hidden;
+        }
 
-/*/////////////////// rules */
-$color-black: #13242c;
-$color-white: #fff;
-$color-red-1: #d13433;
-$color-red-2: #932422;
-$color-skin-1: #eab08c;
-$color-skin-2: #d9766c;
-$color-skin-3: #b2524d;
-$color-hair: #13242c;
-$color-wood-1: #601513;
-$color-wood-2: #410a09;
+        .error-page {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          height: 100%;
+          font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+        .error-page h1 {
+          font-size: 30vh;
+          font-weight: bold;
+          position: relative;
+          margin: -8vh 0 0;
+          padding: 0;
+        }
+        .error-page h1:after {
+          content: attr(data-h1);
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          color: transparent;
+          /* webkit only for graceful degradation to IE */
+          background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-size: 400%;
+          text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.25);
+          animation: animateTextBackground 10s ease-in-out infinite;
+        }
+        .error-page h1 + p {
+          color: #d6d6d6;
+          font-size: 8vh;
+          font-weight: bold;
+          line-height: 10vh;
+          max-width: 600px;
+          position: relative;
+        }
+        .error-page h1 + p:after {
+          content: attr(data-p);
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          color: transparent;
+          text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+          -webkit-background-clip: text;
+          -moz-background-clip: text;
+          background-clip: text;
+        }
 
-@mixin position {
-  position: absolute;
-}
-@mixin top50 {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-@mixin left50 {
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-}
-@mixin centered {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+        #particles-js {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
 
-/*/////////////////// scene */
-.text {
-  @include centered;
-  color: rgba($color-black, 0.1);
-  font-size: 30em;
-  text-align: center;
-  top: 40%;
-}
-.container {
-  @include centered;
-  height: 300px;
-  width: 500px;
-  &:after {
-    @include position;
-    content: "";
-    background-color: rgba($color-black, 0.1);
-    border-radius: 12px;
-    bottom: 40px;
-    height: 12px;
-    left: 80px;
-    width: 350px;
-    z-index: -1;
-  }
-}
-/*/////////////////// caveman */
-.caveman {
-  height: 300px;
-  position: absolute;
-  width: 250px;
-}
-.caveman:nth-child(1) {
-  right: 20px;
-}
-.caveman:nth-child(2) {
-  left: 20px;
-  transform: rotateY(180deg);
-}
-.head {
-  @include position;
-  background-color: $color-hair;
-  border-radius: 50px;
-  height: 140px;
-  left: 60px;
-  top: 25px;
-  width: 65px;
-  &:after,
-  &:before {
-    content: "";
-    @include position;
-    background-color: $color-black;
-    border-radius: 10px;
-    height: 20px;
-    width: 7px;
-  }
-  &:after {
-    left: 35px;
-    top: -8px;
-    transform: rotate(20deg);
-  }
-  &:before {
-    left: 30px;
-    top: -8px;
-    transform: rotate(-20deg);
-  }
-  .eye {
-    @include left50;
-    background-color: $color-skin-1;
-    border-radius: 50px;
-    height: 16px;
-    left: 45%;
-    top: 40px;
-    width: 48px;
-    &:after,
-    &:before {
-      content: "";
-      @include top50;
-      background-color: $color-black;
-      border-radius: 50%;
-      height: 5px;
-      width: 5px;
-    }
-    &:after {
-      left: 5px;
-    }
-    &:before {
-      right: 9px;
-    }
-    .nose {
-      @include centered;
-      background-color: $color-skin-2;
-      border-left: 8px solid rgba($color-black, 0.1);
-      border-radius: 10px;
-      box-sizing: border-box;
-      height: 35px;
-      left: 45%;
-      top: 12px;
-      width: 15px;
-    }
-  }
-}
-.shape {
-  @include left50;
-  border-radius: 50%;
-  height: 140px;
-  overflow: hidden;
-  top: 70px;
-  width: 140px;
-  .circle {
-    @include position;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    &:after,
-    &:before {
-      content: "";
-      @include position;
-      border-radius: 50%;
-      height: 20px;
-      width: 20px;
-    }
-    &:after {
-      left: 50px;
-      top: 10px;
-    }
-    &:before {
-      left: 60px;
-      top: 45px;
-    }
-  }
-  .circle:nth-child(1) {
-    left: -12px;
-    top: 80px;
-  }
-  .circle:nth-child(2) {
-    right: 10px;
-    top: 0px;
-    transform: rotate(90deg);
-    &:after {
-      left: 65px;
-      top: 10px;
-    }
-    &:before {
-      display: none;
-    }
-  }
-}
-.caveman:nth-child(1) .shape {
-  background-color: $color-red-1;
-  .circle {
-    background-color: $color-red-2;
-    &:after,
-    &:before {
-      background-color: $color-red-2;
-    }
-  }
-}
-.caveman:nth-child(2) .shape {
-  background-color: $color-red-2;
-  .circle {
-    background-color: $color-red-1;
-    &:after,
-    &:before {
-      background-color: $color-red-1;
-    }
-  }
-}
-.arm-right {
-  @include position;
-  background-color: $color-skin-1;
-  border-left: 8px solid rgba($color-black, 0.1);
-  border-radius: 50px;
-  box-sizing: border-box;
-  height: 180px;
-  left: 135px;
-  top: 80px;
-  transform-origin: 30px 30px;
-  width: 60px;
-  z-index: 1;
-  .club {
-    @include position;
-    border-bottom: 110px solid $color-wood-1;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    height: 0;
-    left: -60px;
-    top: 120px;
-    transform: rotate(70deg);
-    width: 20px;
-    &:after,
-    &:before {
-      @include position;
-      content: "";
-      background-color: $color-wood-1;
-      border-radius: 50%;
-      left: 0;
-    }
-    &:after {
-      height: 20px;
-      width: 20px;
-      top: -10px;
-    }
-    &:before {
-      height: 40px;
-      width: 40px;
-      left: -10px;
-      top: 90px;
-    }
-  }
-}
-.leg {
-  @include position;
-  border-radius: 10px;
-  height: 55px;
-  top: 200px;
-  width: 10px;
-  &:after {
-    @include position;
-    content: "";
-    border-radius: 50%;
-    height: 10px;
-    left: -5px;
-    top: 15px;
-    width: 10px;
-  }
-  .foot {
-    @include position;
-    border-radius: 25px 25px 0 0;
-    height: 25px;
-    left: -38px;
-    top: 30px;
-    width: 50px;
-    &:after,
-    &:before,
-    .fingers,
-    .fingers:after {
-      @include position;
-      background-color: $color-skin-1;
-      border-radius: 50%;
-      bottom: 0px;
-      height: 15px;
-      transform-origin: bottom;
-      width: 15px;
-    }
-    &:after {
-      left: -6px;
-      content: "";
-    }
-    &:before {
-      left: 8px;
-      transform: scale(0.6);
-      content: "";
-    }
-    .fingers {
-      left: 15px;
-      transform: scale(0.6);
-    }
-    .fingers:after {
-      left: 11px;
-      content: "";
-    }
-  }
-}
-.leg:nth-child(1) {
-  background-color: $color-skin-3;
-  left: 95px;
-  &:after {
-    background-color: $color-skin-3;
-  }
-  .foot {
-    background-color: $color-skin-3;
-    &:after {
-      background-color: $color-skin-3;
-    }
-    &:before {
-      display: none;
-    }
-  }
-}
-.leg:nth-child(2) {
-  background-color: $color-skin-2;
-  left: 115px;
-  &:after {
-    background-color: $color-skin-2;
-  }
-  .foot {
-    background-color: $color-skin-2;
-  }
-}
-/*/////////////////// animation */
-.caveman:nth-child(1) .arm-right {
-  animation: arm-anima 1.2s infinite cubic-bezier(0.55, 0.01, 0.16, 1.34);
-}
-.caveman:nth-child(2) .arm-right {
-  animation: arm-anima 1.2s infinite cubic-bezier(0.55, 0.01, 0.16, 1.34);
-  animation-delay: 0.6s;
-}
-@keyframes arm-anima {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-.caveman:nth-child(2) .head {
-  animation: head-anima 1.2s infinite cubic-bezier(0.55, 0.01, 0.16, 1.34);
-}
-.caveman:nth-child(1) .head {
-  animation: head-anima 1.2s infinite cubic-bezier(0.55, 0.01, 0.16, 1.34);
-  animation-delay: 0.6s;
-}
-@keyframes head-anima {
-  0% {
-    top: 25px;
-  }
-  42% {
-    top: 25px;
-  }
-  45% {
-    top: 50px;
-  }
-  100% {
-    top: 25px;
-  }
-}
-.caveman:nth-child(2) .eye:after,
-.caveman:nth-child(2) .eye:before {
-  animation: eye-anima 1.2s infinite cubic-bezier(0.55, 0.01, 0.16, 1.34);
-}
-.caveman:nth-child(1) .eye:after,
-.caveman:nth-child(1) .eye:before {
-  animation: eye-anima 1.2s infinite cubic-bezier(0.55, 0.01, 0.16, 1.34);
-  animation-delay: 0.6s;
-}
-@keyframes eye-anima {
-  0% {
-    height: 5px;
-  }
-  42% {
-    height: 5px;
-  }
-  45% {
-    height: 1px;
-  }
-  100% {
-    height: 5px;
-  }
-}
-.container {
-  &:after {
-    animation: shadow-anima 1.2s infinite cubic-bezier(0.55, 0.01, 0.16, 1.34);
-    animation-delay: 0.1s;
-  }
-}
-@keyframes shadow-anima {
-  0% {
-    width: 350px;
-    left: 80px;
-  }
-  25% {
-    width: 450px;
-    left: 80px;
-  }
-  50% {
-    width: 350px;
-    left: 80px;
-  }
-  75% {
-    width: 450px;
-    left: 0px;
-  }
-  100% {
-    width: 350px;
-    left: 80px;
-  }
-}
-/*/////////////////////// credit ////*/
-#link {
-  bottom: 20px;
-  color: #000;
-  opacity: 0.2;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-#link p {
-  margin: 0;
-  margin-left: 5px;
-}
-#link:hover {
-  opacity: 1;
-}
+        @keyframes animateTextBackground {
+          0% {
+            background-position: 0 0;
+          }
+          25% {
+            background-position: 100% 0;
+          }
+          50% {
+            background-position: 100% 100%;
+          }
+          75% {
+            background-position: 0 100%;
+          }
+          100% {
+            background-position: 0 0;
+          }
+        }
+        @media (max-width: 767px) {
+          .error-page h1 {
+            font-size: 32vw;
+          }
+          .error-page h1 + p {
+            font-size: 8vw;
+            line-height: 10vw;
+            max-width: 70vw;
+          }
+        }
+        a.back {
+          position: fixed;
+          right: 40px;
+          bottom: 40px;
+          background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176);
+          border-radius: 5px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          color: #fff;
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 24px;
+          padding: 15px 30px;
+          text-decoration: none;
+          transition: 0.25s all ease-in-out;
+        }
+        a.back:hover {
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
 
     </style>
 </head>
 
 <body>
-    <main class="c-login">
-        <div class="text">
-        <p>404</p>
+    <div class="error-page">
+      <div>
+        <!--h1(data-h1='400') 400-->
+        <!--p(data-p='BAD REQUEST') BAD REQUEST-->
+        <!--h1(data-h1='401') 401-->
+        <!--p(data-p='UNAUTHORIZED') UNAUTHORIZED-->
+        <!--h1(data-h1='403') 403-->
+        <!--p(data-p='FORBIDDEN') FORBIDDEN-->
+        <h1 data-h1="404">404</h1>
+        <p data-p="NOT FOUND">NOT FOUND</p>
+        <!--h1(data-h1='500') 500-->
+        <!--p(data-p='SERVER ERROR') SERVER ERROR-->
+      </div>
     </div>
-    <div class="container">
-    <!-- caveman left -->
-    <div class="caveman">
-        <div class="leg">
-        <div class="foot">
-            <div class="fingers"></div>
-        </div>
-        </div>
-        <div class="leg">
-        <div class="foot">
-            <div class="fingers"></div>
-        </div>
-        </div>
-        <div class="shape">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        </div>
-        <div class="head">
-        <div class="eye">
-            <div class="nose"></div>
-        </div>
-        <div class="mouth"></div>
-        </div>
-        <div class="arm-right">
-        <div class="club"></div>
-        </div>
-    </div>
-    <!-- caveman right -->
-    <div class="caveman">
-        <div class="leg">
-        <div class="foot">
-            <div class="fingers"></div>
-        </div>
-        </div>
-        <div class="leg">
-        <div class="foot">
-            <div class="fingers"></div>
-        </div>
-        </div>
-        <div class="shape">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        </div>
-        <div class="head">
-        <div class="eye">
-            <div class="nose"></div>
-        </div>
-        <div class="mouth"></div>
-        </div>
-        <div class="arm-right">
-        <div class="club"></div>
-        </div>
-    </div>
-    </div>
+    <div id="particles-js"></div>
 </body>
 
 

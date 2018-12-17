@@ -406,6 +406,11 @@ li .dropdown-profile a:hover {
     margin-bottom: 0;
 }
 
+
+/*------------------------------------------------------------
+	Footer
+------------------------------------------------------------*/
+
 .c-footer {
     background: -webkit-gradient(linear, left top, right top, from(#0178bc), to(#00bdda));
     background: -webkit-linear-gradient(left, #0178bc 0%, #00bdda 100%);
@@ -450,6 +455,24 @@ li .dropdown-profile a:hover {
     display: inline-block;
     font-size: 2rem;
 }
+
+.c-footer__copy {
+    background: rgba(255, 255, 255, .8);
+}
+
+.c-footer__copy .l-container {
+    padding: 10px 0;
+    justify-content: center;
+}
+
+.c-footer__copy h2 {
+    color: #000;
+}
+
+
+/*------------------------------------------------------------
+	Btn
+------------------------------------------------------------*/
 
 .btn1 {
     padding: 7px 12px;
@@ -2500,13 +2523,13 @@ input[type="submit"]:focus {
 }
 
 .c-student .l-container {
-    margin-top: 84px;
-    padding: 60px 0 40px;
+    /* margin-top: 84px; */
+    padding: 160px 0 40px;
     position: relative;
 }
 
 .c-student .c-table {
-    margin: 40px 0;
+    /* margin: 40px 0; */
 }
 
 .c-student__watchContent {
@@ -2624,6 +2647,7 @@ input[type="submit"]:focus {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
 }
 
 .c-class__item:nth-child(even) {
@@ -2810,7 +2834,7 @@ input[type="submit"]:focus {
 }
 
 .student-alert {
-    margin-top: 5px;
+    margin-top: 114px;
 }
 
 .teacher-alert {
@@ -2991,25 +3015,31 @@ input[type="submit"]:focus {
     overflow: hidden;
 }
 
+.dp-i {
+    display: inline !important;
+}
+
 
 /*------------------------------------------------------------
     Student Header
 ------------------------------------------------------------*/
 
 .c-headerStu {
-    position: fixed;
+    background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
     width: 100%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.38);
     margin: 0 auto;
     padding: 30px 0 0;
     line-height: 1;
     z-index: 10;
+    position: fixed;
 }
 
 .c-headerStu:after {
     content: "";
     display: block;
     height: 2px;
-    background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
+    background: #fff;
     width: 1170px;
     margin: 30px auto 0;
 }
@@ -3048,15 +3078,16 @@ input[type="submit"]:focus {
     display: block;
     width: 100%;
     height: 3px;
-    bottom: -20px;
+    bottom: -10px;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3 ease;
     -o-transition: all 0.3 ease;
 }
 
-.global-nav ul li:hover a {
-    color: #0178bc;
+.global-nav ul li:hover:after {
+    background: #fff;
+    bottom: -20px;
 }
 
 
@@ -3078,7 +3109,7 @@ input[type="submit"]:focus {
 
 .c-headerStu.fixed {
     padding-top: 15px;
-    background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
+    /* background: rgba(255, 255, 255, 0.9); */
 }
 
 .c-headerStu.fixed:after {
@@ -3090,24 +3121,8 @@ input[type="submit"]:focus {
     padding: 0 20px;
 }
 
-.c-headerStu.fixed .global-nav ul li:hover a {
-    color: #fff;
-}
-
 .c-headerStu.fixed .global-nav ul li:hover:after {
-    background: #fff;
     bottom: -20px;
-}
-
-.c-headerStu.fixed .global-nav ul li:after {
-    bottom: -10px;
-}
-
-.main-visual {
-    background: url('../img/student-visual.png') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 700px;
 }
 
 
@@ -3148,3 +3163,63 @@ input[type="submit"]:focus {
 .c-deleteLater .dropdown-content {
     top: 84px;
 }
+
+
+/*------------------------------------------------------------
+    Backto Top btn
+------------------------------------------------------------*/
+
+.back-to-top {
+    border: none;
+    color: rgba(0, 0, 0, .4);
+    display: none;
+    outline: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: fixed;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    transform-origin: 100% 50%;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    z-index: 6;
+    font-size: 1.1rem;
+    right: 50px;
+    bottom: 158px;
+}
+
+.back-to-top:hover {
+    color: #000;
+}
+
+.back-to-top i {
+    display: inline-block;
+    padding-left: 5px;
+    vertical-align: middle;
+    -webkit-transition: -webkit-transform .3s;
+    -moz-transition: -moz-transform .3s;
+    -ms-transition: -ms-transform .3s;
+    -o-transition: -o-transform .3s;
+    transition: transform .3s;
+    font-size: 2.5rem;
+}
+
+.back-to-top:hover i {
+    -webkit-transform: translateX(10px);
+    -moz-transform: translateX(10px);
+    -ms-transform: translateX(10px);
+    -o-transform: translateX(10px);
+    transform: translateX(10px);
+}
+
+
+/* .icon-arrow-right2:before {
+    box-sizing: inherit;
+    content: "\f30b";
+} */

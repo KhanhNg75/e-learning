@@ -10,7 +10,7 @@ var Class = require('../models/class')
 router.get('/profile', ensureAuthenticated, function(req, res) {
     var user = req.user
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-        res.render('student/profile', { data: adminProfile, layout: 'layoutStudent', message: req.flash('success_msg') })
+        res.render('student/profile', { data: adminProfile, layout: 'layoutmainStudent', message: req.flash('success_msg') })
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
@@ -85,7 +85,7 @@ router.get('/course', ensureAuthenticated, function(req, res) {
                 res.render('student/course', {
                     data: adminProfile,
                     result: studentClass,
-                    layout: 'layoutStudent',
+                    layout: 'layoutmainStudent',
                     message: req.flash('success_msg')
                 })
             })
@@ -107,7 +107,7 @@ router.get('/watch/:id', ensureAuthenticated, function(req, res) {
                         data: adminProfile,
                         data1: result,
                         data2: teacherIDwatch,
-                        layout: 'layoutStudent',
+                        layout: 'layoutmainStudent',
                         message: req.flash('success_msg')
                     })
                 })
