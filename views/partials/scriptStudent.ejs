@@ -2,17 +2,3 @@
 <script src="/js/firebase.js"></script>
 <script src="/js/common.js"></script>
 <script src="/js/socket.js"></script>
-<script>
-    (function($) {
-        $(function() {
-            var $header = $('.c-headerStu');
-            $(window).scroll(function() {
-                if ($(window).scrollTop() > 50) {
-                    $header.addClass('fixed');
-                } else {
-                    $header.removeClass('fixed');
-                }
-            });
-        });
-    })(jQuery);
-</script>

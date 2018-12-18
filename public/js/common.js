@@ -168,13 +168,47 @@ $(function() {
     ------------------------------------------------------------*/
 
     // function to set the height on fly
-    function autoHeight() {
-        $('main').css('min-height', 0);
-        $('main').css('min-height', (
-            $(document).height() -
-            $('.c-header').height() -
-            $('.c-footer').height()
-        ));
+    // function autoHeight() {
+    //     $('main').css('min-height', 0);
+    //     $('main').css('min-height', (
+    //         $(document).height() -
+    //         $('.c-header').height() -
+    //         $('.c-footer').height()
+    //     ));
+    // }
+
+    // function autoHeight1() {
+    //     $('main').css('min-height', 0);
+    //     $('main').css('min-height', (
+    //         $(document).height() +
+    //         $('.c-headerStu').height() -
+    //         $('.c-footer').height()
+    //     ));
+    // }
+
+
+    if ($('header').hasClass('c-headerStu')) {
+        console.log('aaa');
+
+        function autoHeight() {
+            $('main').css('min-height', 0);
+            $('main').css('min-height', (
+                $(document).height() +
+                $('.c-headerStu').height() -
+                $('.c-footer').height()
+            ));
+        }
+    } else {
+        console.log('bbb');
+
+        function autoHeight() {
+            $('main').css('min-height', 0);
+            $('main').css('min-height', (
+                $(document).height() -
+                $('.c-header').height() -
+                $('.c-footer').height()
+            ));
+        }
     }
 
     // onDocumentReady
@@ -245,6 +279,18 @@ $(function() {
                 });
             });
         });
+    });
+
+    /*------------------------------------------------------------
+	    Student Fix Header
+    ------------------------------------------------------------*/
+    var $header = $('.c-headerStu');
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 50) {
+            $header.addClass('fixed');
+        } else {
+            $header.removeClass('fixed');
+        }
     });
 
 });

@@ -333,59 +333,6 @@ li .dropdown-profile a:hover {
 
 
 /*------------------------------------------------------------
-	Student Header
-------------------------------------------------------------*/
-
-.c-stuHeader .dropdown-content {
-    top: 84px
-}
-
-
-/* .c-stuHeader {
-    background: -webkit-gradient(linear, left top, right top, from(#0178bc), to(#00bdda));
-    background: -webkit-linear-gradient(left, #0178bc 0%, #00bdda 100%);
-    background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
-}
-
-.c-stuHeader .l-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 7px 0;
-}
-
-.c-stuHeader__gnav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-.c-stuHeader__gnav .student-gnav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.c-stuHeader__gnav .student-item {
-    color: #fff;
-    font-size: 1.5rem;
-    padding: 14px 15px;
-}
-
-.c-stuHeader .dropdown-content {
-    right: 214px;
-    top: 78px;
-    z-index: 2;
-} */
-
-
-/*------------------------------------------------------------
 	Layout
 ------------------------------------------------------------*/
 
@@ -500,6 +447,7 @@ li .dropdown-profile a:hover {
 
 .btn1--color2:hover {
     background: #30a73e;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
 }
 
 .btn1--color3 {
@@ -509,6 +457,7 @@ li .dropdown-profile a:hover {
 
 .btn1--color3:hover {
     background: #11161b;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
 }
 
 .c-btn__social ul {
@@ -587,6 +536,11 @@ li .dropdown-profile a:hover {
     width: 20%;
 }
 
+
+/*------------------------------------------------------------
+	Title
+------------------------------------------------------------*/
+
 .title1 {
     padding: 10px 40px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -633,6 +587,11 @@ li .dropdown-profile a:hover {
     line-height: 20px;
     margin: 16px 0;
 }
+
+
+/*------------------------------------------------------------
+	Sidenav
+------------------------------------------------------------*/
 
 .sidenav {
     height: 100%;
@@ -726,6 +685,11 @@ li .dropdown-profile a:hover {
 .sidenav img {
     width: 200px;
 }
+
+
+/*------------------------------------------------------------
+	Table
+------------------------------------------------------------*/
 
 .c-table {
     width: 100%;
@@ -924,6 +888,11 @@ Page Loader
     }
 }
 
+
+/*------------------------------------------------------------
+	Modal Display
+------------------------------------------------------------*/
+
 .modal {
     display: none;
     position: fixed;
@@ -1076,7 +1045,9 @@ video {
 }
 
 
-/*-- main --*/
+/*------------------------------------------------------------
+	Login
+------------------------------------------------------------*/
 
 .c-login {
     /* background-attachment: fixed;
@@ -1937,7 +1908,9 @@ input[type="submit"]:focus {
 }
 
 
-/*-- //responsive-design --*/
+/*------------------------------------------------------------
+	Admin Page
+------------------------------------------------------------*/
 
 .c-admin {
     -webkit-transition: padding-left .5s;
@@ -2054,7 +2027,9 @@ input[type="submit"]:focus {
 }
 
 
-/* Teacher Slide Upload  */
+/*------------------------------------------------------------
+	Teacher File Upload Page
+------------------------------------------------------------*/
 
 .c-files {
     width: 100%;
@@ -2179,62 +2154,9 @@ input[type="submit"]:focus {
 }
 
 
-/* .c-admin__bar {
-    box-sizing: border-box;
-    width: 1170px;
-    height: 500px;
-    margin-top: 40px;
-    background: #fff;
-    position: relative;
-} */
-
-
-/* .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
-    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
-    overflow-x: hidden;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    padding: 0;
-}
-
-.sidenav li:not(:first-of-type) a {
-    color: #54667a;
-    font-size: 1.5rem;
-    padding: 14px 15px;
-    display: inline-block;
-    width: 100%;
-    font: initial;
-}
-
-.sidenav li:first-child {
-    margin-bottom: 50px;
-}
-
-
-/* .sidenav li:nth-child(2) i {
-    margin-right: 13px;
-}
-
-.sidenav li:nth-child(3) i,
-.sidenav li:nth-child(5) i {
-    margin-right: 18px;
-}
-
-.sidenav i {
-    margin-right: 10px;
-    color: #a6b7bf;
-    font-size: 21px;
-}
-
-*/
+/*------------------------------------------------------------
+	Form
+------------------------------------------------------------*/
 
 .c-form {
     width: 100%;
@@ -2425,6 +2347,11 @@ input[type="submit"]:focus {
     margin-left: 1.25rem;
 }
 
+
+/*------------------------------------------------------------
+	Teacher Page
+------------------------------------------------------------*/
+
 .c-teacher {
     -webkit-transition: padding-left .5s;
     transition: padding-left .5s;
@@ -2518,18 +2445,18 @@ input[type="submit"]:focus {
     height: 24px;
 }
 
+
+/*------------------------------------------------------------
+	Student Page
+------------------------------------------------------------*/
+
 .c-student {
     background: #f2f7f8;
 }
 
 .c-student .l-container {
-    /* margin-top: 84px; */
-    padding: 160px 0 40px;
+    padding: 160px 0 0;
     position: relative;
-}
-
-.c-student .c-table {
-    /* margin: 40px 0; */
 }
 
 .c-student__watchContent {
@@ -2729,15 +2656,6 @@ input[type="submit"]:focus {
     margin-right: 10px;
 }
 
-
-/* .c-class__meta .details .tags li {
-    margin-right: 2px;
-}
-
-.c-class__meta .details .tags li:first-child {
-    margin-left: -4px;
-} */
-
 .c-class__description {
     padding: 10px;
     margin-left: 10px;
@@ -2809,6 +2727,11 @@ input[type="submit"]:focus {
     letter-spacing: 0.5;
 }
 
+
+/*------------------------------------------------------------
+	Alert Message
+------------------------------------------------------------*/
+
 .alert {
     min-height: 40px;
     background: linear-gradient(to right, #0178bc, #25aae1, #30dd8a, #2bb673);
@@ -2834,7 +2757,7 @@ input[type="submit"]:focus {
 }
 
 .student-alert {
-    margin-top: 114px;
+    margin-top: 14px;
 }
 
 .teacher-alert {
@@ -2842,7 +2765,9 @@ input[type="submit"]:focus {
 }
 
 
-/* Tabs */
+/*------------------------------------------------------------
+	Admin Tab
+------------------------------------------------------------*/
 
 .c-admin__tab {
     min-width: 600px;
@@ -2945,7 +2870,9 @@ input[type="submit"]:focus {
 }
 
 
-/* Delete Later */
+/*------------------------------------------------------------
+	Admin tab delete Later class
+------------------------------------------------------------*/
 
 .deletelater .modal-content {
     width: 1170px;
@@ -3025,14 +2952,9 @@ input[type="submit"]:focus {
 ------------------------------------------------------------*/
 
 .c-headerStu {
-    background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
-    width: 100%;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.38);
     margin: 0 auto;
-    padding: 30px 0 0;
     line-height: 1;
     z-index: 10;
-    position: fixed;
 }
 
 .c-headerStu:after {
@@ -3045,9 +2967,7 @@ input[type="submit"]:focus {
 }
 
 .c-headerStu .l-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 30px 0 0;
 }
 
 .c-headerStu .logo a {
@@ -3107,8 +3027,8 @@ input[type="submit"]:focus {
 
 /* Fixed */
 
-.c-headerStu.fixed {
-    padding-top: 15px;
+.c-headerStu.fixed .l-container {
+    padding: 15px 0 0;
     /* background: rgba(255, 255, 255, 0.9); */
 }
 
@@ -3217,9 +3137,3 @@ input[type="submit"]:focus {
     -o-transform: translateX(10px);
     transform: translateX(10px);
 }
-
-
-/* .icon-arrow-right2:before {
-    box-sizing: inherit;
-    content: "\f30b";
-} */
