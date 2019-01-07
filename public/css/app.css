@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900");
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&subset=vietnamese");
 
 /*------------------------------------------------------------
 	Default
@@ -2316,6 +2316,7 @@ input[type="submit"]:focus {
     border-radius: 50%;
     height: 100%;
     object-fit: cover;
+    border: 1px solid #000;
 }
 
 .c-profile .card-content {
