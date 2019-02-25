@@ -1,9 +1,14 @@
-<% if (success_msg) { %>
+<!--<% if (success_msg) { %>
     <div class="alert student-alert">
         <%= success_msg %>
     </div>
-    <% } %>
-
+    <% } %>-->
+<% if (success_msg || error_msg) { %>
+    <div class="alert student-alert">
+        <%= success_msg %>
+        <%= error_msg %>
+    </div>
+<% } %>
         <div class="c-table">
             <div class="title2">
                 <h4>List Of Course</h4>
@@ -15,6 +20,7 @@
                             <th>Course Name</th>
                             <th>Semester</th>
                             <th>Year</th>
+                            <th>Time</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -29,6 +35,9 @@
                                 </td>
                                 <td>
                                     <%= data1[i].year%>
+                                </td>
+                                <td>
+                                    <%= data1[i].time1%> - <%= data1[i].time2%>
                                 </td>
                                 <td>
                                     <a href="/teacher/listOfStudent/<%= data1[i]._id; %>" class="btn1 btn1--color2">View</a>

@@ -28,7 +28,11 @@ router.get('/news', ensureAuthenticated, (req, res) => {
 router.get('/profile', ensureAuthenticated, (req, res) => {
     var user = req.user
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-        res.render('admin/profile', { data: adminProfile, layout: 'layoutAdmin', message: req.flash('success_msg') })
+        res.render('admin/profile', {
+            data: adminProfile,
+            layout: 'layoutAdmin',
+            message: req.flash('success_msg')
+        })
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
@@ -76,6 +80,19 @@ router.get('/teacher', ensureAuthenticated, (req, res) => {
     })
 })
 
+router.get('/deleteTeacher/:id', ensureAuthenticated, (req, res) => {
+    var teacherId = req.params.id;
+    User.deleteOne({
+        _id: teacherId
+    }, function(err) {
+        if (err) throw err
+        else {
+            req.flash('success_msg', 'Teacher Deleted')
+            res.redirect('/dashboard')
+        }
+    })
+})
+
 router.post('/teacher', ensureAuthenticated, (req, res) => {
     var param = req.body
 
@@ -94,9 +111,10 @@ router.post('/teacher', ensureAuthenticated, (req, res) => {
     var errors = req.validationErrors();
 
     if (errors) {
-        res.render('admin/error', {
-            errors: errors
-        })
+        for (var i = 0; i < errors.length; i++) {
+            req.flash('error_msg', errors[i].msg)
+            res.redirect('/dashboard')
+        }
     } else {
         var newUser = new User({
             channelLink: cLink,
@@ -105,13 +123,17 @@ router.post('/teacher', ensureAuthenticated, (req, res) => {
             password: password,
             role: role
         })
-
         User.createUser(newUser, function(err, user) {
-            if (err) throw err
+            if (err) {
+                throw err
+            } else if (user) {
+                req.flash('error_msg', 'User Existed !!!')
+                res.redirect('/dashboard')
+            } else {
+                req.flash('success_msg', 'Teacher Created')
+                res.redirect('/dashboard')
+            }
         })
-
-        req.flash('success_msg', 'Teacher Created')
-        res.redirect('teacher')
     }
 })
 
@@ -127,6 +149,19 @@ router.get('/course', ensureAuthenticated, (req, res) => {
     })
 })
 
+router.get('/deleteCourse/:id', ensureAuthenticated, (req, res) => {
+    var courseId = req.params.id;
+    Class.deleteOne({
+        _id: courseId
+    }, function(err) {
+        if (err) throw err
+        else {
+            req.flash('success_msg', 'Course Deleted')
+            res.redirect('/dashboard')
+        }
+    })
+})
+
 router.post('/course', ensureAuthenticated, (req, res) => {
     var param = req.body
 
@@ -137,6 +172,8 @@ router.post('/course', ensureAuthenticated, (req, res) => {
     var year = param.year
     var teacher = param.teacher
     var date = param.datestart
+    var time1 = param.timestart1
+    var time2 = param.timestart2
     var descrip = param.description
 
     // Validation
@@ -150,9 +187,10 @@ router.post('/course', ensureAuthenticated, (req, res) => {
     var errors = req.validationErrors();
 
     if (errors) {
-        res.render('admin/error', {
-            data: {}
-        });
+        for (var i = 0; i < errors.length; i++) {
+            req.flash('error_msg', errors[i].msg)
+            res.redirect('/dashboard')
+        }
     } else {
         var newPost = new Class({
             courseid: courseid,
@@ -162,18 +200,17 @@ router.post('/course', ensureAuthenticated, (req, res) => {
             year: year,
             teacher: teacher,
             date: date,
+            time1: time1,
+            time2: time2,
             description: descrip
         })
 
         Class.createCourse(newPost, function(err, post) {
             if (err) throw err
-            console.log(post)
         })
         req.flash('success_msg', 'Course Created')
-        res.redirect('course')
+        res.redirect('/dashboard')
     }
 })
-
-
 
 module.exports = router

@@ -1,5 +1,8 @@
-<% if (success_msg) { %>
-    <div class="alert alert__success"><%= success_msg %></div>
+<% if (success_msg || error_msg) { %>
+    <div class="alert alert__success">
+        <%= success_msg %>
+        <%= error_msg %>
+    </div>
 <% } %>
 
 <div class="c-admin__dashboard">
@@ -12,6 +15,7 @@
         <ul class="tabs">
             <li class="active">Teacher</li>
             <li>Class</li>
+            <li>Student</li>
         </ul>
 
         <ul class="tab__content">
@@ -82,6 +86,7 @@
                                         <th>Email</th>
                                         <th>Created</th>
                                         <th>Channel Link</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -93,6 +98,7 @@
                                             <td><%= tUser[i].email%></td>
                                             <td><%= (tUser[i].created).toDateString()%></td>
                                             <td><%= tUser[i].channelLink%></td>
+                                            <td><a href="/admin/deleteTeacher/<%= tUser[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
                                         </tr>
                                     <% }; %> 
                                 </tbody>
@@ -156,9 +162,6 @@
                                                             <input type="text" class="sem" name="semester" value="" readonly/>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                
-                                                <div class="c-form__items">
                                                     <div class="row">
                                                         <div class="col-25">
                                                             <p>Year:</p>
@@ -167,6 +170,9 @@
                                                             <input type="text" class="year" name="year" value="" readonly> 
                                                         </div>
                                                     </div>
+                                                </div>
+                                                
+                                                <div class="c-form__items">
                                                     <div class="row">
                                                         <div class="col-25">
                                                             <p>Teacher Name:</p>
@@ -185,6 +191,16 @@
                                                         </div>
                                                         <div class="col-75">
                                                             <input type="date" name="datestart" placeholder="01/01/2018"> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Time Start:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="time" class="tstart1" name="timestart1" value="07:30" step="300"> 
+                                                            -
+                                                            <input type="time" class="tstart2" name="timestart2" value="08:30" step="300"> 
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -214,9 +230,10 @@
                                         <th>Course Name</th>
                                         <th>Semester</th>
                                         <th>Year</th>
-                                        <th>Teacher ID</th>
                                         <th>Date Start</th>
+                                        <th>Time Start - End</th>
                                         <th>Created Date</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -226,9 +243,155 @@
                                             <td><%= cData[i].coursename%></td>
                                             <td><%= cData[i].semester%></td>
                                             <td><%= cData[i].year%></td>
-                                            <td><%= cData[i].teacher%></td>
                                             <td><%= (cData[i].date).toLocaleDateString('en-US') %></td>
+                                            <td><%= cData[i].time1%> - <%= cData[i].time2%></td>
                                             <td><%= (cData[i].created_date).toLocaleDateString('en-US') %></td>
+                                            <td><a href="/admin/deleteCourse/<%= cData[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
+                                        </tr>
+                                    <% }; %> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="content__wrapper deletelater">
+                    <div class="c-table">
+                        <div class="title2">
+                            <h4>List Of Student</h4>
+                            <div id="modal-4" class="modal">
+                                <div class="modal-content">
+                                   <div class="title1">
+                                        <h4>New Course</h4>
+                                        <span class="close">&times;</span>
+                                    </div>
+                                    <div class="c-form">
+                                        <form role="form" method="POST" action="/admin/course">
+                                            <div class="row">
+                                                <div class="c-form__items">
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Course ID:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="text" class="form-control" name="courseid" placeholder="Course ID">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Course Name:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="text" class="form-control" name="coursename" placeholder="Course Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Number of Credit:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <select name="coursecredit">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Semester: </p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="text" class="sem" name="semester" value="" readonly/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Year:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="text" class="year" name="year" value="" readonly> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="c-form__items">
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Teacher Name:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <select name="teacher">
+                                                            <% for( var i = 0; i < tUser.length ; i++){%>
+                                                                <option value="<%= tUser[i]._id%>"><%= tUser[i].fname%> <%= tUser[i].lname%></option>
+                                                            <% }; %> 
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Date Start:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="date" name="datestart" placeholder="01/01/2018"> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Time Start:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="time" class="tstart1" name="timestart1" value="07:30" step="300"> 
+                                                            -
+                                                            <input type="time" class="tstart2" name="timestart2" value="08:30" step="300"> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-25">
+                                                            <p>Description:</p>
+                                                        </div>
+                                                        <div class="col-75">
+                                                            <input type="text" class="form-control" name="description" placeholder="Course Description">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top:20px;border-top: 1px solid #ccc;justify-content:flex-start;">
+                                                <button type="submit" class="btn1 btn1--color2">Submit</button>
+                                                <button type="reset" class="btn1 btn1--color3 ml-10">Cancle</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-table__content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Course Name</th>
+                                        <th>Semester</th>
+                                        <th>Year</th>
+                                        <th>Date Start</th>
+                                        <th>Time Start - End</th>
+                                        <th>Created Date</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for( var i = 0; i < cData.length ; i++){%>
+                                        <tr>
+                                            <td><%= cData[i].courseid%></td>
+                                            <td><%= cData[i].coursename%></td>
+                                            <td><%= cData[i].semester%></td>
+                                            <td><%= cData[i].year%></td>
+                                            <td><%= (cData[i].date).toLocaleDateString('en-US') %></td>
+                                            <td><%= cData[i].time1%> - <%= cData[i].time2%></td>
+                                            <td><%= (cData[i].created_date).toLocaleDateString('en-US') %></td>
+                                            <td><a href="/admin/deleteCourse/<%= cData[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
                                         </tr>
                                     <% }; %> 
                                 </tbody>
@@ -244,34 +407,21 @@
 
 <script>
 
-    // Variables
-	//Admin Create Course
-    var currentDate = new Date();
-
     //Get this year and next year
     var y1 = moment().year();
     var y2 = moment().add(1, 'years').format("YYYY");
     $('.year').val(y1 + ' - ' + y2);
-    //Sem 1
-    var minDates1 = new Date('08/01/2018');
-    var maxDates1 = new Date('01/31/2019');
-    //Sem 2
-    var minDates2 = new Date('02/01/2019');
-    var maxDates2 = new Date('05/31/2019');
-    //Summer Sem
-    var minDatess = new Date('06/01/2019');
-    var maxDatess = new Date('07/31/2019');
 
+    var today = new Date();
+    var quarter = Math.floor((today.getMonth() + 4) / 4);
     var sem1 = $('.sem');
-
-    if (currentDate > minDates1 && currentDate < maxDates1) {
-        sem1.val('Semester 1');
-    } else if (currentDate > minDates2 && currentDate < maxDates2) {
+    if (quarter == 1) {
         sem1.val('Semester 2');
-    } else if (currentDate > minDatess && currentDate < maxDatess) {
+    } else if (quarter == 2) {
         sem1.val('Semester 3');
+    } else if (quarter == 3) {
+        sem1.val('Semester 1');
     }
-	
 	
     // Get the modal
     // var modal = document.getElementsByClassName('modal');

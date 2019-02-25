@@ -73,10 +73,13 @@ io.on('connection', socket => {
 https://github.com/socketio/socket.io
 https://github.com/socketio/socket.io-client/blob/master/docs/API.md#socket
 https://github.com/socketio/socket.io/blob/master/docs/emit.md
-
+https://openclassrooms.com/en/courses/2504541-ultra-fast-applications-using-node-js/2505787-practical-exercise-the-super-chat
+https://vimeo.com/36229857
+https://techtalk.vn/xay-dung-app-don-gian-voi-nodejs-expressjs-va-socket-io.html
+https://viblo.asia/p/buoc-dau-lam-quen-voi-nodejs-va-socketio-MJyGjQrWvPB
 */
 
-io.on('connection', function(socket) {
+io.on('connection', function(socket, username) {
 
     socket.on("creat-room", (data) => {
         socket.join(data)
@@ -86,10 +89,17 @@ io.on('connection', function(socket) {
 
     socket.on('stream', (image) => {
         // io.sockets.in(socket.Phong).emit('stream', image);
-        io.in(socket.Phong).emit('stream', image);
+        socket.broadcast.emit('stream', image);
+        // io.in(socket.Phong).emit('stream', image); current check 
         // io.to(socket.Phong).emit('stream', image);
         // socket.broadcast.to(socket.Phong).emit('stream', image);
     });
+
+    // socket.on('new_client', function(username) {
+    //     username = ent.encode(username);
+    //     socket.username = username;
+    //     socket.broadcast.emit('new_client', username);
+    // });
 
     socket.on("user-chat", (data) => {
         io.sockets.in(socket.Phong).emit("server-chat", data)

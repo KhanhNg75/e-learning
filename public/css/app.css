@@ -460,6 +460,16 @@ li .dropdown-profile a:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
 }
 
+.btn1--color4 {
+    background: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+.btn1--color4:hover {
+    background: #ff0000;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+}
+
 .c-btn__social ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2206,7 +2216,9 @@ input[type="submit"]:focus {
     box-sizing: border-box;
 }
 
-.c-form input[type="date"] {
+.c-form input[type="date"],
+.c-form input[type="time"] {
+    border-radius: 4px;
     padding: 9px 0 9px 15px;
     border: 1px solid #ccc;
     width: 245px;
@@ -2906,8 +2918,11 @@ input[type="submit"]:focus {
 }
 
 .deletelater .c-form input[type="date"] {
-    width: 100%;
-    padding-left: 0;
+    width: -webkit-fill-available;
+}
+
+.deletelater .c-form input[type="time"] {
+    width: 43%;
 }
 
 

@@ -1,5 +1,11 @@
-<% if (success_msg) { %>
+<!--<% if (success_msg) { %>
     <div class="alert student-alert"><%= success_msg %></div>
+<% } %> -->
+<% if (success_msg || error_msg) { %>
+    <div class="alert student-alert">
+        <%= success_msg %>
+        <%= error_msg %>
+    </div>
 <% } %>
 
 <section class="c-class">
@@ -24,7 +30,7 @@
                                 <%= (data1[i].date).toLocaleDateString('en-US') %>
                             </li>
                             <li class="tags">
-                                <%= data1[i].coursename%>
+                                <%= data1[i].time1%> - <%= data1[i].time2%>
                             </li>
                         </ul>
                     </div>

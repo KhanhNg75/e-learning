@@ -4,6 +4,10 @@ socket.on('connect', function() {
     socket.emit('creat-room', $('#linkroom').val());
 });
 
+// socket.on('new_client', function(username) {
+//     $('#chat_zone').prepend('<p><em>' + username + ' has joined the chat!</em></p>');
+// })
+
 socket.on("server-send-room-socket", function(data) {
     $("#roomHienTai").html(data);
 });
@@ -11,17 +15,17 @@ socket.on("server-send-room-socket", function(data) {
 socket.on("server-chat", function(data) {
     var Username = $('#username').val();
     $("#right ul").append("<li>" + data.username + ":" + data.message + "</li>");
-    if (data.username == Username) {
-        $("#right ul li").addClass('userChat');
-        if ($("#right ul li").hasClass('otherUserChat')) {
-            $("#right ul li").removeClass('userChat');
-        }
-    } else {
-        $("#right ul li").addClass('otherUserChat');
-        if ($("#right ul li").hasClass('userChat')) {
-            $("#right ul li").removeClass('otherUserChat');
-        }
-    }
+    // if (data.username == Username) {
+    //     $("#right ul li").addClass('userChat');
+    //     if ($("#right ul li").hasClass('otherUserChat')) {
+    //         $("#right ul li").removeClass('userChat');
+    //     }
+    // } else {
+    //     $("#right ul li").addClass('otherUserChat');
+    //     if ($("#right ul li").hasClass('userChat')) {
+    //         $("#right ul li").removeClass('otherUserChat');
+    //     }
+    // }
     $("#right").animate({ scrollTop: $("#right")[0].scrollHeight }, 'fast');
 });
 

@@ -29,9 +29,11 @@ Scroll bar
 ------------------------------------------------------------*/
 
 $("body").niceScroll({
-    cursorcolor: "#00bdda",
-    cursorwidth: "10px"
+    cursorcolor: "rgba(0,0,0,0.8)",
+    cursorwidth: "10px",
+    zindex: 999
 });
+
 
 /*------------------------------------------------------------
 	Anchor
@@ -73,6 +75,13 @@ $(window).load(function() {
         $('#preloader').addClass('loaded');
     }
     setInterval(preloader, 1000);
+});
+
+/*-----------------------------------------------------------------------------------*/
+/* Confirm Delete
+/*-----------------------------------------------------------------------------------*/
+$('.btn1--color4').click(function() {
+    return confirm("Are you sure?");
 });
 
 $(function() {
@@ -178,8 +187,6 @@ $(function() {
     ------------------------------------------------------------*/
 
     if ($('header').hasClass('c-headerStu')) {
-        console.log('aaa');
-
         function autoHeight() {
             $('main').css('min-height', 0);
             $('main').css('min-height', (
@@ -189,7 +196,6 @@ $(function() {
             ));
         }
     } else {
-
         function autoHeight() {
             $('main').css('min-height', 0);
             $('main').css('min-height', (
@@ -251,7 +257,6 @@ $(function() {
 
                 // Add class active to corresponding tab
                 $(".tab__content > li").eq(clickedTabIndex).addClass("active");
-
                 // update new active tab
                 activeTab = $(".tab__content > .active");
 
@@ -265,6 +270,7 @@ $(function() {
 
                     // Fade in active tab
                     activeTab.delay(50).fadeIn(250);
+                    $('body').getNiceScroll().resize();
                 });
             });
         });

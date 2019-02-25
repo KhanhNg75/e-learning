@@ -27,6 +27,12 @@ var ClassSchema = mongoose.Schema({
     date: {
         type: Date
     },
+    time1: {
+        type: String
+    },
+    time2: {
+        type: String
+    },
     description: {
         type: String
     },

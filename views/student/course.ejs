@@ -10,6 +10,7 @@
                     <th>Course Name</th>
                     <th>Semester</th>
                     <th>Year</th>
+                    <th>Time</th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,6 +28,9 @@
                         </td>
                         <td>
                             <%= result[i].year%>
+                        </td>
+                        <td>
+                            <%= result[i].time1%> - <%= result[i].time2%>
                         </td>
                         <td>
                             <a href="/student/watch/<%= result[i]._id%>" type="submit" class="btn1 btn1--color2">View</a>

@@ -1,5 +1,12 @@
-<% if (success_msg) { %>
+<!-- <% if (success_msg) { %>
     <div class="alert admin-alert"><%= success_msg %></div>
+<% } %> -->
+
+<% if (success_msg || error_msg) { %>
+    <div class="alert admin-alert">
+        <%= success_msg %>
+        <%= error_msg %>
+    </div>
 <% } %>
 <% for( var i = 0; i < data.length ; i++){%>
                    

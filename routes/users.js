@@ -22,20 +22,33 @@ router.post('/register', (req, res) => {
     var errors = req.validationErrors()
 
     if (errors) {
-        res.render('/', {
-            errors: errors
-        })
+        for (var i = 0; i < errors.length; i++) {
+            req.flash('error_msg', errors[i].msg)
+            res.redirect('/')
+        }
     } else {
         var newUser = new User({
-            email: email,
-            username: username,
-            password: password
+                email: email,
+                username: username,
+                password: password
+            })
+            // User.createUser(newUser, (err, user) => {
+            //     if (err) throw err;
+            // })
+            // req.flash('success_msg', 'You are registered and can now login')
+            //     // req.flash('error_msg', 'Fail to create')
+            // res.redirect('/')
+        User.createUser(newUser, function(err, user) {
+            if (err) {
+                throw err
+            } else if (user) {
+                req.flash('error_msg', 'Username Existed !!!')
+                res.redirect('/')
+            } else {
+                req.flash('success_msg', 'You are registered and can now login')
+                res.redirect('/')
+            }
         })
-        User.createUser(newUser, (err, user) => {
-            if (err) throw err;
-        })
-        req.flash('success_msg', 'You are registered and can now login')
-        res.redirect('/')
     }
 })
 
@@ -78,7 +91,7 @@ router.post('/login', (req, res, next) => {
         }
         req.logIn(user, function(err) {
             if (err) { return next(err) }
-            req.flash('success_msg', 'Welcome')
+            req.flash('success_msg', 'Welcome to E-learning Website')
             res.redirect('/dashboard')
         });
     })(req, res, next);

@@ -55,7 +55,6 @@ router.get('/registClass/:id', ensureAuthenticated, function(req, res) {
 
     List.createStudentList(newStudent, function(err, post) {
         if (err) throw err
-        console.log(post)
     })
     req.flash('success_msg', 'Register Class Successfull')
     res.redirect('/dashboard')

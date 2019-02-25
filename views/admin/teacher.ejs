@@ -1,6 +1,14 @@
-<% if (success_msg) { %>
+<!--<% if (success_msg) { %>
     <div class="alert student-alert"><%= success_msg %></div>
+<% } %> -->
+
+<% if (success_msg || error_msg) { %>
+    <div class="alert student-alert">
+        <%= success_msg %>
+        <%= error_msg %>
+    </div>
 <% } %>
+
 <div class="c-admin__teacher">
     <div class="title1">
         <h4>Create New Teacher</h4>

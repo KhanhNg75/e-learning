@@ -20,7 +20,10 @@ router.get('/test', function(req, res) {
 
 // Get Homepage
 router.get('/', (req, res) => {
-    res.render('layout', { layout: 'layout', message: req.flash('success_msg') || req.flash('error_msg') })
+    res.render('layout', {
+        layout: 'layout',
+        message: req.flash('success_msg') || req.flash('error_msg')
+    })
 });
 
 router.get('/favicon.ico', (req, res) => res.status(204));
@@ -64,23 +67,21 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                     { $sort: { "inventory": 1 } },
                 ]).toArray()
                 .then((resultCourse) => {
-                    studentUser.find({ "_id": ObjectID(user._id) }).toArray()
-                        .then(function(resultStudent) {
-                            listCourse.find({ "studentid": ObjectID(user._id) }).toArray()
-                                .then(function(registerdClass) {
-                                    if (resultCourse._id == registerdClass.courseid) {
-                                        req.session.data = resultCourse
-                                        res.render('student/student', {
-                                            data1: resultCourse,
-                                            data: resultStudent,
-                                            dataClass: registerdClass,
-                                            layout: 'layoutmainStudent',
-                                            message: req.flash('success_msg')
-                                        })
-                                        client.close()
-                                    }
+                    studentUser.find({ "_id": ObjectID(user._id) }).toArray().then(function(resultStudent) {
+                        listCourse.find({ "studentid": ObjectID(user._id) }).toArray().then(function(registerdClass) {
+                            if (resultCourse._id == registerdClass.courseid) {
+                                req.session.data = resultCourse
+                                res.render('student/student', {
+                                    data1: resultCourse,
+                                    data: resultStudent,
+                                    dataClass: registerdClass,
+                                    layout: 'layoutmainStudent',
+                                    message: req.flash('success_msg')
                                 })
+                                client.close()
+                            }
                         })
+                    })
                 }).catch(function(err) {
                     res.send({ error: 400, message: err })
                 })
