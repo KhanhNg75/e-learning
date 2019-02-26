@@ -161,6 +161,33 @@ $(function() {
     });
 
     /*------------------------------------------------------------
+	    Admin Edit Button
+    ------------------------------------------------------------*/
+    $(".edit-btn").on("click", function() {
+        $(".modal1").addClass('dp-f');
+        $('html, body').addClass('of-h');
+    })
+
+    $(".close").on("click", function() {
+        $(".modal1").removeClass('dp-f');
+        document.getElementById("defaultOpen").click();
+        $('html, body').removeClass('of-h');
+    })
+
+    $("#defaultOpen").on("click", function() {
+        $(".modal1").removeClass('dp-f');
+        $('html, body').removeClass('of-h');
+    })
+
+    /*------------------------------------------------------------
+	    Stop page loading
+    ------------------------------------------------------------*/
+    $('.registed').on("click", function(e) {
+        e.preventDefault();
+    })
+
+
+    /*------------------------------------------------------------
 	    Choose File Name
     ------------------------------------------------------------*/
     var applyFiles = function() {
@@ -183,7 +210,7 @@ $(function() {
 
 
     /*------------------------------------------------------------
-	    Bottom Foorter
+	    Bottom Footer
     ------------------------------------------------------------*/
 
     if ($('header').hasClass('c-headerStu')) {

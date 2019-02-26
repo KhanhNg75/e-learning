@@ -11,7 +11,6 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var mongoose = require('mongoose')
 var router = express.Router()
-
 var config = require('./config/database')
 
 mongoose.set('useNewUrlParser', true)
@@ -60,7 +59,7 @@ app.use(session({
     saveUninitialized: true,
     resave: true,
     cookie: { httpOnly: true, maxAge: 3600000 }
-}))
+}));
 
 //Io Connection
 /*
@@ -79,11 +78,11 @@ https://techtalk.vn/xay-dung-app-don-gian-voi-nodejs-expressjs-va-socket-io.html
 https://viblo.asia/p/buoc-dau-lam-quen-voi-nodejs-va-socketio-MJyGjQrWvPB
 */
 
-io.on('connection', function(socket, username) {
+io.on('connection', function(socket) {
 
     socket.on("creat-room", (data) => {
         socket.join(data)
-        socket.Phong = data
+        socket.room = data
         socket.emit("server-send-room-socket", data)
     });
 
@@ -101,8 +100,16 @@ io.on('connection', function(socket, username) {
     //     socket.broadcast.emit('new_client', username);
     // });
 
+    // socket.on('typing', (data) => {
+    //     io.sockets.in(socket.room).emit("typing", data)
+    // })
+
     socket.on("user-chat", (data) => {
-        io.sockets.in(socket.Phong).emit("server-chat", data)
+        io.sockets.in(socket.room).emit("server-chat", data)
+    });
+
+    socket.on('disconnect', () => {
+
     });
 
     socket.on('error', () => console.log('errored'));
@@ -144,7 +151,6 @@ app.use(function(req, res, next) {
     res.locals.data = req.session.data
     next()
 })
-
 
 require('./config/passport')(passport)
 

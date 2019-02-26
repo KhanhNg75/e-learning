@@ -40,12 +40,15 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
             User.find({ "_id": ObjectID(user._id) }).then(UserInfor => {
                 User.find({ "role": "teacher" }).then(teacherUser => {
                     Class.find({}).then(classData => {
-                        res.render('admin/admin', {
-                            data: UserInfor,
-                            tUser: teacherUser,
-                            cData: classData,
-                            layout: 'layoutAdmin',
-                            message: req.flash('success_msg')
+                        User.find({ "role": "student" }).then(studentUser => {
+                            res.render('admin/admin', {
+                                data: UserInfor,
+                                tUser: teacherUser,
+                                sUser: studentUser,
+                                cData: classData,
+                                layout: 'layoutAdmin',
+                                message: req.flash('success_msg')
+                            })
                         })
                     })
                 })

@@ -1,3 +1,10 @@
+<% if (success_msg || error_msg) { %>
+    <div class="alert student-alert">
+        <%= success_msg %>
+        <%= error_msg %>
+    </div>
+<% } %>
+
 <div class="c-table">
     <div class="title2">
         <h4>Courses</h4>
@@ -10,6 +17,7 @@
                     <th>Course Name</th>
                     <th>Semester</th>
                     <th>Year</th>
+                    <th>Date</th>
                     <th>Time</th>
                     <th></th>
                 </tr>
@@ -30,10 +38,14 @@
                             <%= result[i].year%>
                         </td>
                         <td>
+                            <%= (result[i].date).toLocaleDateString('en-US') %>  
+                        </td>
+                        <td>
                             <%= result[i].time1%> - <%= result[i].time2%>
                         </td>
                         <td>
                             <a href="/student/watch/<%= result[i]._id%>" type="submit" class="btn1 btn1--color2">View</a>
+                            <a href="/student/deleteClass/<%= result[i]._id%>" type="submit" class="btn1 btn1--color4">Delete</a>
                         </td>
                     </tr>
                     <% }; %>

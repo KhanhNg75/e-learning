@@ -422,7 +422,9 @@ li .dropdown-profile a:hover {
 ------------------------------------------------------------*/
 
 .btn1 {
-    padding: 7px 12px;
+    width: 70px;
+    padding: 7px 0;
+    text-align: center;
     font-size: 1.5rem;
     display: inline-block;
     vertical-align: middle;
@@ -903,7 +905,8 @@ Page Loader
 	Modal Display
 ------------------------------------------------------------*/
 
-.modal {
+.modal,
+.modal1 {
     display: none;
     position: fixed;
     z-index: 3;
@@ -1106,6 +1109,9 @@ video {
 
 .w3table-cell form {
     padding: 1.5em;
+    padding-right: 0;
+    margin-right: 54px;
+    overflow: hidden;
 }
 
 .main-agileinfo input[type="radio"] {
@@ -1456,7 +1462,7 @@ label a:hover {
     color: #000;
     padding: 0.5em 1em 0.3em 0;
     border: 0;
-    width: 85%;
+    width: 100%;
     border-bottom: 1px solid #2c2b2e;
     background: none;
     -webkit-appearance: none;
@@ -1469,7 +1475,7 @@ label a:hover {
 
 .register input[type="submit"] {
     float: right;
-    margin-right: 38px;
+    /* margin-right: 38px; */
     padding: 6px 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -2770,7 +2776,8 @@ input[type="submit"]:focus {
 }
 
 .student-alert {
-    margin-top: 14px;
+    /* margin-top: 14px;112px */
+    margin-top: 112px;
 }
 
 .teacher-alert {

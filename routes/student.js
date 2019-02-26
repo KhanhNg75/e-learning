@@ -60,6 +60,22 @@ router.get('/registClass/:id', ensureAuthenticated, function(req, res) {
     res.redirect('/dashboard')
 });
 
+// Delete Registed Class
+router.get('/deleteClass/:id', ensureAuthenticated, (req, res) => {
+    var classId = req.params.id;
+    var userid = req.user._id;
+    List.deleteOne({
+        "courseid": classId,
+        "studentid": userid
+    }, function(err) {
+        if (err) throw err
+        else {
+            req.flash('success_msg', 'Class Deleted')
+            res.redirect('/student/course')
+        }
+    })
+})
+
 //Registered Course
 router.get('/course', ensureAuthenticated, function(req, res) {
     var user = req.user

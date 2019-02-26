@@ -80,19 +80,6 @@ router.get('/teacher', ensureAuthenticated, (req, res) => {
     })
 })
 
-router.get('/deleteTeacher/:id', ensureAuthenticated, (req, res) => {
-    var teacherId = req.params.id;
-    User.deleteOne({
-        _id: teacherId
-    }, function(err) {
-        if (err) throw err
-        else {
-            req.flash('success_msg', 'Teacher Deleted')
-            res.redirect('/dashboard')
-        }
-    })
-})
-
 router.post('/teacher', ensureAuthenticated, (req, res) => {
     var param = req.body
 
@@ -136,6 +123,30 @@ router.post('/teacher', ensureAuthenticated, (req, res) => {
         })
     }
 })
+
+//Delete User
+router.get('/deleteUser/:id', ensureAuthenticated, (req, res) => {
+    var userId = req.params.id;
+    User.deleteOne({
+        _id: userId
+    }, function(err) {
+        if (err) throw err
+        else {
+            req.flash('success_msg', 'User Deleted')
+            res.redirect('/dashboard')
+        }
+    })
+})
+
+//Edit User
+// router.get('/editUser/:id', ensureAuthenticated, (req, res) => {
+//     var userId = req.params.id;
+//     User.find({ "_id": userId }).then(userEditProfile => {
+//         let editInformation = userEditProfile;
+//     }).catch(function(err) {
+//         res.send({ error: 400, message: err })
+//     })
+// })
 
 //Course Create
 router.get('/course', ensureAuthenticated, (req, res) => {

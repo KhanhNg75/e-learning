@@ -24,6 +24,8 @@
                     <div class="c-table">
                         <div class="title2">
                             <h4>List Of Teacher</h4>
+
+                            <!-- Show Modal Teacher List -->
                             <div class="create-btn" id="myBtn">
                                 <a href="#_" class="btn1 btn1--color2">Create</a>
                             </div>
@@ -76,6 +78,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Table Content -->
                         <div class="c-table__content">
                             <table>
                                 <thead>
@@ -98,11 +102,68 @@
                                             <td><%= tUser[i].email%></td>
                                             <td><%= (tUser[i].created).toDateString()%></td>
                                             <td><%= tUser[i].channelLink%></td>
-                                            <td><a href="/admin/deleteTeacher/<%= tUser[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
+                                            <td style="display:flex">
+                                                <div class="edit-btn" id="myBtn">
+                                                    <a href="/admin/editUser/<%= tUser[i]._id %>" class="btn1 btn1--color2">Edit</a>
+                                                </div>
+                                                <a href="/admin/deleteUser/<%= tUser[i]._id %>" class="btn1 btn1--color4">Delete</a>
+                                            </td>
                                         </tr>
                                     <% }; %> 
                                 </tbody>
                             </table>
+                        </div>
+                        
+                        <!-- Edit Teacher Information -->
+                        <div id="modal-4" class="modal1">
+                            <div class="modal-content">
+                                <div class="title1">
+                                    <h4>New Teacher</h4>
+                                    <span class="close">&times;</span>
+                                </div>
+                                <div class="c-form">
+                                
+                                    <form role="form" method="POST" action="/admin/editUser">
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <p>Username:</p>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" value="" name="username">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <p>Email:</p>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="email" placeholder="Email" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <p>Password: </p>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="password" placeholder="Password" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <p>Channel Link: </p>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" placeholder="Channel Link" name="cLink">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="btn1 btn1--color2">Submit</button>
+                                            <button type="reset" id="defaultOpen" class="btn1 btn1--color3 ml-10">Cancle</button>
+                                        </div>
+                                    </form>
+                                
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,6 +173,8 @@
                     <div class="c-table">
                         <div class="title2">
                             <h4>List Of Class</h4>
+
+                            <!-- Show Modal Class List -->
                             <div class="create-btn" id="myBtn">
                                 <a href="#_" class="btn1 btn1--color2">Create</a>
                             </div>
@@ -222,6 +285,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Class Content -->
                         <div class="c-table__content">
                             <table>
                                 <thead>
@@ -255,143 +320,34 @@
                     </div>
                 </div>
             </li>
+
             <li>
                 <div class="content__wrapper deletelater">
                     <div class="c-table">
                         <div class="title2">
                             <h4>List Of Student</h4>
-                            <div id="modal-4" class="modal">
-                                <div class="modal-content">
-                                   <div class="title1">
-                                        <h4>New Course</h4>
-                                        <span class="close">&times;</span>
-                                    </div>
-                                    <div class="c-form">
-                                        <form role="form" method="POST" action="/admin/course">
-                                            <div class="row">
-                                                <div class="c-form__items">
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Course ID:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input type="text" class="form-control" name="courseid" placeholder="Course ID">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Course Name:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input type="text" class="form-control" name="coursename" placeholder="Course Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Number of Credit:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <select name="coursecredit">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                        </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Semester: </p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input type="text" class="sem" name="semester" value="" readonly/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Year:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input type="text" class="year" name="year" value="" readonly> 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="c-form__items">
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Teacher Name:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <select name="teacher">
-                                                            <% for( var i = 0; i < tUser.length ; i++){%>
-                                                                <option value="<%= tUser[i]._id%>"><%= tUser[i].fname%> <%= tUser[i].lname%></option>
-                                                            <% }; %> 
-                                                        </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Date Start:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input type="date" name="datestart" placeholder="01/01/2018"> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Time Start:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input type="time" class="tstart1" name="timestart1" value="07:30" step="300"> 
-                                                            -
-                                                            <input type="time" class="tstart2" name="timestart2" value="08:30" step="300"> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <p>Description:</p>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input type="text" class="form-control" name="description" placeholder="Course Description">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row" style="padding-top:20px;border-top: 1px solid #ccc;justify-content:flex-start;">
-                                                <button type="submit" class="btn1 btn1--color2">Submit</button>
-                                                <button type="reset" class="btn1 btn1--color3 ml-10">Cancle</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="c-table__content">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Course Name</th>
-                                        <th>Semester</th>
-                                        <th>Year</th>
-                                        <th>Date Start</th>
-                                        <th>Time Start - End</th>
-                                        <th>Created Date</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Created</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for( var i = 0; i < cData.length ; i++){%>
+                                    <% for( var i = 0; i < sUser.length ; i++){%>
                                         <tr>
-                                            <td><%= cData[i].courseid%></td>
-                                            <td><%= cData[i].coursename%></td>
-                                            <td><%= cData[i].semester%></td>
-                                            <td><%= cData[i].year%></td>
-                                            <td><%= (cData[i].date).toLocaleDateString('en-US') %></td>
-                                            <td><%= cData[i].time1%> - <%= cData[i].time2%></td>
-                                            <td><%= (cData[i].created_date).toLocaleDateString('en-US') %></td>
-                                            <td><a href="/admin/deleteCourse/<%= cData[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
+                                            <td><%= sUser[i].fname%></td>
+                                            <td><%= sUser[i].lname%></td>
+                                            <td><%= sUser[i].username%></td>
+                                            <td><%= sUser[i].email%></td>
+                                            <td><%= (sUser[i].created).toDateString()%></td>
+                                            <td><a href="/admin/deleteUser/<%= sUser[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
                                         </tr>
                                     <% }; %> 
                                 </tbody>
