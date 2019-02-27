@@ -11,16 +11,23 @@
 <div class="c-stream">
     <div class="l-main">
     
-        <div class="stream-video">
+        <!-- <div class="stream-video">
             <img src="" alt="" id="play">
             <div id="logger" style="display:none"></div>
         </div>
         <% for(var i = 0; i< data2.length ; i++) { %> 
             <iframe src="https://player.twitch.tv/?channel=<%= data2[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" style="width:100%;height:320px;background:#cfcfcf;" frameborder="0"></iframe> 
-        <%}%> 
+        <%}%> -->
+        <div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+            <b>Thành viên</b>
+            <div id="users"></div>
+        </div>
+        <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+            <div id="conversation"></div>
+        </div>
     </div>
     <div class="l-side">
-        <h4 id="roomHienTai">...</h4>
+        <h4 id="currentRoom">...</h4>
 
         <div class="c-stream__chat">
             <div class="c-stream__contentChat" id="right">
@@ -35,6 +42,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div class="c-student__slide">
     <div class="title1">
@@ -57,8 +66,8 @@
 
 <script>
     var socket = io();
-    socket.on('stream', function(image) {
+    socket.on('stream', function(data) {
         var img = document.getElementById("play");
-        img.src = image;
+        img.src = data;
     });
 </script>

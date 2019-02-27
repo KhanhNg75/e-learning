@@ -1,27 +1,21 @@
 var socket = io.connect();
 
 socket.on('connect', function() {
-    socket.emit('creat-room', $('#linkroom').val());
+    socket.emit('creat-room', $('#linkroom').val(), $('#username').val());
 });
 
-// socket.on('new_client', function(username) {
-//     $('#chat_zone').prepend('<p><em>' + username + ' has joined the chat!</em></p>');
-// })
-
-socket.on('usernames', function(data) {
-    console.log(data);
-    // var html = '';
-    // for (i = 0; i < data.length; i++) {
-    //     html += '<div class="user" name="' + data[i] + '">' + data[i] + '</div>';
-    // }
-
-    // console.log(html);
-    // $('.chat_body').html(html);
-    // usernameClick();
+socket.on('announcement', function(username, data) {
+    $('#conversation').append('<p>' + username + ':</p> ' + data + '<br>');
+});
+socket.on('update-users', function(data) {
+    $('#users').empty();
+    $.each(data, function(key, value) {
+        $('#users').append('<div>' + key + '</div>');
+    });
 });
 
 socket.on("server-send-room-socket", function(data) {
-    $("#roomHienTai").html(data);
+    $("#currentRoom").html(data);
 });
 
 socket.on("server-chat", function(data) {
@@ -63,6 +57,5 @@ $(document).ready(function() {
         socket.emit("user-chat", { username: username, message: message });
         $("#txtMessage").val("");
     });
-
 
 });

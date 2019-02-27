@@ -13,6 +13,9 @@ var mongoose = require('mongoose')
 var router = express.Router()
 var config = require('./config/database')
 
+// Defind Username Object to store Username in socketio
+var usernames = {}
+
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
@@ -58,12 +61,14 @@ app.use(session({
     secret: 'code',
     saveUninitialized: true,
     resave: true,
-    cookie: { httpOnly: true, maxAge: 3600000 }
+    cookie: {
+        httpOnly: true,
+        maxAge: 3600000
+    }
 }));
 
 //Io Connection
 /*
-
 io.on('connection', socket => {
   socket.emit('request',  … ); emit an event to the socket
   io.emit('broadcast',  … ); // emit an event to all connected sockets
@@ -76,29 +81,31 @@ https://openclassrooms.com/en/courses/2504541-ultra-fast-applications-using-node
 https://vimeo.com/36229857
 https://techtalk.vn/xay-dung-app-don-gian-voi-nodejs-expressjs-va-socket-io.html
 https://viblo.asia/p/buoc-dau-lam-quen-voi-nodejs-va-socketio-MJyGjQrWvPB
+https://viblo.asia/p/tim-hieu-co-ban-cach-hoat-dong-cua-socket-io-bang-chat-realtime-XL6lAPYDZek
+https://github.com/tpiros/advanced-chat **
 */
 
 io.on('connection', function(socket) {
 
-    socket.on("creat-room", (data) => {
+    socket.on("creat-room", (data, username) => {
         socket.join(data)
         socket.room = data
+        socket.username = username
+        usernames[username] = username;
         socket.emit("server-send-room-socket", data)
+        if (username != null) {
+            socket.broadcast.emit('announcement', 'SERVER', username + ' has joined room');
+        }
+        io.sockets.emit('update-users', usernames);
     });
 
-    socket.on('stream', (image) => {
+    socket.on('stream', (data) => {
         // io.sockets.in(socket.Phong).emit('stream', image);
-        socket.broadcast.emit('stream', image);
+        socket.broadcast.emit('stream', data);
         // io.in(socket.Phong).emit('stream', image); current check 
         // io.to(socket.Phong).emit('stream', image);
         // socket.broadcast.to(socket.Phong).emit('stream', image);
     });
-
-    // socket.on('new_client', function(username) {
-    //     username = ent.encode(username);
-    //     socket.username = username;
-    //     socket.broadcast.emit('new_client', username);
-    // });
 
     // socket.on('typing', (data) => {
     //     io.sockets.in(socket.room).emit("typing", data)
@@ -109,7 +116,11 @@ io.on('connection', function(socket) {
     });
 
     socket.on('disconnect', () => {
-
+        delete usernames[socket.username];
+        io.sockets.emit('update-users', usernames);
+        if (socket.username != null) {
+            socket.broadcast.emit('announcement', 'SERVER', socket.username + ' has disconnected');
+        }
     });
 
     socket.on('error', () => console.log('errored'));
@@ -127,7 +138,6 @@ app.use(expressValidator({
         var namespace = param.split('.'),
             root = namespace.shift(),
             formParam = root
-
         while (namespace.length) {
             formParam += '[' + namespace.shift() + ']'
         }

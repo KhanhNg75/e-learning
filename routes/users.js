@@ -7,6 +7,7 @@ var User = require('../models/user')
 
 //Register
 router.post('/register', (req, res) => {
+
     var email = req.body.email;
     var username = req.body.username;
     var password = req.body.password;
@@ -28,16 +29,10 @@ router.post('/register', (req, res) => {
         }
     } else {
         var newUser = new User({
-                email: email,
-                username: username,
-                password: password
-            })
-            // User.createUser(newUser, (err, user) => {
-            //     if (err) throw err;
-            // })
-            // req.flash('success_msg', 'You are registered and can now login')
-            //     // req.flash('error_msg', 'Fail to create')
-            // res.redirect('/')
+            email: email,
+            username: username,
+            password: password
+        })
         User.createUser(newUser, function(err, user) {
             if (err) {
                 throw err
@@ -50,6 +45,7 @@ router.post('/register', (req, res) => {
             }
         })
     }
+
 })
 
 //Log In
@@ -98,11 +94,13 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/logout', function(req, res) {
+
     req.logout()
 
     req.flash('success_msg', 'You are logged out')
 
     res.redirect('/')
+
 })
 
 module.exports = router

@@ -7,7 +7,9 @@ var config = {
     storageBucket: "uploadfile-f177e.appspot.com",
     messagingSenderId: "424757438968"
 };
+
 firebase.initializeApp(config);
+
 //User Image
 var fileButton = document.getElementById('fileButton');
 if (fileButton) {

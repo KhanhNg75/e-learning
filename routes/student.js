@@ -56,12 +56,15 @@ router.get('/registClass/:id', ensureAuthenticated, function(req, res) {
     List.createStudentList(newStudent, function(err, post) {
         if (err) throw err
     })
+
     req.flash('success_msg', 'Register Class Successfull')
     res.redirect('/dashboard')
+
 });
 
 // Delete Registed Class
 router.get('/deleteClass/:id', ensureAuthenticated, (req, res) => {
+
     var classId = req.params.id;
     var userid = req.user._id;
     List.deleteOne({
@@ -74,12 +77,15 @@ router.get('/deleteClass/:id', ensureAuthenticated, (req, res) => {
             res.redirect('/student/course')
         }
     })
+
 })
 
 //Registered Course
 router.get('/course', ensureAuthenticated, function(req, res) {
+
     var user = req.user
     var userid = user._id
+
     List.find({}).then(function(resultList) {
         var studentCourse = []
         for (let i = 0; i < resultList.length; i++) {
@@ -87,6 +93,7 @@ router.get('/course', ensureAuthenticated, function(req, res) {
                 studentCourse.push(resultList[i])
             }
         }
+
         Class.find({}).sort({ _id: 1 }).then(function(resultClass) {
             var studentClass = []
             for (let j = 0; j < resultClass.length; j++) {
@@ -96,6 +103,7 @@ router.get('/course', ensureAuthenticated, function(req, res) {
                     }
                 }
             }
+
             User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
                 res.render('student/course', {
                     data: adminProfile,
@@ -108,12 +116,15 @@ router.get('/course', ensureAuthenticated, function(req, res) {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 //Student Watch Lesson
 router.get('/watch/:id', ensureAuthenticated, function(req, res) {
+
     var user = req.user
     var room = req.params.id
+
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
         Class.find({ "_id": room }).then(result => {
             for (var i = 0; i < result.length; i++) {
@@ -131,8 +142,8 @@ router.get('/watch/:id', ensureAuthenticated, function(req, res) {
     }).catch(function(err) {
         res.send({ error: 400, message: err });
     })
-})
 
+})
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {

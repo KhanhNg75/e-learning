@@ -17,24 +17,38 @@ function ensureAuthenticated(req, res, next) {
 
 //Slide Upload
 router.get('/slide', ensureAuthenticated, function(req, res) {
+
     var user = req.user
+
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-        res.render('teacher/fileUpload', { data: adminProfile, layout: 'layoutTeacher' })
+        res.render('teacher/fileUpload', {
+            data: adminProfile,
+            layout: 'layoutTeacher'
+        })
     })
+
 })
 
 //Profile
 router.get('/profile', ensureAuthenticated, function(req, res) {
+
     var user = req.user
+
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-        res.render('teacher/profile', { data: adminProfile, layout: 'layoutTeacher', message: req.flash('success_msg') })
+        res.render('teacher/profile', {
+            data: adminProfile,
+            layout: 'layoutTeacher',
+            message: req.flash('success_msg')
+        })
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 //Edit Profile
 router.post('/profile', ensureAuthenticated, (req, res) => {
+
     var user = req.user
     var fname = req.body.fname
     var lname = req.body.lname
@@ -58,22 +72,31 @@ router.post('/profile', ensureAuthenticated, (req, res) => {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 //Teacher Stream
 router.get('/liveStream/:id', ensureAuthenticated, function(req, res) {
+
     var user = req.user
     var room = req.params.id
+
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
         Class.find({ "_id": room }).then(result => {
-            res.render('teacher/stream', { data: adminProfile, data1: result, layout: 'layoutTeacher' })
+            res.render('teacher/stream', {
+                data: adminProfile,
+                data1: result,
+                layout: 'layoutTeacher'
+            })
         })
     })
+
 })
 
 // View List Of Student
 
 router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
+
     //Get CourseId From Header
     var courseId = req.params.id
     var user = req.user
@@ -85,6 +108,7 @@ router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
                 listArray.push(result[i])
             }
         }
+
         User.find({}).then(function(result2) {
             var listArray1 = []
             for (let j = 0; j < result2.length; j++) {
@@ -94,6 +118,7 @@ router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
                     }
                 }
             }
+
             User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
                 res.render('teacher/studentList', {
                     data: adminProfile,
@@ -107,8 +132,7 @@ router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
-
-
 
 module.exports = router

@@ -16,16 +16,24 @@ function ensureAuthenticated(req, res, next) {
 
 //News
 router.get('/news', ensureAuthenticated, (req, res) => {
+
     var user = req.user
+
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-        res.render('admin/news', { data: adminProfile, layout: 'layoutAdmin', message: req.flash('success_msg') })
+        res.render('admin/news', {
+            data: adminProfile,
+            layout: 'layoutAdmin',
+            message: req.flash('success_msg')
+        })
     }).catch(function(err) {
         res.send({ error: 400, message: err });
     })
+
 })
 
 //Profile
 router.get('/profile', ensureAuthenticated, (req, res) => {
+
     var user = req.user
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
         res.render('admin/profile', {
@@ -36,10 +44,12 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 //Edit Profile
 router.post('/profile', ensureAuthenticated, (req, res) => {
+
     var user = req.user
     var fname = req.body.fname
     var lname = req.body.lname
@@ -61,11 +71,14 @@ router.post('/profile', ensureAuthenticated, (req, res) => {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 //Teacher Create
 router.get('/teacher', ensureAuthenticated, (req, res) => {
+
     var user = req.user
+
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
         User.find({ "role": "teacher" }).then(teacherUser => {
             res.render('admin/admin', {
@@ -78,9 +91,11 @@ router.get('/teacher', ensureAuthenticated, (req, res) => {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 router.post('/teacher', ensureAuthenticated, (req, res) => {
+
     var param = req.body
 
     var cLink = param.cLink
@@ -122,11 +137,14 @@ router.post('/teacher', ensureAuthenticated, (req, res) => {
             }
         })
     }
+
 })
 
 //Delete User
 router.get('/deleteUser/:id', ensureAuthenticated, (req, res) => {
+
     var userId = req.params.id;
+
     User.deleteOne({
         _id: userId
     }, function(err) {
@@ -136,6 +154,7 @@ router.get('/deleteUser/:id', ensureAuthenticated, (req, res) => {
             res.redirect('/dashboard')
         }
     })
+
 })
 
 //Edit User
@@ -150,18 +169,28 @@ router.get('/deleteUser/:id', ensureAuthenticated, (req, res) => {
 
 //Course Create
 router.get('/course', ensureAuthenticated, (req, res) => {
+
     var user = req.user
+
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
         User.find({ role: "teacher" }).then(resultTeacher => {
-            res.render('admin/course', { data: adminProfile, result: resultTeacher, layout: 'layoutAdmin', message: req.flash('success_msg') })
+            res.render('admin/course', {
+                data: adminProfile,
+                result: resultTeacher,
+                layout: 'layoutAdmin',
+                message: req.flash('success_msg')
+            })
         })
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 router.get('/deleteCourse/:id', ensureAuthenticated, (req, res) => {
+
     var courseId = req.params.id;
+
     Class.deleteOne({
         _id: courseId
     }, function(err) {
@@ -171,9 +200,11 @@ router.get('/deleteCourse/:id', ensureAuthenticated, (req, res) => {
             res.redirect('/dashboard')
         }
     })
+
 })
 
 router.post('/course', ensureAuthenticated, (req, res) => {
+
     var param = req.body
 
     var courseid = param.courseid
@@ -222,6 +253,7 @@ router.post('/course', ensureAuthenticated, (req, res) => {
         req.flash('success_msg', 'Course Created')
         res.redirect('/dashboard')
     }
+
 })
 
 module.exports = router

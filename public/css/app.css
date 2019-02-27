@@ -337,7 +337,7 @@ li .dropdown-profile a:hover {
 ------------------------------------------------------------*/
 
 .l-container {
-    width: 1170px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -2450,7 +2450,7 @@ input[type="submit"]:focus {
     justify-content: center;
 }
 
-#roomHienTai {
+#currentRoom {
     display: none;
 }
 

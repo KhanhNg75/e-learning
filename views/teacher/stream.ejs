@@ -13,12 +13,12 @@
             <canvas style="display:none" id="preview"></canvas>
             <div id="logger" style="display:none"></div>
         </div>
-        <% for(var i = 0; i< data.length ; i++) { %>
+        <!-- <% for(var i = 0; i< data.length ; i++) { %>
             <iframe src="https://player.twitch.tv/?channel=<%= data[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" style="width:100%;height:320px;background:#cfcfcf;" frameborder="0"></iframe> 
-        <%}%>
+        <%}%> -->
     </div>
     <div class="l-side">
-        <h4 id="roomHienTai">...</h4>
+        <h4 id="currentRoom">...</h4>
 
         <div class="c-stream__chat">
             <div class="c-stream__contentChat" id="right">
@@ -35,6 +35,13 @@
 
 </div>
 
+<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+    <b>Thành viên</b>
+    <div id="users"></div>
+</div>
+<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+    <div id="conversation"></div>
+</div>
 
 <script type="text/javascript">
 
@@ -79,6 +86,9 @@
                 video: true,
                 audio: true
             }, loadCam, loadFail);
+        } else if(!navigator.getUserMedia) {
+            console.log('your browser unsupported webrtc.');
+            return false;
         }
         setInterval(function() {
             viewVideo(video, context);
