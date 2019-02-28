@@ -8,6 +8,7 @@ var Class = require('../models/class')
 
 //Profile
 router.get('/profile', ensureAuthenticated, function(req, res) {
+
     var user = req.user
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
         res.render('student/profile', {
@@ -18,10 +19,12 @@ router.get('/profile', ensureAuthenticated, function(req, res) {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 //Edit Profile
 router.post('/profile', ensureAuthenticated, (req, res) => {
+
     var user = req.user
     var fname = req.body.fname
     var lname = req.body.lname
@@ -43,6 +46,7 @@ router.post('/profile', ensureAuthenticated, (req, res) => {
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
+
 })
 
 //Register Class

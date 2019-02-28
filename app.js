@@ -16,12 +16,14 @@ var config = require('./config/database')
 // Defind Username Object to store Username in socketio
 var usernames = {}
 
+// mlab database
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 mongoose.connect(config.database)
 var db = mongoose.connection
 
+// Define Route
 var routes = require('./routes/index')
 var users = require('./routes/users')
 var student = require('./routes/student')
@@ -31,6 +33,7 @@ var teacher = require('./routes/teacher')
 // Init App
 var app = new express();
 
+// Init Socketio
 var http = require("http").Server(app)
 var io = require("socket.io")(http)
 
@@ -85,6 +88,7 @@ https://viblo.asia/p/tim-hieu-co-ban-cach-hoat-dong-cua-socket-io-bang-chat-real
 https://github.com/tpiros/advanced-chat **
 */
 
+// Socket IO Controller
 io.on('connection', function(socket) {
 
     socket.on("creat-room", (data, username) => {
@@ -162,8 +166,7 @@ app.use(function(req, res, next) {
     next()
 })
 
-require('./config/passport')(passport)
-
+// Route for each Role 
 app.use('/', routes)
 app.use('/users', users)
 app.use('/student', student)
@@ -171,12 +174,13 @@ app.use('/admin', admin)
 app.use('/teacher', teacher)
 
 // Upload File to Local
-var upload = require('./app/config/multer.config.js')
+// var upload = require('./app/config/multer.config.js')
 
 global.__basedir = __dirname
 
-require('./app/routers/file.router.js')(app, router, upload)
+// require('./app/routers/file.router.js')(app, router, upload)
 
+// Init Port
 var port = process.env.PORT || 3000
 http.listen(port, function() {
     log.info('Server is running on port %s', port)
