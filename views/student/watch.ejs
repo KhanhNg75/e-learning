@@ -48,18 +48,16 @@
 <div class="c-student__slide">
     <div class="title1">
         <h4>SLide</h4>
-        <form class="form-horizontal" method="POST" enctype="multipart/form-data" id="fileUploadForm">
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-5">
-                    <button type="button" class="btn1 btn1--color3" id="btnGetFiles">Files</button>
-                </div>
-            </div>
-        </form>
+        <% for(var i = 0; i< data1.length ; i++) { %>
+            <a href="/teacher/showSlide/<%= data1[i]._id; %>" class="btn1 btn1--color3 ml-10" id="btnGetFiles2">Files</a>
+        <%}%>
     </div>
     <div class="c-student__slideContent">
         
-        <div class="c-files__file" id="listFiles">
+        <div class="c-files__file" id="listFiles2">
+            <ul>
 
+            </ul>
         </div>
     </div>
 </div>

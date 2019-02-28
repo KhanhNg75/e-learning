@@ -12,13 +12,17 @@
                 <button type="button" class="btn1 btn1--color3 ml-10" id="btnGetFiles">Files</button>
             </div>
         </form>
+         <% for(var i = 0; i< data.length ; i++) { %>
+            <input type="hidden" id="username" name="username" value="<%= data[i]._id %>" />
+        <%}%>
+        <div class="c-files__file" id="listFiles1">
+            <ul>
 
-        <div class="c-files__file" id="listFiles">
-
+            </ul>
         </div>
     </div>
 
     <div class="l-main">
-        <iframe id="mySlide" src="" frameborder="0"></iframe>
+        <iframe id="mySlide" src="" frameborder="0" style="display:none"></iframe>
     </div>
 </div>

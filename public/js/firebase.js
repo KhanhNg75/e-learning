@@ -56,22 +56,44 @@ if (fileButton) {
 }
 
 //User Slide , File
-var fileButton = document.getElementById('slideButton');
+var fileButton = document.getElementById('testfile');
+let userid = $('#userid').val();
+
 if (fileButton) {
     fileButton.addEventListener('change', function(e) {
-        // var MSSV = document.getElementById('getMSSVPerson');
-        // var getMSSVPerson = MSSV.value;
+
         var file = e.target.files[0];
         var storageRef = firebase.storage().ref('UserFile/' + file.name);
         var task = storageRef.put(file);
+
         task.on('state_changed',
 
             function progress(snapshot) {
-                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                // uploader.value = percentage;
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                var uploader = document.getElementById('progress');
+                uploader.value = progress;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
             },
             function error(err) {
-
+                switch (err.code) {
+                    case 'storage/unauthorized':
+                        console.log('Unauthorized User');
+                        break;
+                    case 'storage/canceled':
+                        console.log('Upload is Canceled');
+                        break;
+                    case 'storage/unknown':
+                        console.log('Unknown Error');
+                        break;
+                }
             },
             function() {
                 storageRef.getDownloadURL().then(function(linkUrl) {
@@ -80,7 +102,6 @@ if (fileButton) {
                     // var valImg = document.getElementById('myVal');
                     // valImg.value = linkUrl;
                     SlideHolder.src = linkUrl;
-                    downloadURL = linkUrl;
                 });
             });
     }, false);

@@ -2,9 +2,21 @@ var express = require('express')
 var router = express.Router()
 var ObjectID = require('mongodb').ObjectID
 
+var firebase = require('firebase-admin')
+
+var serviceAccount = require('../serviceAccountKey.json');
+firebase.initializeApp({
+    credential: firebase.credential.cert(serviceAccount),
+    databaseURL: 'https://uploadfile-f177e.firebaseio.com'
+});
+
+var dbFirebase = firebase.database();
+var ref = dbFirebase.ref("UserFile/");
+
 var Class = require('../models/class')
 var User = require('../models/user')
 var List = require('../models/list')
+var File = require('../models/file')
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -16,15 +28,42 @@ function ensureAuthenticated(req, res, next) {
 }
 
 //Slide Upload
-router.get('/slide', ensureAuthenticated, function(req, res) {
+router.get('/showSlide/:id', ensureAuthenticated, function(req, res) {
 
-    var user = req.user
+    var courseid = req.params.id;
+    File.showFile(courseid, (err, data) => {
+        if (err) throw err
+        else {
+            res.send(data)
+        }
+    })
 
-    User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-        res.render('teacher/fileUpload', {
-            data: adminProfile,
-            layout: 'layoutTeacher'
+})
+
+router.post('/uploadSlide', ensureAuthenticated, (req, res) => {
+    var userid = req.user._id;
+    var courseid = req.body.classId;
+    var filename = req.body.testinput;
+    var fileurl = req.body.fileurl;
+
+    var userFiledata = new File({
+            courseid: courseid,
+            teacherid: userid,
+            filename: filename,
+            fileurl: fileurl
         })
+        // Upload to firebase database
+        // var newPostKey = ref.push().key;
+
+    // var updates = {};
+
+    // updates[newPostKey] = userFiledata;
+
+    // return ref.update(updates);
+
+    // Upload file to mlab
+    File.saveFile(userFiledata, function(err, data) {
+        if (err) { throw err }
     })
 
 })
@@ -38,13 +77,14 @@ router.get('/profile', ensureAuthenticated, function(req, res) {
         res.render('teacher/profile', {
             data: adminProfile,
             layout: 'layoutTeacher',
-            message: req.flash('success_msg')
+            message: req.flash('success_msg') || req.flash('error_msg')
         })
     }).catch(function(err) {
         res.send({ error: 400, message: err })
     })
 
 })
+
 
 //Edit Profile
 router.post('/profile', ensureAuthenticated, (req, res) => {
@@ -94,7 +134,6 @@ router.get('/liveStream/:id', ensureAuthenticated, function(req, res) {
 })
 
 // View List Of Student
-
 router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
 
     //Get CourseId From Header
@@ -125,7 +164,7 @@ router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
                     result: listArray1,
                     courseID: courseId,
                     layout: 'layoutTeacher',
-                    message: req.flash('success_msg')
+                    message: req.flash('success_msg') || req.flash('error_msg')
                 })
             })
         })

@@ -104,7 +104,7 @@
                                             <td><%= tUser[i].channelLink%></td>
                                             <td style="display:flex">
                                                 <div class="edit-btn" id="myBtn">
-                                                    <a href="/admin/editUser/<%= tUser[i]._id %>" class="btn1 btn1--color2">Edit</a>
+                                                    <a href="/admin/editUser/<%= tUser[i]._id %>" class="btn1 btn1--color2 adminEditInfor">Edit</a>
                                                 </div>
                                                 <a href="/admin/deleteUser/<%= tUser[i]._id %>" class="btn1 btn1--color4">Delete</a>
                                             </td>
@@ -114,60 +114,10 @@
                             </table>
                         </div>
                         
-                        <!-- Edit Teacher Information -->
-                        <div id="modal-4" class="modal1">
-                            <div class="modal-content">
-                                <div class="title1">
-                                    <h4>New Teacher</h4>
-                                    <span class="close">&times;</span>
-                                </div>
-                                <div class="c-form">
-                                
-                                    <form role="form" method="POST" action="/admin/editUser">
-                                        <div class="row">
-                                            <div class="col-25">
-                                                <p>Username:</p>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="text" value="" name="username">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-25">
-                                                <p>Email:</p>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="email" placeholder="Email" name="email">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-25">
-                                                <p>Password: </p>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="password" placeholder="Password" name="password">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-25">
-                                                <p>Channel Link: </p>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="text" placeholder="Channel Link" name="cLink">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <button type="submit" class="btn1 btn1--color2">Submit</button>
-                                            <button type="reset" id="defaultOpen" class="btn1 btn1--color3 ml-10">Cancle</button>
-                                        </div>
-                                    </form>
-                                
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </li>
+           
             <li>
                 <div class="content__wrapper deletelater">
                     <div class="c-table">
@@ -311,7 +261,12 @@
                                             <td><%= (cData[i].date).toLocaleDateString('en-US') %></td>
                                             <td><%= cData[i].time1%> - <%= cData[i].time2%></td>
                                             <td><%= (cData[i].created_date).toLocaleDateString('en-US') %></td>
-                                            <td><a href="/admin/deleteCourse/<%= cData[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
+                                            <td>
+                                                <div class="edit-btn1" id="myBtn">
+                                                    <a href="/admin/editCourse/<%= cData[i]._id %>" class="btn1 btn1--color2 adminEditClass">Edit</a>
+                                                </div>
+                                                <a href="/admin/deleteCourse/<%= cData[i]._id %>" class="btn1 btn1--color4">Delete</a>
+                                            </td>
                                         </tr>
                                     <% }; %> 
                                 </tbody>
@@ -347,7 +302,12 @@
                                             <td><%= sUser[i].username%></td>
                                             <td><%= sUser[i].email%></td>
                                             <td><%= (sUser[i].created).toDateString()%></td>
-                                            <td><a href="/admin/deleteUser/<%= sUser[i]._id %>" class="btn1 btn1--color4">Delete</a></td>
+                                            <td>
+                                                <div class="edit-btn" id="myBtn">
+                                                    <a href="/admin/editUser/<%= sUser[i]._id %>" class="btn1 btn1--color2 adminEditInfor">Edit</a>
+                                                </div>
+                                                <a href="/admin/deleteUser/<%= sUser[i]._id %>" class="btn1 btn1--color4">Delete</a>
+                                            </td>
                                         </tr>
                                     <% }; %> 
                                 </tbody>
@@ -357,7 +317,162 @@
                 </div>
             </li>
         </ul>
-    </div> 
+
+        <!-- Edit Teacher Information -->
+        <div id="modal-4" class="modal1">
+            <div class="modal-content">
+                <div class="title1">
+                    <h4>New Teacher</h4>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="c-form">
+                
+                    <form role="form" method="POST" action="/admin/editUser">
+                        <div class="row">
+                            <div class="col-25">
+                                <p>UserID:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="uid" value="" name="userid" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Username:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="uname" value="" name="username" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Email:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="email" class="email" value="" name="email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>First Name: </p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="fname" value="" name="fname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Last Name: </p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="lname" value="" name="lname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Channel Link: </p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="cLink" value="" name="cLink">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn1 btn1--color2">Submit</button>
+                            <button type="reset" id="defaultOpen1" class="btn1 btn1--color3 ml-10">Cancle</button>
+                        </div>
+                    </form>
+                
+                </div>
+            </div>
+        </div>
+    
+
+    <!-- Edit Class Information -->
+        <div id="modal-4" class="modal2">
+            <div class="modal-content">
+                <div class="title1">
+                    <h4>Class Information</h4>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="c-form">
+                
+                    <form role="form" method="POST" action="/admin/editCourse">
+                        <div class="row">
+                            <div class="col-25">
+                                <p>ID:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="ciid" value="" name="ciid" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Course ID:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="cid" value="" name="cid">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Course Name:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="cname" value="" name="cname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Semester:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="csemester" value="" name="csemester">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Year: </p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="cyear" value="" name="cyear">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Date Start:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="date" class="cdate" value="" name="cdate" > 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Time Start:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="time" class="tstart1" name="timestart1" value="" > 
+                                -
+                                <input type="time" class="tstart2" name="timestart2" value="" > 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <p>Description:</p>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" class="cdescrip" name="cdescrip" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn1 btn1--color2">Submit</button>
+                            <button type="reset" id="defaultOpen2" class="btn1 btn1--color3 ml-10">Cancle</button>
+                        </div>
+                    </form>
+                
+                </div>
+            </div>
+        </div>
+    
 
 </div>
 

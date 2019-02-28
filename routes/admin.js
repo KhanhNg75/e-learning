@@ -23,7 +23,7 @@ router.get('/news', ensureAuthenticated, (req, res) => {
         res.render('admin/news', {
             data: adminProfile,
             layout: 'layoutAdmin',
-            message: req.flash('success_msg')
+            message: req.flash('success_msg') || req.flash('error_msg')
         })
     }).catch(function(err) {
         res.send({ error: 400, message: err });
@@ -39,7 +39,7 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
         res.render('admin/profile', {
             data: adminProfile,
             layout: 'layoutAdmin',
-            message: req.flash('success_msg')
+            message: req.flash('success_msg') || req.flash('error_msg')
         })
     }).catch(function(err) {
         res.send({ error: 400, message: err })
@@ -85,7 +85,7 @@ router.get('/teacher', ensureAuthenticated, (req, res) => {
                 data: adminProfile,
                 tUser: teacherUser,
                 layout: 'layoutAdmin',
-                message: req.flash('success_msg')
+                message: req.flash('success_msg') || req.flash('error_msg')
             })
         })
     }).catch(function(err) {
@@ -158,14 +158,43 @@ router.get('/deleteUser/:id', ensureAuthenticated, (req, res) => {
 })
 
 //Edit User
-// router.get('/editUser/:id', ensureAuthenticated, (req, res) => {
-//     var userId = req.params.id;
-//     User.find({ "_id": userId }).then(userEditProfile => {
-//         let editInformation = userEditProfile;
-//     }).catch(function(err) {
-//         res.send({ error: 400, message: err })
-//     })
-// })
+router.get('/editUser/:id', ensureAuthenticated, (req, res) => {
+
+    var userId = req.params.id;
+    User.getUserById(userId, (err, data) => {
+        if (err) throw err
+        else {
+            res.send(data)
+        }
+    })
+
+})
+
+router.post('/editUser', ensureAuthenticated, (req, res) => {
+
+    var userid = req.body.userid
+    var fname = req.body.fname
+    var lname = req.body.lname
+    var email = req.body.email
+    var username = req.body.username
+    var cLink = req.body.cLink
+
+    User.updateOne({ "_id": ObjectID(userid) }, {
+        $set: {
+            'fname': fname,
+            'lname': lname,
+            'email': email,
+            'username': username,
+            'channelLink': cLink
+        }
+    }, { multi: true }).then(() => {
+        req.flash('success_msg', 'Profile Updated')
+        res.redirect('/dashboard')
+    }).catch(function(err) {
+        res.send({ error: 400, message: err })
+    })
+
+})
 
 //Course Create
 router.get('/course', ensureAuthenticated, (req, res) => {
@@ -178,27 +207,11 @@ router.get('/course', ensureAuthenticated, (req, res) => {
                 data: adminProfile,
                 result: resultTeacher,
                 layout: 'layoutAdmin',
-                message: req.flash('success_msg')
+                message: req.flash('success_msg') || req.flash('error_msg')
             })
         })
     }).catch(function(err) {
         res.send({ error: 400, message: err })
-    })
-
-})
-
-router.get('/deleteCourse/:id', ensureAuthenticated, (req, res) => {
-
-    var courseId = req.params.id;
-
-    Class.deleteOne({
-        _id: courseId
-    }, function(err) {
-        if (err) throw err
-        else {
-            req.flash('success_msg', 'Course Deleted')
-            res.redirect('/dashboard')
-        }
     })
 
 })
@@ -253,6 +266,67 @@ router.post('/course', ensureAuthenticated, (req, res) => {
         req.flash('success_msg', 'Course Created')
         res.redirect('/dashboard')
     }
+
+})
+
+router.get('/deleteCourse/:id', ensureAuthenticated, (req, res) => {
+
+    var courseId = req.params.id;
+
+    Class.deleteOne({
+        _id: courseId
+    }, function(err) {
+        if (err) throw err
+        else {
+            req.flash('success_msg', 'Course Deleted')
+            res.redirect('/dashboard')
+        }
+    })
+
+})
+
+// Edit Course
+router.get('/editCourse/:id', ensureAuthenticated, (req, res) => {
+
+    var courseId = req.params.id;
+    Class.getCourseById(courseId, (err, data) => {
+        if (err) throw err
+        else {
+            res.send(data)
+        }
+    })
+
+})
+
+router.post('/editCourse', ensureAuthenticated, (req, res) => {
+
+    var courseiid = req.body.ciid
+    var courseid = req.body.cid
+    var coursename = req.body.cname
+    var semester = req.body.csemester
+    var year = req.body.cyear
+    var date = req.body.cdate
+    var time1 = req.body.timestart1
+    var time2 = req.body.timestart2
+    var description = req.body.cdescrip
+
+    Class.updateOne({ "_id": ObjectID(courseiid) }, {
+        $set: {
+            'courseid': courseid,
+            'coursename': coursename,
+            'semester': semester,
+            'year': year,
+            'date': date,
+            'time1': time1,
+            'time2': time2,
+            'description': description
+        }
+    }, { multi: true }).then(() => {
+        req.flash('success_msg', 'Class Updated')
+        res.redirect('/dashboard')
+    }).catch(function(err) {
+        res.send({ error: 400, message: err })
+    })
 
 })
 

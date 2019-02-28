@@ -48,6 +48,10 @@ module.exports.createCourse = function(newPost, callback) {
     newPost.save(callback)
 }
 
+module.exports.getCourseById = function(id, callback) {
+    Course.findById(id, callback)
+}
+
 module.exports.updateCourseById = function(newID, callback) {
     newID.update(callback)
 }

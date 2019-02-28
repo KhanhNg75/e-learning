@@ -1,3 +1,9 @@
+<% if (success_msg || error_msg) { %>
+    <div class="alert admin-alert">
+        <%= success_msg %>
+        <%= error_msg %>
+    </div>
+<% } %>
 <div class="c-stream">
     <% for(var i = 0; i< data1.length ; i++) { %>
         <input id="linkroom" type="hidden" value="<%= data1[i]._id %>" />
@@ -7,6 +13,7 @@
         <div class="stream-video">
             <% for(var i = 0; i< data.length ; i++) { %>
                 <input type="hidden" id="username" name="username" value="<%= data[i].fname %>" />
+                <input type="hidden" id="username" name="userid" value="<%= data[i]._id %>" />
             <%}%>
 
             <video src="" id="video" style="width:100px;height:100px;background:#ccc;" autoplay="true"></video>
@@ -35,12 +42,39 @@
 
 </div>
 
-<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+<div style="float:left;width:100%;border-right:1px solid black;height:100px;padding:10px;overflow:scroll-y;">
     <b>Thành viên</b>
     <div id="users"></div>
 </div>
 <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
     <div id="conversation"></div>
+</div>
+
+<div style="width:100%;height:200px;background:#000;"></div>
+<iframe id="mySlide" src="" frameborder="0" style="opacity:0"></iframe>
+<form method="POST" id="fileupload" action="/teacher/uploadSlide">
+    <div class="c-files__upload">
+        <label for="uploadfile">Choose File:</label>
+        <input type="file" name="uploadfile" id="testfile">
+        <ul class="choose-file"></ul>
+    </div>
+    <input type="hidden" name="testinput" class="testinput" value=""/>
+    <input type="hidden" name="fileurl" class="testHolder" value=""/>
+    <% for(var i = 0; i< data1.length ; i++) { %>
+        <input id="linkroom" type="hidden" name="classId" class="testclass" value="<%= data1[i]._id %>" />
+    <%}%>
+    <div class="c-form__item">
+        <button type="submit" class="btn1 btn1--color2">Upload</button>
+    </div>
+</form>
+<input type="text" value="" id="progress" />
+<% for(var i = 0; i< data1.length ; i++) { %>
+    <a href="/teacher/showSlide/<%= data1[i]._id; %>" class="btn1 btn1--color3 ml-10" id="btnGetFiles2">Files</a>
+<%}%>
+<div class="c-files__file" id="listFiles2">
+    <ul>
+
+    </ul>
 </div>
 
 <script type="text/javascript">

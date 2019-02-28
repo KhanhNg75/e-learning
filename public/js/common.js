@@ -167,12 +167,31 @@ $(function() {
 
     $(".close").on("click", function() {
         $(".modal1").removeClass('dp-f');
-        document.getElementById("defaultOpen").click();
+        document.getElementById("defaultOpen1").click();
         $('html, body').removeClass('of-h');
     })
 
-    $("#defaultOpen").on("click", function() {
+    $("#defaultOpen1").on("click", function() {
         $(".modal1").removeClass('dp-f');
+        $('html, body').removeClass('of-h');
+    })
+
+    /*------------------------------------------------------------
+	    Admin Edit Class Button
+    ------------------------------------------------------------*/
+    $(".edit-btn1").on("click", function() {
+        $(".modal2").addClass('dp-f');
+        $('html, body').addClass('of-h');
+    })
+
+    $(".close").on("click", function() {
+        $(".modal2").removeClass('dp-f');
+        document.getElementById("defaultOpen2").click();
+        $('html, body').removeClass('of-h');
+    })
+
+    $("#defaultOpen2").on("click", function() {
+        $(".modal2").removeClass('dp-f');
         $('html, body').removeClass('of-h');
     })
 
@@ -194,6 +213,7 @@ $(function() {
 
             for (var i = 0; i < this.files.length; ++i) {
                 $('.choose-file').append($('<li>').html(this.files[i].name));
+                $('.testinput').val(this.files[i].name);
             }
         }
     }

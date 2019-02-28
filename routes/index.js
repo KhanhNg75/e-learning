@@ -47,7 +47,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                                 sUser: studentUser,
                                 cData: classData,
                                 layout: 'layoutAdmin',
-                                message: req.flash('success_msg')
+                                message: req.flash('success_msg') || req.flash('error_msg')
                             })
                         })
                     })
@@ -79,7 +79,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                                     data: resultStudent,
                                     dataClass: registerdClass,
                                     layout: 'layoutmainStudent',
-                                    message: req.flash('success_msg')
+                                    message: req.flash('success_msg') || req.flash('error_msg')
                                 })
                                 client.close()
                             }
@@ -113,7 +113,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                                 data1: courseArray,
                                 data: resultTeacher,
                                 layout: 'layoutTeacher',
-                                message: req.flash('success_msg')
+                                message: req.flash('success_msg') || req.flash('error_msg')
                             })
                             client.close()
                         });
