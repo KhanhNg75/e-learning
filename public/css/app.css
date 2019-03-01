@@ -719,11 +719,15 @@ li .dropdown-profile a:hover {
     border-collapse: collapse;
 }
 
-.c-table__content {
+.c-table__content,
+.c-table__content1,
+.c-table__content2 {
     margin-bottom: 20px;
 }
 
-.c-table__content tr:last-child td {
+.c-table__content tr:last-child td,
+.c-table__content1 tr:last-child td,
+.c-table__content2 tr:last-child td {
     border-bottom: 1px solid #ccc;
 }
 
@@ -2127,6 +2131,7 @@ input[type="submit"]:focus {
     z-index: 1;
     font-size: 1.2rem;
     color: #485051;
+    width: 136px;
 }
 
 .c-files__btn {
@@ -2886,7 +2891,9 @@ input[type="submit"]:focus {
     align-items: center;
 }
 
-.content__wrapper .c-table__content {
+.content__wrapper .c-table__content,
+.content__wrapper .c-table__content1,
+.content__wrapper .c-table__content2 {
     text-align: left;
 }
 

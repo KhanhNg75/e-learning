@@ -12,10 +12,34 @@ var dbName = process.env.MONGODB_NAME || config.name
 var User = require('../models/user')
 var Class = require('../models/class')
 
-router.get('/test', function(req, res) {
-    res.render('layout', {
-        layout: 'layoutError',
+router.get('/products', function(req, res) {
+    var pageNo = parseInt(req.query.pageNo)
+    console.log(pageNo)
+    var size = 6
+    var query = {}
+    if (pageNo < 0 || pageNo === 0) {
+        response = { "error": true, "message": "invalid page number, should start with 1" };
+        return res.json(response)
+    }
+    query.skip = size * (pageNo - 1)
+    query.limit = size
+        // Find some documents
+    Class.countDocuments({}, function(err, totalCount) {
+        if (err) {
+            response = { "error": true, "message": "Error fetching data" }
+        }
+        Class.find({}, {}, query, function(err, data) {
+            // Mongo command to fetch all data from collection.
+            if (err) {
+                response = { "error": true, "message": "Error fetching data" };
+            } else {
+                var totalPages = Math.ceil(totalCount / size)
+                response = { "error": false, "message": data, "pages": totalPages };
+            }
+            res.send(data)
+        });
     })
+
 })
 
 // Get Homepage
@@ -37,10 +61,43 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
         }
         var db = client.db(dbName)
         if (user.role == "admin") {
+
+            // var pageNo = parseInt(req.query.pageNo)
+            // var size = 6
+            // var query = {}
+            // if (pageNo < 0 || pageNo === 0) {
+            //     response = { "error": true, "message": "invalid page number, should start with 1" };
+            //     return res.json(response)
+            // }
+            // query.skip = size * (pageNo - 1)
+            // query.limit = size
+
             User.find({ "_id": ObjectID(user._id) }).then(UserInfor => {
                 User.find({ "role": "teacher" }).then(teacherUser => {
-                    Class.find({}).then(classData => {
-                        User.find({ "role": "student" }).then(studentUser => {
+                    User.find({ "role": "student" }).then(studentUser => {
+                        // Class.countDocuments({}, (err, totalCount) => {
+                        //     if (err) {
+                        //         response = { "error": true, "message": "Error fetching data" }
+                        //     }
+                        //     Class.find({}, {}, query, (err, classData) => {
+                        //         if (err) {
+                        //             response = { "error": true, "message": "Error fetching data" };
+                        //         } else {
+                        //             var totalPages = Math.ceil(totalCount / size)
+                        //             res.render('admin/admin', {
+                        //                 data: UserInfor,
+                        //                 tUser: teacherUser,
+                        //                 sUser: studentUser,
+                        //                 cData: classData,
+                        //                 pPage: totalPages,
+                        //                 layout: 'layoutAdmin',
+                        //                 message: req.flash('success_msg') || req.flash('error_msg')
+                        //             })
+
+                        //         }
+                        //     })
+                        // })
+                        Class.find({}).then(classData => {
                             res.render('admin/admin', {
                                 data: UserInfor,
                                 tUser: teacherUser,
@@ -50,9 +107,11 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                                 message: req.flash('success_msg') || req.flash('error_msg')
                             })
                         })
+
                     })
                 })
             })
+
         } else if (user.role == "student") {
 
             var classess = db.collection('classes')

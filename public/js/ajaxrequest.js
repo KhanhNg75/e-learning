@@ -91,4 +91,46 @@ $(function() {
         })
     })
 
+    /*------------------------------------------------------------
+	    Admin Ajax Paginate BTN
+    ------------------------------------------------------------*/
+    // $(".paginateBTN").each(function() {
+    //     $(this).on("click", function(e) {
+    //         var href = $(this).attr('href');
+    //         var datas = href.substring(href.lastIndexOf("?") + 1)
+    //         console.log(datas)
+    //         $.ajax({
+    //             type: "GET",
+    //             url: '/products',
+    //             data: datas,
+    //             success: (data) => {
+    //                 //clear old data
+    //                 console.log(data)
+    //                 $(".c-table__content tbody").html("");
+    //                 $(".c-table__content tbody").append('<tr>');
+    //                 $.each(data, (index, file) => {
+    //                     $(".c-table__content tbody").append('<tr>' +
+    //                         '<td>' + file.courseid + '</td>' +
+    //                         '<td>' + file.coursename + '</td>' +
+    //                         '<td>' + file.semester + '</td>' +
+    //                         '<td>' + file.year + '</td>' +
+    //                         '<td>' + moment(file.date).format("YYYY-MM-DD") + '</td>' +
+    //                         '<td>' + file.time1 + "-" + file.time2 + '</td>' +
+    //                         '<td>' + moment(file.created_date).format("YYYY-MM-DD") + '</td>' +
+    //                         '<td>' +
+    //                         '<div class="edit-btn1" id="myBtn">' +
+    //                         '<a class="btn1 btn1--color2 adminEditClass" href=/admin/editCourse/' + file._id + '>Edit</a>' +
+    //                         '</div>' +
+    //                         '<a class="btn1 btn1--color4" href=/admin/deleteCourse/' + file._id + '>Delete</a>' +
+    //                         '</td>' +
+    //                         '</tr>')
+    //                 });
+    //                 $(".c-table__content tbody").append('</tr>');
+    //             }
+    //         });
+    //         async: false
+    //         e.preventDefault();
+    //     })
+    // })
+
 });
