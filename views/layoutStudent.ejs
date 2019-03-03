@@ -7,53 +7,9 @@
 
 <body>
 
-    <header class="c-header">
-        <div class="l-container">
-            <div class="c-header__logo">
-                <a href="/dashboard">
-                    <img src="/img/logo.png" alt="">
-                </a>
-            </div>
-            <div class="c-gnav dropbtn c-deleteLater">
-                <% for( var i = 0; i < data.length ; i++){%>
-                    <ul>
-                        <li>
-                            <a href="#_">
-                            <img src="<%= data[i].userimage %>" alt=""/>
-                        </a>
-                            <div id="myDropdown" class="dropdown-content">
-                                <ul>
-                                    <li>
-                                        <a href="/dashboard">
-                                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/student/profile">
-                                            <i class="far fa-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/student/course">
-                                            <i class="far fa-user"></i> Course
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/users/logout">
-                                            <i class="fas fa-power-off"></i> Log Out
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <%= data[i].username%>
-                        </li>
-                    </ul>
-                    <% }; %>
-            </div>
-        </div>
-    </header> 
+    <header class="c-header c-headerStu">
+        <% include ./partials/headerStudent %>
+    </header>
 
     <main class="c-student">
         <div class="l-container">
@@ -64,6 +20,10 @@
     <footer class="c-footer">
         <% include ./partials/footer %>
     </footer>
+
+    <a href="#" class="back-to-top" id="myBtn">
+        <span style="outline: none;">scroll to top</span>        <i class="fas fa-long-arrow-alt-right" style="outline: none;"></i>
+    </a>
 
 </body>
 <% include ./partials/scriptUser %>

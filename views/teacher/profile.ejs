@@ -1,103 +1,103 @@
 <% if (success_msg || error_msg) { %>
-<div class="alert admin-alert">
-    <%= success_msg %>
-    <%= error_msg %>
-</div>
-<% } %>
-<% for( var i = 0; i < data.length ; i++){%>
-<div class="c-profile">
-    <div class="l-side">
-        <div class="c-profile__content">
-            <div class="c-profile__card">
-                <div class="card-image">
-                    <img id="myimg" src="<%= data[i].userimage %>" alt="User Profile Image">
-                </div>
-                <div class="c-files__upload">
-                    <label for="uploadfile">Choose File:</label>
-                    <input id="fileButton" type="file" name="uploadfile">
-                    <ul class="choose-file"></ul>
-                </div>
-                <h4>
-                    <%= data[i].fname%>
-                        <%= data[i].lname%>
-                </h4>
-                <h6>
-                    <%= data[i].role%>
-                </h6>
-            </div>
-            <div class="c-profile__card">
-                <div class="card-content">
-                    <p>User Name:</p>
-                    <h6>
-                        <%= data[i].username%>
-                    </h6>
-                </div>
-                <div class="card-content">
-                    <p>Email:</p>
-                    <h6>
-                        <%= data[i].email%>
-                    </h6>
-                </div>
-                <div class="card-content">
-                    <p>Social Profile</p>
-                    <div class="c-btn__social">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="alert admin-alert">
+        <%= success_msg %>
+            <%= error_msg %>
     </div>
-    <div class="l-main">
-        <div class="title1">
-            <h4>Edit Profile</h4>
-        </div>
-        <div class="c-form">
-            <form method="POST" action="/teacher/profile">
-                <div class="c-form__item">
-                    <label>First Name</label>
-                    <div class="c-form__input">
-                        <input type="text" name="fname" value="<%= data[i].fname%>" class="form-input">
+    <% } %>
+        <% for( var i = 0; i < data.length ; i++){%>
+            <div class="c-profile">
+                <div class="l-side">
+                    <div class="c-profile__content">
+                        <div class="c-profile__card">
+                            <div class="card-image">
+                                <img id="myimg" src="<%= data[i].userimage %>" alt="User Profile Image">
+                            </div>
+                            <div class="c-files__upload">
+                                <label for="uploadfile"></label>
+                                <input id="fileButton" type="file" name="uploadfile">
+                                <ul class="choose-file"></ul>
+                            </div>
+                            <h4>
+                                <%= data[i].fname%>
+                                    <%= data[i].lname%>
+                            </h4>
+                            <h6>
+                                <%= data[i].role%>
+                            </h6>
+                        </div>
+                        <div class="c-profile__card">
+                            <div class="card-content">
+                                <p>User Name:</p>
+                                <h6>
+                                    <%= data[i].username%>
+                                </h6>
+                            </div>
+                            <div class="card-content">
+                                <p>Email:</p>
+                                <h6>
+                                    <%= data[i].email%>
+                                </h6>
+                            </div>
+                            <div class="card-content">
+                                <p>Social Profile</p>
+                                <div class="c-btn__social">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="c-form__item">
-                    <label>Last Name</label>
-                    <div class="c-form__input">
-                        <input type="text" name="lname" value="<%= data[i].lname%>" class="form-input">
+                <div class="l-main">
+                    <div class="title1">
+                        <h4>Edit Profile</h4>
+                    </div>
+                    <div class="c-form">
+                        <form method="POST" action="/teacher/profile">
+                            <div class="c-form__item">
+                                <label>First Name</label>
+                                <div class="c-form__input">
+                                    <input type="text" name="fname" value="<%= data[i].fname%>" class="form-input">
+                                </div>
+                            </div>
+                            <div class="c-form__item">
+                                <label>Last Name</label>
+                                <div class="c-form__input">
+                                    <input type="text" name="lname" value="<%= data[i].lname%>" class="form-input">
+                                </div>
+                            </div>
+                            <div class="c-form__item">
+                                <label>User Name</label>
+                                <div class="c-form__input">
+                                    <input type="text" name="username" value="<%= data[i].username%>" class="form-input" disabled>
+                                </div>
+                            </div>
+                            <div class="c-form__item">
+                                <label>Email</label>
+                                <div class="c-form__input">
+                                    <input type="email" name="email" value="<%= data[i].email%>" class="form-input">
+                                </div>
+                            </div>
+                            <div class="c-form__item">
+                                <label>Channel Link</label>
+                                <div class="c-form__input">
+                                    <input type="text" name="cLink" value="<%= data[i].channelLink%>" class="form-input">
+                                </div>
+                            </div>
+                            <div class="c-form__item" style="visibility:hidden">
+                                <label>User Image</label>
+                                <div class="c-form__input">
+                                    <input type="text" id="myVal" name="userimage" value="<%= data[i].userimage%>">
+                                </div>
+                            </div>
+                            <div class="c-form__item">
+                                <button type="submit" class="btn1 btn1--color2">Update Profile</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="c-form__item">
-                    <label>User Name</label>
-                    <div class="c-form__input">
-                        <input type="text" name="username" value="<%= data[i].username%>" class="form-input" disabled>
-                    </div>
-                </div>
-                <div class="c-form__item">
-                    <label>Email</label>
-                    <div class="c-form__input">
-                        <input type="email" name="email" value="<%= data[i].email%>" class="form-input">
-                    </div>
-                </div>
-                <div class="c-form__item">
-                    <label>Channel Link</label>
-                    <div class="c-form__input">
-                        <input type="text" name="cLink" value="<%= data[i].channelLink%>" class="form-input">
-                    </div>
-                </div>
-                <div class="c-form__item" style="visibility:hidden">
-                    <label>User Image</label>
-                    <div class="c-form__input">
-                        <input type="text" id="myVal" name="userimage" value="<%= data[i].userimage%>">
-                    </div>
-                </div>
-                <div class="c-form__item">
-                    <button type="submit" class="btn1 btn1--color2">Update Profile</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<% }; %>
+            </div>
+            <% }; %>

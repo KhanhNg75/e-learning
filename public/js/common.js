@@ -228,20 +228,11 @@ $(function() {
     /*------------------------------------------------------------
 	    Bottom Footer
     ------------------------------------------------------------*/
-    if ($('header').hasClass('c-headerStu')) {
+    if ($('header').hasClass('c-header')) {
         function autoHeight() {
             $('main').css('min-height', 0);
             $('main').css('min-height', (
                 $(document).height() +
-                $('.c-headerStu').height() -
-                $('.c-footer').height()
-            ));
-        }
-    } else {
-        function autoHeight() {
-            $('main').css('min-height', 0);
-            $('main').css('min-height', (
-                $(document).height() -
                 $('.c-header').height() -
                 $('.c-footer').height()
             ));
@@ -321,7 +312,7 @@ $(function() {
     /*------------------------------------------------------------
 	    Student Fix Header
     ------------------------------------------------------------*/
-    var $header = $('.c-headerStu');
+    var $header = $('.c-header');
     $(window).scroll(function() {
         if ($(window).scrollTop() > 50) {
             $header.addClass('fixed');

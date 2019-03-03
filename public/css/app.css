@@ -114,11 +114,13 @@ a {
     background: linear-gradient(to right, #0178bc 0%, #00bdda 100%);
     -webkit-transition: padding-left .5s;
     transition: padding-left .5s;
-    z-index: 2;
+    margin: 0 auto;
+    line-height: 1;
+    z-index: 10;
 }
 
 .c-header .l-container {
-    padding: 15px 0;
+    padding: 30px 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -131,7 +133,91 @@ a {
     position: relative;
 }
 
-.c-header__logo a {
+.c-header .logo a {
+    display: inline-block;
+}
+
+.c-header .logo a img {
+    width: 148px;
+}
+
+.global-nav ul {
+    display: flex;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.global-nav li {
+    position: relative;
+}
+
+.global-nav ul li a {
+    padding: 0 30px;
+}
+
+.global-nav ul li:after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    bottom: -10px;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3 ease;
+    -o-transition: all 0.3 ease;
+}
+
+.global-nav ul li:hover:after {
+    background: #fff;
+    bottom: -20px;
+}
+
+
+/* transition */
+
+.c-header,
+.c-header.logo,
+.global-nav ul li,
+.global-nav ul li a {
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+
+/* Fixed */
+
+.c-header.fixed .l-container {
+    padding: 15px 0;
+}
+
+.c-header.fixed .global-nav ul li a {
+    padding: 0 20px;
+}
+
+.c-header.fixed .global-nav ul li:hover:after {
+    bottom: -20px;
+}
+
+
+/* .c-header.fixed:after {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.c-header:after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: #fff;
+    width: 1200px;
+    margin: 30px auto 0;
+} */
+
+
+/* .c-header__logo a {
     display: inline-block;
 }
 
@@ -213,7 +299,7 @@ a {
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
-}
+} */
 
 
 /*------------------------------------------------------------
@@ -337,8 +423,7 @@ li .dropdown-profile a:hover {
 ------------------------------------------------------------*/
 
 .l-container {
-    width: 1200px;
-    margin: 0 auto;
+    margin: 0 50px;
 }
 
 .l-side {
@@ -422,10 +507,8 @@ li .dropdown-profile a:hover {
 ------------------------------------------------------------*/
 
 .btn1 {
-    width: 70px;
-    padding: 7px 0;
-    text-align: center;
-    font-size: 1.5rem;
+    width: 100px;
+    padding: 8px 0;
     display: inline-block;
     vertical-align: middle;
     border-radius: .25rem;
@@ -433,6 +516,11 @@ li .dropdown-profile a:hover {
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+}
+
+.btn1 {
+    text-align: center;
+    font-size: 2rem !important;
     color: #fff;
     cursor: pointer;
 }
@@ -459,6 +547,7 @@ li .dropdown-profile a:hover {
 
 .btn1--color3:hover {
     background: #11161b;
+    color: #fff !important;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
 }
 
@@ -719,15 +808,11 @@ li .dropdown-profile a:hover {
     border-collapse: collapse;
 }
 
-.c-table__content,
-.c-table__content1,
-.c-table__content2 {
+.c-table__content {
     margin-bottom: 20px;
 }
 
-.c-table__content tr:last-child td,
-.c-table__content1 tr:last-child td,
-.c-table__content2 tr:last-child td {
+.c-table__content tr:last-child td {
     border-bottom: 1px solid #ccc;
 }
 
@@ -738,22 +823,18 @@ li .dropdown-profile a:hover {
 }
 
 .c-table tbody {
-    color: #90a4ae;
+    color: #333;
     font-size: 1.6rem;
+    font-weight: bold;
 }
 
 .c-table tbody tr:hover {
-    background-color: #ccc;
+    background-color: #bae0fc;
 }
 
 .c-table th,
 .c-table td {
     padding: 1.5rem;
-}
-
-.c-table th:first-child,
-.c-table td:first-child {
-    padding-left: 0;
 }
 
 .c-table td {
@@ -2091,9 +2172,9 @@ input[type="submit"]:focus {
     height: calc(2.15625rem + 2px);
     padding: 0.375rem 0.75rem;
     line-height: 1.5;
-    color: #7b8a8b;
-    background-color: #fff;
-    border: 1px solid #ced4da;
+    color: #fff;
+    background: #9dcaf2;
+    border: 1px solid #9dcaf2;
     border-radius: 0.25rem;
 }
 
@@ -2107,11 +2188,12 @@ input[type="submit"]:focus {
     height: auto;
     padding: 0.375rem 0.75rem;
     line-height: 1.5;
-    color: #7b8a8b;
+    color: #fff;
     content: "Browse";
-    background-color: #ecf0f1;
-    border-left: 1px solid #ced4da;
+    background-color: #399aef;
+    border-left: 1px solid #399aef;
     border-radius: 0 0.25rem 0.25rem 0;
+    text-transform: uppercase;
 }
 
 .c-files__upload input[type="file"] {
@@ -2127,11 +2209,12 @@ input[type="submit"]:focus {
 .c-files__upload .choose-file {
     position: absolute;
     top: 5px;
-    left: 70px;
+    left: 10px;
     z-index: 1;
     font-size: 1.2rem;
-    color: #485051;
+    color: #333;
     width: 136px;
+    font-weight: normal;
 }
 
 .c-files__btn {
@@ -2248,6 +2331,10 @@ input[type="submit"]:focus {
     margin-bottom: 0;
 }
 
+.c-form__item:last-child button {
+    width: auto;
+}
+
 .c-form__item input[type="text"],
 .c-form__item input[type="email"],
 .c-form__item input[type="password"] {
@@ -2257,6 +2344,7 @@ input[type="submit"]:focus {
     border-color: #ccc;
     height: calc(2.25rem + 2px);
     padding: 10px 0;
+    font-size: 1.5rem;
 }
 
 .c-form__item input[type="text"]:focus,
@@ -2367,9 +2455,8 @@ input[type="submit"]:focus {
 }
 
 .c-profile__card .c-files__upload {
-    width: auto;
-    margin-top: 20px;
-    margin-left: 1.25rem;
+    width: 93%;
+    margin: 20px 1.25rem 0 1.25rem;
 }
 
 
@@ -2474,6 +2561,15 @@ input[type="submit"]:focus {
 /*------------------------------------------------------------
 	Student Page
 ------------------------------------------------------------*/
+
+.p-layout {
+    background: #f2f7f8;
+}
+
+.p-layout .l-container {
+    padding: 160px 0 0;
+    position: relative;
+}
 
 .c-student {
     background: #f2f7f8;
@@ -2813,13 +2909,17 @@ input[type="submit"]:focus {
     transition-duration: .25s;
     display: table-cell;
     list-style: none;
-    text-align: center;
     padding: 20px 20px 25px 20px;
     position: relative;
     overflow: hidden;
+}
+
+.tabs>li {
+    text-align: center;
     cursor: pointer;
     color: #000;
     font-size: 2rem;
+    text-transform: uppercase;
 }
 
 .tabs>li:before {
@@ -2837,6 +2937,18 @@ input[type="submit"]:focus {
     border-radius: 5px 5px 0 0;
 }
 
+.tabs>li:after {
+    position: absolute;
+    content: '';
+    width: 0;
+    right: 0;
+    left: auto;
+    bottom: 5px;
+    height: 2px;
+    transition: .3s;
+    background: #0178bc;
+}
+
 .tabs>li:hover:before {
     -webkit-transform: translateY(70%);
     transform: translateY(70%);
@@ -2851,7 +2963,12 @@ input[type="submit"]:focus {
     background-color: white;
     -webkit-transform: translateY(0);
     transform: translateY(0);
-    border-bottom: 2px solid #0178bc;
+    /* border-bottom: 2px solid #0178bc; */
+}
+
+.tabs>li.active:after {
+    width: 100%;
+    left: 0;
 }
 
 .tab__content {
@@ -2887,14 +3004,17 @@ input[type="submit"]:focus {
 
 .content__wrapper .title2 {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1.5rem;
 }
 
-.content__wrapper .c-table__content,
-.content__wrapper .c-table__content1,
-.content__wrapper .c-table__content2 {
+.content__wrapper .c-table__content {
     text-align: left;
+}
+
+.c-table__content table tbody tr td:last-child {
+    display: flex;
+    justify-content: flex-end;
 }
 
 
@@ -2981,100 +3101,6 @@ input[type="submit"]:focus {
 /*------------------------------------------------------------
     Student Header
 ------------------------------------------------------------*/
-
-.c-headerStu {
-    margin: 0 auto;
-    line-height: 1;
-    z-index: 10;
-}
-
-.c-headerStu:after {
-    content: "";
-    display: block;
-    height: 2px;
-    background: #fff;
-    width: 1200px;
-    margin: 30px auto 0;
-}
-
-.c-headerStu .l-container {
-    padding: 30px 0 0;
-}
-
-.c-headerStu .logo a {
-    display: inline-block;
-}
-
-.c-headerStu .logo a img {
-    width: 148px;
-}
-
-.global-nav ul {
-    display: flex;
-    color: #fff;
-    font-size: 1.8rem;
-}
-
-.global-nav li {
-    position: relative;
-}
-
-.global-nav ul li a {
-    padding: 0 30px;
-}
-
-.global-nav ul li:after {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 3px;
-    bottom: -10px;
-    transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3 ease;
-    -o-transition: all 0.3 ease;
-}
-
-.global-nav ul li:hover:after {
-    background: #fff;
-    bottom: -20px;
-}
-
-
-/* transition */
-
-.c-headerStu,
-.c-headerStu:after,
-.c-headerStu .logo,
-.global-nav ul li,
-.global-nav ul li a {
-    transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-}
-
-
-/* Fixed */
-
-.c-headerStu.fixed .l-container {
-    padding: 15px 0 0;
-    /* background: rgba(255, 255, 255, 0.9); */
-}
-
-.c-headerStu.fixed:after {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.c-headerStu.fixed .global-nav ul li a {
-    padding: 0 20px;
-}
-
-.c-headerStu.fixed .global-nav ul li:hover:after {
-    bottom: -20px;
-}
 
 
 /*------------------------------------------------------------

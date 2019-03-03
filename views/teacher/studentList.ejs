@@ -1,6 +1,6 @@
 <div class="c-table">
     <div class="title2">
-        <h4>List Of Student</h4>
+        <h4>Student List</h4>
         <a href="/teacher/liveStream/<%= courseID %>" class="btn1 btn1--color2">Start</a>
     </div>
     <div class="c-table__content">
@@ -14,20 +14,20 @@
             </thead>
             <tbody>
                 <% for( var i = 0; i < result.length ; i++){%>
-                <tr>
-                    <td>
-                        <%= result[i].fname%>
-                            <%= result[i].lname%>
-                    </td>
-                    <td>
-                        <%= result[i].email%>
-                    </td>
-                    <td>
-                        <%= (result[i].created).toLocaleDateString('en-US') %>
-                    </td>
-                </tr>
-                <% }; %>
-                <!-- Change to en-GB to date/month/year format-->
+                    <tr>
+                        <td>
+                            <%= result[i].fname%>
+                                <%= result[i].lname%>
+                        </td>
+                        <td>
+                            <%= result[i].email%>
+                        </td>
+                        <td>
+                            <%= (result[i].created).toLocaleDateString('en-US') %>
+                        </td>
+                    </tr>
+                    <% }; %>
+                        <!-- Change to en-GB to date/month/year format-->
             </tbody>
         </table>
     </div>
