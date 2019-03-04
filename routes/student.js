@@ -13,7 +13,7 @@ router.get('/profile', ensureAuthenticated, function(req, res) {
     User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
         res.render('student/profile', {
             data: adminProfile,
-            layout: 'layoutmainStudent',
+            layout: 'layoutStudent',
             message: req.flash('success_msg') || req.flash('error_msg')
         })
     }).catch(function(err) {
@@ -116,7 +116,7 @@ router.get('/course', ensureAuthenticated, function(req, res) {
                 res.render('student/course', {
                     data: adminProfile,
                     result: studentClass,
-                    layout: 'layoutmainStudent',
+                    layout: 'layoutStudent',
                     message: req.flash('success_msg') || req.flash('error_msg')
                 })
             })
@@ -141,7 +141,7 @@ router.get('/watch/:id', ensureAuthenticated, function(req, res) {
                         data: adminProfile,
                         data1: result,
                         data2: teacherIDwatch,
-                        layout: 'layoutmainStudent',
+                        layout: 'layoutStudent',
                         message: req.flash('success_msg') || req.flash('error_msg')
                     })
                 })
@@ -149,6 +149,19 @@ router.get('/watch/:id', ensureAuthenticated, function(req, res) {
         })
     }).catch(function(err) {
         res.send({ error: 400, message: err });
+    })
+
+})
+
+//Student Class Information
+router.get('/classInfor/:id', ensureAuthenticated, (req, res) => {
+
+    var classId = req.params.id;
+    Class.getCourseById(classId, (err, data) => {
+        if (err) throw err
+        else {
+            res.send(data)
+        }
     })
 
 })

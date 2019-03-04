@@ -129,10 +129,10 @@ router.post('/teacher', ensureAuthenticated, (req, res) => {
             if (err) {
                 throw err
             } else if (user) {
-                req.flash('error_msg', 'User Existed !!!')
+                req.flash('success_msg', 'Teacher Created')
                 res.redirect('/dashboard')
             } else {
-                req.flash('success_msg', 'Teacher Created')
+                req.flash('error_msg', 'User Existed !!!')
                 res.redirect('/dashboard')
             }
         })

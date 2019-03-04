@@ -1,46 +1,59 @@
 <% if (success_msg || error_msg) { %>
-    <div class="alert student-alert">
+    <div class="alert user-alert">
         <%= success_msg %>
-            <%= error_msg %>
+        <%= error_msg %>
     </div>
-    <% } %>
-        <div class="c-table">
-            <div class="title2">
-                <h4>Courses</h4>
-            </div>
-            <div class="c-table__content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Course Name</th>
-                            <th>Semester</th>
-                            <th>Year</th>
-                            <th>Time</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for( var i = 0; i < data1.length ; i++){%>
-                            <tr>
-                                <td>
-                                    <%= data1[i].coursename%>
-                                </td>
-                                <td>
-                                    <%= data1[i].semester%>
-                                </td>
-                                <td>
-                                    <%= data1[i].year%>
-                                </td>
-                                <td>
-                                    <%= data1[i].time1%> -
-                                        <%= data1[i].time2%>
-                                </td>
-                                <td>
-                                    <a href="/teacher/listOfStudent/<%= data1[i]._id; %>" class="btn1 btn1--color2">View</a>
-                                </td>
-                            </tr>
-                            <% }; %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<% } %>
+<div class="title3">
+    <p>Courses</p>
+</div>
+<div class="c-table">
+    <div class="c-table__content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Semester</th>
+                    <th>Year</th>
+                    <th>Date Start</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for( var i = 0; i < data1.length ; i++){%>
+                    <tr>
+                        <td>
+                            <%= data1[i].courseid%>
+                        </td>
+                        <td>
+                            <%= data1[i].coursename%>
+                        </td>
+                        <td>
+                            <%= data1[i].semester%>
+                        </td>
+                        <td>
+                            <%= data1[i].year%>
+                        </td>
+                        <td>
+                            <%= (data1[i].date).toLocaleDateString('en-US')%>
+                        </td>
+                        <td>
+                            <%= data1[i].time1%> -
+                                <%= data1[i].time2%>
+                        </td>
+                        <td>
+                            <a href="/teacher/listOfStudent/<%= data1[i]._id; %>" class="btn1 btn1--color2">
+                                <i class="material-icons">
+                                    visibility
+                                </i>
+                                View
+                            </a>
+                        </td>
+                    </tr>
+                    <% }; %>
+            </tbody>
+        </table>
+    </div>
+</div>

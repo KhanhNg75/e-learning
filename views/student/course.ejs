@@ -1,14 +1,13 @@
 <% if (success_msg || error_msg) { %>
-    <div class="alert student-alert">
+    <div class="alert user-alert">
         <%= success_msg %>
         <%= error_msg %>
     </div>
 <% } %>
-
+<div class="title3">
+    <p>Courses</p>
+</div>
 <div class="c-table">
-    <div class="title2">
-        <h4>Courses</h4>
-    </div>
     <div class="c-table__content">
         <table>
             <thead>
@@ -44,8 +43,16 @@
                             <%= result[i].time1%> - <%= result[i].time2%>
                         </td>
                         <td>
-                            <a href="/student/watch/<%= result[i]._id%>" type="submit" class="btn1 btn1--color2">View</a>
-                            <a href="/student/deleteClass/<%= result[i]._id%>" type="submit" class="btn1 btn1--color4">Delete</a>
+                            <a href="/student/watch/<%= result[i]._id%>" type="submit" class="btn1 btn1--color2">
+                                <i class="material-icons">
+                                    fast_forward
+                                </i>
+                                Start
+                            </a>
+                            <a href="/student/deleteClass/<%= result[i]._id%>" type="submit" class="btn1 btn1--color4 ml-10">
+                                <i class="material-icons">delete</i>
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 <% }; %>

@@ -5,7 +5,8 @@ socket.on('connect', function() {
 });
 
 socket.on('announcement', function(username, data) {
-    $('#conversation').append('<p>' + username + ':</p> ' + data + '<br>');
+    // $('#conversation').append('<p>' + username + ':</p> ' + data + '<br>');
+    socket.emit("user-chat", { username: username, message: data });
 });
 socket.on('update-users', function(data) {
     $('#users').empty();
@@ -20,30 +21,11 @@ socket.on("server-send-room-socket", function(data) {
 
 socket.on("server-chat", function(data) {
     var Username = $('#username').val();
-    $("#right ul").append("<li>" + data.username + ":" + data.message + "</li>");
-    // if (data.username == Username) {
-    //     $("#right ul li").addClass('userChat');
-    //     if ($("#right ul li").hasClass('otherUserChat')) {
-    //         $("#right ul li").removeClass('userChat');
-    //     }
-    // } else {
-    //     $("#right ul li").addClass('otherUserChat');
-    //     if ($("#right ul li").hasClass('userChat')) {
-    //         $("#right ul li").removeClass('otherUserChat');
-    //     }
-    // }
+    $("#right ul").append("<li>" + data.username + " : " + data.message + "</li>");
     $("#right").animate({ scrollTop: $("#right")[0].scrollHeight }, 'fast');
 });
 
 $(document).ready(function() {
-
-    // $("#txtMessage").keypress(() => {
-    //     socket.emit('typing', $('#username').val())
-    // })
-
-    // socket.on('typing', (data) => {
-    //     $("#right ul").html("<li>" + data + " is typing a message" + "</li>");
-    // })
 
     $("#txtMessage").keypress(function(e) {
         if ((e.keyCode || e.which) == 13) {

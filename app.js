@@ -99,8 +99,8 @@ io.on('connection', function(socket) {
         socket.emit("server-send-room-socket", data)
         if (username != null) {
             socket.broadcast.emit('announcement', 'SERVER', username + ' has joined room');
+            io.sockets.emit('update-users', usernames);
         }
-        io.sockets.emit('update-users', usernames);
     });
 
     socket.on('stream', (data) => {
@@ -110,10 +110,6 @@ io.on('connection', function(socket) {
         // io.to(socket.Phong).emit('stream', image);
         // socket.broadcast.to(socket.Phong).emit('stream', image);
     });
-
-    // socket.on('typing', (data) => {
-    //     io.sockets.in(socket.room).emit("typing", data)
-    // })
 
     socket.on("user-chat", (data) => {
         io.sockets.in(socket.room).emit("server-chat", data)

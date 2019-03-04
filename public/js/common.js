@@ -28,7 +28,7 @@ Scroll bar
 ------------------------------------------------------------*/
 
 $("body").niceScroll({
-    cursorcolor: "rgba(0,0,0,0.8)",
+    cursorcolor: "#0178bc",
     cursorwidth: "10px",
     zindex: 999
 });
@@ -103,97 +103,98 @@ $(function() {
     });
 
     /*------------------------------------------------------------
-        Open NavBar SP
+	    User Modal BTN
     ------------------------------------------------------------*/
-    $(".dropbtn").on('click', function() {
-        event.stopPropagation();
-        $('.dropdown-content').slideToggle(200);
+    $('.modal-adminbtn').click(function() {
+        var buttonId = $(this).attr('id');
+        if (buttonId === 'one') {
+            $('#modal-container1').removeAttr('class').addClass(buttonId);
+        } else if (buttonId === 'two') {
+            $('#modal-container2').removeAttr('class').addClass(buttonId);
+        }
+        $('html,body').addClass('of-h');
+    })
+
+    $('#modal-container1').add('#modal-container1 .btn1--color2').add('#modal-container1 .close').add('#modal-container1 .btn1--color3').on("click", function() {
+        $("#modal-container1").addClass('out');
+        $('html,body').removeClass('of-h');
     });
 
-    $(".c-header__open").on('click', function() {
-        event.stopPropagation();
-        $(this).toggleClass("is-open");
-        if ($(this).hasClass("is-open")) {
-            $(".dropdown-content").hide();
-            $('.sidenav').addClass("left-0");
-            $('.sidenav').addClass("pad-10");
-            $('.c-admin').addClass("pl-220");
-            $('.c-teacher').addClass("pl-220");
-            $('.c-footer').addClass("pl-220");
-            $('.c-header').addClass("pl-220");
-            $('.modal-content').addClass("ml-220");
-        } else {
-            $('.sidenav').removeClass("left-0");
-            $('.sidenav').removeClass("pad-10");
-            $('.c-admin').removeClass("pl-220");
-            $('.c-teacher').removeClass("pl-220");
-            $('.c-footer').removeClass("pl-220");
-            $('.c-header').removeClass("pl-220");
-            $('.modal-content').removeClass("ml-220");
-            $(".dropdown-content").hide();
-        }
+    // $('#modal-container1 .close').click(function() {
+    //     $("#modal-container1").addClass('out');
+    //     $('html,body').removeClass('of-h');
+    // });
+
+    $('#modal-container2 .btn1--color2').click(function() {
+        $("#modal-container2").addClass('out');
+        $('html,body').removeClass('of-h');
+    });
+
+    $('#modal-container2 .close').click(function() {
+        $("#modal-container2").addClass('out');
+        $('html,body').removeClass('of-h');
     });
 
     /*------------------------------------------------------------
 	    Admin Create Button
     ------------------------------------------------------------*/
-    $(".create-btn").on("click", function() {
-        $(".modal").addClass('dp-f');
-        $('html, body').addClass('of-h');
-    })
+    // $(".create-btn").on("click", function() {
+    //     $(".modal").addClass('dp-f');
+    //     $('html, body').addClass('of-h');
+    // })
 
-    $(".close").on("click", function() {
-        $(".modal").removeClass('dp-f');
-        document.getElementById("defaultOpen").click();
-        $('html, body').removeClass('of-h');
-    })
+    // $(".close").on("click", function() {
+    //     $(".modal").removeClass('dp-f');
+    //     document.getElementById("defaultOpen").click();
+    //     $('html, body').removeClass('of-h');
+    // })
 
-    $("#defaultOpen").on("click", function() {
-        $(".modal").removeClass('dp-f');
-        $('html, body').removeClass('of-h');
-    })
+    // $("#defaultOpen").on("click", function() {
+    //     $(".modal").removeClass('dp-f');
+    //     $('html, body').removeClass('of-h');
+    // })
 
-    $(document).on("click", function() {
-        $(".dropdown-content").hide();
-    });
+    // $(document).on("click", function() {
+    //     $(".dropdown-content").hide();
+    // });
 
     /*------------------------------------------------------------
 	    Admin Edit Button
     ------------------------------------------------------------*/
-    $(".edit-btn").on("click", function() {
-        $(".modal1").addClass('dp-f');
-        $('html, body').addClass('of-h');
-    })
+    // $(".edit-btn").on("click", function() {
+    //     $(".modal1").addClass('dp-f');
+    //     $('html, body').addClass('of-h');
+    // })
 
-    $(".close").on("click", function() {
-        $(".modal1").removeClass('dp-f');
-        document.getElementById("defaultOpen1").click();
-        $('html, body').removeClass('of-h');
-    })
+    // $(".close").on("click", function() {
+    //     $(".modal1").removeClass('dp-f');
+    //     document.getElementById("defaultOpen1").click();
+    //     $('html, body').removeClass('of-h');
+    // })
 
-    $("#defaultOpen1").on("click", function() {
-        $(".modal1").removeClass('dp-f');
-        $('html, body').removeClass('of-h');
-    })
+    // $("#defaultOpen1").on("click", function() {
+    //     $(".modal1").removeClass('dp-f');
+    //     $('html, body').removeClass('of-h');
+    // })
 
     /*------------------------------------------------------------
 	    Admin Edit Class Button
     ------------------------------------------------------------*/
-    $(".edit-btn1").on("click", function() {
-        $(".modal2").addClass('dp-f');
-        $('html, body').addClass('of-h');
-    })
+    // $(".edit-btn1").on("click", function() {
+    //     $(".modal2").addClass('dp-f');
+    //     $('html, body').addClass('of-h');
+    // })
 
-    $(".close").on("click", function() {
-        $(".modal2").removeClass('dp-f');
-        document.getElementById("defaultOpen2").click();
-        $('html, body').removeClass('of-h');
-    })
+    // $(".close").on("click", function() {
+    //     $(".modal2").removeClass('dp-f');
+    //     document.getElementById("defaultOpen2").click();
+    //     $('html, body').removeClass('of-h');
+    // })
 
-    $("#defaultOpen2").on("click", function() {
-        $(".modal2").removeClass('dp-f');
-        $('html, body').removeClass('of-h');
-    })
+    // $("#defaultOpen2").on("click", function() {
+    //     $(".modal2").removeClass('dp-f');
+    //     $('html, body').removeClass('of-h');
+    // })
 
     /*------------------------------------------------------------
 	    Stop page loading
@@ -319,6 +320,20 @@ $(function() {
         } else {
             $header.removeClass('fixed');
         }
+    });
+
+    /*------------------------------------------------------------
+	    Upload BTN Animate
+    ------------------------------------------------------------*/
+    var button = $('.upload-btn');
+
+    button.click(function() {
+        setTimeout(function() {
+            button.addClass('is-completed');
+        }, 2000);
+        setTimeout(function() {
+            button.removeClass('is-completed');
+        }, 5000);
     });
 
 });

@@ -1,5 +1,5 @@
 <% if (success_msg || error_msg) { %>
-    <div class="alert student-alert">
+    <div class="alert user-alert">
         <%= success_msg %>
         <%= error_msg %>
     </div>
@@ -11,7 +11,8 @@
     </div>
     <div class="c-class__content">
         <% for( var i = 0; i < data1.length ; i++){%>
-            <div class="c-class__item" onclick="location.href='/student/watch/<%= data1[i]._id%>';">
+            <div class="c-class__item">
+                <a href="/student/classInfor/<%= data1[i]._id %>" class="student-class"></a>
                 <div class="c-class__meta">
                     <div class="photo">
                         <img src="../img/image-class.png" alt=""/>
@@ -50,7 +51,20 @@
     </div>
 </section>
 
-<section class="c-news">
+<!-- Modal Contener Class Information
+<div id="modal-container">
+    <div class="modal-background">
+        <div class="student-content">
+            <h2>I'm a Modal</h2>
+            <p>Hear me roar.</p>
+            <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+            </svg>
+        </div>
+    </div>
+</div> -->
+
+<!--<section class="c-news">
     <div class="title3">
         <p>News Information</p>
     </div>
@@ -120,7 +134,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <script>
    

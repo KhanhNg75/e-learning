@@ -1,130 +1,176 @@
 <% if (success_msg || error_msg) { %>
-    <div class="alert admin-alert">
+    <div class="alert user-alert">
         <%= success_msg %>
-            <%= error_msg %>
+        <%= error_msg %>
     </div>
-    <% } %>
-        <div class="c-stream">
-            <% for(var i = 0; i< data1.length ; i++) { %>
-                <input id="linkroom" type="hidden" value="<%= data1[i]._id %>" />
-                <%}%>
+<% } %>
 
-                    <div class="l-main">
-                        <div class="stream-video">
-                            <% for(var i = 0; i< data.length ; i++) { %>
-                                <input type="hidden" id="username" name="username" value="<%= data[i].fname %>" />
-                                <input type="hidden" id="username" name="userid" value="<%= data[i]._id %>" />
-                                <%}%>
+<% for(var i = 0; i< data1.length ; i++) { %>
+    <input id="linkroom" type="hidden" value="<%= data1[i]._id %>" />
+<%}%>
+ <% for(var i = 0; i< data.length ; i++) { %>
+    <input type="hidden" id="username" name="username" value="<%= data[i].fname %>" />
+    <input type="hidden" id="username" name="userid" value="<%= data[i]._id %>" />
+<%}%>
 
-                                    <video src="" id="video" style="width:100px;height:100px;background:#ccc;" autoplay="true"></video>
-                                    <canvas style="display:none" id="preview"></canvas>
-                                    <div id="logger" style="display:none"></div>
-                        </div>
-                        <% for(var i = 0; i< data.length ; i++) { %>
-                            <iframe src="https://player.twitch.tv/?channel=<%= data[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" style="width:100%;height:320px;background:#cfcfcf;" frameborder="0"></iframe>
-                            <%}%>
-                    </div>
-                    <div class="l-side">
-                        <h4 id="currentRoom">...</h4>
+<div class="c-stream">
 
-                        <div class="c-stream__chat">
-                            <div class="c-stream__contentChat" id="right">
-                                <ul>
-
-                                </ul>
-                            </div>
-                            <div class="c-stream__box">
-                                <input type="text" id="txtMessage" />
-                                <input type="button" id="btnChat" value="Chat" />
-                            </div>
-                        </div>
-                    </div>
-
-        </div>
-
-        <div style="float:left;width:100%;border-right:1px solid black;height:100px;padding:10px;overflow:scroll-y;">
-            <b>Thành viên</b>
-            <div id="users"></div>
-        </div>
-        <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-            <div id="conversation"></div>
-        </div>
-
-        <div style="width:100%;height:200px;background:#000;"></div>
-        <iframe id="mySlide" src="" frameborder="0" style="opacity:0"></iframe>
-        <form method="POST" id="fileupload" action="/teacher/uploadSlide">
-            <div class="c-files__upload">
-                <label for="uploadfile">Choose File:</label>
-                <input type="file" name="uploadfile" id="testfile">
-                <ul class="choose-file"></ul>
+    <div class="c-stream__upper">
+        <div class="l-main">
+            <div class="c-stream__webcam">
+                <video src="" id="video" autoplay="true"></video>
+                <canvas id="preview"></canvas>
+                <div id="logger"></div>
             </div>
-            <input type="hidden" name="testinput" class="testinput" value="" />
-            <input type="hidden" name="fileurl" class="testHolder" value="" />
-            <% for(var i = 0; i< data1.length ; i++) { %>
-                <input id="linkroom" type="hidden" name="classId" class="testclass" value="<%= data1[i]._id %>" />
-                <%}%>
-                    <div class="c-form__item">
-                        <button type="submit" class="btn1 btn1--color2">Upload</button>
-                    </div>
-        </form>
-        <input type="text" value="" id="progress" />
-        <% for(var i = 0; i< data1.length ; i++) { %>
-            <a href="/teacher/showSlide/<%= data1[i]._id; %>" class="btn1 btn1--color3 ml-10" id="btnGetFiles2">Files</a>
+            <% for(var i = 0; i< data.length ; i++) { %>
+                <iframe src="https://player.twitch.tv/?channel=<%= data[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" frameborder="0"></iframe>
             <%}%>
-                <div class="c-files__file" id="listFiles2">
+        </div>
+
+        <div class="l-side">
+            <h4 id="currentRoom">...</h4>
+
+            <div class="c-stream__chat">
+                <div class="title3">
+                    <p>Chat Box</p>
+                </div>
+                <div class="c-stream__contentChat" id="right">
                     <ul>
 
                     </ul>
                 </div>
+                <div class="c-stream__btn">
+                    <input type="text" id="txtMessage" />
+                    <input type="button" id="btnChat" value="Chat" />
+                </div>
+            </div>
+        </div>
 
-                <script type="text/javascript">
-                    var canvas = document.getElementById("preview");
-                    var context = canvas.getContext("2d");
+    </div>
 
-                    canvas.width = 800;
-                    canvas.height = 600;
+    <div class="c-stream__lower">
 
-                    context.height = canvas.height;
-                    context.width = canvas.width;
+        <div class="l-main">
+            <div class="c-stream__upload">
+                <div class="title2">
+                    <h4>Upload Slide</h4>
+                </div>
+                <div class="c-stream__slidebox">
 
-                    var video = document.getElementById("video");
+                    <div class="c-stream__slideleft">
 
-                    var socket = io();
+                        <form method="POST" id="fileupload" action="/teacher/uploadSlide">
+                            <div class="c-form__uploadbtn">
+                                <button type="submit" class="upload-btn" data-button>
+                                    <span class="button__text">
+                                        <i class="fa fa-upload"></i> Upload
+                                    </span>
+                                    <span class="button__success">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </button>
+                                <!-- <button type="submit" class="btn1 btn1--color2">Upload</button> -->
+                            </div>
+                            <div class="c-files__upload">
+                                <label for="uploadfile"></label>
+                                <input type="file" name="uploadfile" id="testfile">
+                                <ul class="choose-file"></ul>
+                            </div>
+                            <input type="hidden" name="testinput" class="testinput" value="" />
+                            <input type="hidden" name="fileurl" class="testHolder" value="" />
+                            <% for(var i = 0; i< data1.length ; i++) { %>
+                                <input id="linkroom" type="hidden" name="classId" class="testclass" value="<%= data1[i]._id %>" />
+                            <%}%>
+                        </form>
 
-                    function logger(msg) {
-                        $("#logger").text(msg);
-                    }
+                    </div>
 
-                    function loadCam(stream) {
-                        video.srcObject = stream;
-                        logger("Camera is connected!");
-                    }
+                    <div class="c-stream__slideright">
+                        <input type="text" value="" id="progress" />
+                        <% for(var i = 0; i< data1.length ; i++) { %>
+                            <a href="/teacher/showSlide/<%= data1[i]._id; %>" class="btn1 btn1--color3" id="btnGetFiles2">
+                                <i class="material-icons">
+                                    file_copy
+                                </i>
+                                Files
+                            </a>
+                        <%}%>
 
-                    function loadFail() {
-                        logger("Camera can not connect!");
-                    }
+                        <div class="c-files__file" id="listFiles2">
+                            <ul>
 
-                    function viewVideo() {
-                        context.drawImage(video, 0, 0, context.width, context.height);
-                        socket.emit('stream', canvas.toDataURL('image/webp'));
-                    }
+                            </ul>
+                        </div>
+                    </div>
 
-                    $(function() {
-                        navigator.getUserMedia = (navigator.getUserMedia ||
-                            navigator.webkitGetUserMedia ||
-                            navigator.mozGetUserMedia ||
-                            navigator.msgGetUserMedia);
-                        if (navigator.getUserMedia) {
-                            navigator.getUserMedia({
-                                video: true,
-                                audio: true
-                            }, loadCam, loadFail);
-                        } else if (!navigator.getUserMedia) {
-                            console.log('your browser unsupported webrtc.');
-                            return false;
-                        }
-                        setInterval(function() {
-                            viewVideo(video, context);
-                        }, 70);
-                    });
-                </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="l-side">
+            <div class="c-stream__users">
+                <div class="title2">
+                    <h4>Online Users</h4>
+                    <div id="users"></div>
+                </div>
+                <div>
+                    <div id="conversation"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var canvas = document.getElementById("preview");
+    var context = canvas.getContext("2d");
+
+    canvas.width = 800;
+    canvas.height = 600;
+
+    context.height = canvas.height;
+    context.width = canvas.width;
+
+    var video = document.getElementById("video");
+
+    var socket = io();
+
+    function logger(msg) {
+        $("#logger").text(msg);
+    }
+
+    function loadCam(stream) {
+        video.srcObject = stream;
+        logger("Camera is connected!");
+    }
+
+    function loadFail() {
+        logger("Camera can not connect!");
+    }
+
+    function viewVideo() {
+        context.drawImage(video, 0, 0, context.width, context.height);
+        socket.emit('stream', canvas.toDataURL('image/webp'));
+    }
+
+    $(function() {
+        navigator.getUserMedia = (navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msgGetUserMedia);
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({
+                video: true,
+                audio: true
+            }, loadCam, loadFail);
+        } else if (!navigator.getUserMedia) {
+            console.log('your browser unsupported webrtc.');
+            return false;
+        }
+        setInterval(function() {
+            viewVideo(video, context);
+        }, 70);
+    });
+</script>

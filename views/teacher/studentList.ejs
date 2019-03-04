@@ -1,8 +1,13 @@
+<div class="title3" style="padding-right: 45px">
+    <p>Student List</p>
+    <a href="/teacher/liveStream/<%= courseID %>" class="btn1 btn1--color2">
+        <i class="material-icons">
+        fast_forward
+        </i>
+        Start
+    </a>
+</div>
 <div class="c-table">
-    <div class="title2">
-        <h4>Student List</h4>
-        <a href="/teacher/liveStream/<%= courseID %>" class="btn1 btn1--color2">Start</a>
-    </div>
     <div class="c-table__content">
         <table>
             <thead>
@@ -10,20 +15,28 @@
                     <th>Student Name</th>
                     <th>Student Email</th>
                     <th>Join Date</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% for( var i = 0; i < result.length ; i++){%>
                     <tr>
                         <td>
-                            <%= result[i].fname%>
-                                <%= result[i].lname%>
+                            <%= result[i].fname%> <%= result[i].lname%>
                         </td>
                         <td>
                             <%= result[i].email%>
                         </td>
                         <td>
                             <%= (result[i].created).toLocaleDateString('en-US') %>
+                        </td>
+                        <td>
+                            <a href="#_"  class="btn1 btn1--color2">
+                                <i class="material-icons" style="display:none">
+                                    visibility
+                                </i>
+                                View Profile
+                            </a>
                         </td>
                     </tr>
                     <% }; %>
