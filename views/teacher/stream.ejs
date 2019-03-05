@@ -8,9 +8,12 @@
 <% for(var i = 0; i< data1.length ; i++) { %>
     <input id="linkroom" type="hidden" value="<%= data1[i]._id %>" />
 <%}%>
- <% for(var i = 0; i< data.length ; i++) { %>
-    <input type="hidden" id="username" name="username" value="<%= data[i].fname %>" />
-    <input type="hidden" id="username" name="userid" value="<%= data[i]._id %>" />
+
+<% for(var i = 0; i< data.length ; i++) { %>
+    <input type="hidden" id="fname" name="fname" value="<%= data[i].fname %>" />
+    <input type="hidden" id="lname" name="lname" value="<%= data[i].lname %>" />
+    <input type="hidden" id="img" name="img" value="<%= data[i].userimage %>" />
+    <input type="hidden" id="userid" name="userid" value="<%= data[i]._id %>" />
 <%}%>
 
 <div class="c-stream">

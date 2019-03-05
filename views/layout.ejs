@@ -63,7 +63,7 @@
                                                     <label>Password</label>
                                                     <span></span>
                                                 </div>
-                                                <a href="#">Forgot password?</a>
+                                                <!-- <a href="#">Forgot password?</a> -->
                                                 <input type="submit" value="Log in">
                                             </div>
                                             <div class="social-grids">
@@ -92,30 +92,30 @@
                                         <form method="post" action="/users/register">
                                             <div class="fields-grid">
                                                 <div class="styled-input">
-                                                    <input type="text" name="username" required="">
+                                                    <input type="text" name="username" id="inputu" pattern="\w+" required />
                                                     <label>Username</label>
                                                     <span></span>
                                                 </div>
                                                 <div class="styled-input">
-                                                    <input type="email" name="email" required="">
+                                                    <input type="email" name="email" id="inpute" required />
                                                     <label>Email</label>
                                                     <span></span>
                                                 </div>
                                                 <div class="styled-input">
-                                                    <input type="password" name="password" required="">
+                                                    <input name="password" id="inputpw1" title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                                                     <label>Password</label>
                                                     <span></span>
                                                 </div>
                                                 <div class="styled-input">
-                                                    <input type="password" name="password2" required="">
+                                                    <input name="password2" id="inputpw2" title="Please enter the same Password as above." type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                                                     <label>Confirm Password</label>
                                                     <span></span>
                                                 </div>
                                                 <div class="clear"> </div>
                                             </div>
+                                             <div class="registrationFormAlert" id="divPasswordValidationResult"></div>
                                             <input id="regist-btn" type="submit" value="Sign up">
                                         </form>
-
                                     </div>
                                 </div>
                             </div>

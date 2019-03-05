@@ -159,13 +159,18 @@ router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
             }
 
             User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-                res.render('teacher/studentList', {
-                    data: adminProfile,
-                    result: listArray1,
-                    courseID: courseId,
-                    layout: 'layoutTeacher',
-                    message: req.flash('success_msg') || req.flash('error_msg')
-                })
+                var data = {
+                    userData: listArray1,
+                    courseID: courseId
+                }
+                res.send(data)
+                    // res.render('teacher/studentList', {
+                    //     data: adminProfile,
+                    //     result: listArray1,
+                    //     courseID: courseId,
+                    //     layout: 'layoutTeacher',
+                    //     message: req.flash('success_msg') || req.flash('error_msg')
+                    // })
             })
         })
     }).catch(function(err) {

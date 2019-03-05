@@ -91,14 +91,14 @@ https://github.com/tpiros/advanced-chat **
 // Socket IO Controller
 io.on('connection', function(socket) {
 
-    socket.on("creat-room", (data, username) => {
-        socket.join(data)
-        socket.room = data
-        socket.username = username
-        usernames[username] = username;
-        socket.emit("server-send-room-socket", data)
-        if (username != null) {
-            socket.broadcast.emit('announcement', 'SERVER', username + ' has joined room');
+    socket.on("creat-room", (data) => {
+        socket.join(data.linkroom)
+        socket.room = data.linkroom
+        socket.username = data.username
+        usernames[socket.username] = socket.username;
+        socket.emit("server-send-room-socket", data.linkroom)
+        if (socket.username != null || socket.username != undefined) {
+            socket.broadcast.emit('announcement', 'SERVER', socket.username + ' has joined room');
             io.sockets.emit('update-users', usernames);
         }
     });

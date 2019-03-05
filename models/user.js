@@ -32,7 +32,7 @@ var UserSchema = mongoose.Schema({
     },
     userimage: {
         type: String,
-        default: "https://firebasestorage.googleapis.com/v0/b/uploadfile-f177e.appspot.com/o/UserImage%2Fuser-image.png?alt=media&token=ff08b521-9dd6-4ff3-aad7-81f7c483c4f4"
+        default: "https://firebasestorage.googleapis.com/v0/b/uploadfile-f177e.appspot.com/o/UserImage%2Fuser-image.jpg?alt=media&token=a9032683-f322-4833-a83a-2b9d9053406f"
     },
     channelLink: {
         type: String

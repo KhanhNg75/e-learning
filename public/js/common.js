@@ -111,90 +111,89 @@ $(function() {
             $('#modal-container1').removeAttr('class').addClass(buttonId);
         } else if (buttonId === 'two') {
             $('#modal-container2').removeAttr('class').addClass(buttonId);
+        } else if (buttonId === 'three') {
+            $('#modal-container3').removeAttr('class').addClass(buttonId);
+        } else if (buttonId === 'four') {
+            $('#modal-container4').removeAttr('class').addClass(buttonId);
+        } else if (buttonId === 'five') {
+            $('#modal-container5').removeAttr('class').addClass(buttonId);
+        } else if (buttonId === 'six') {
+            $('#modal-container6').removeAttr('class').addClass(buttonId);
         }
         $('html,body').addClass('of-h');
     })
 
-    $('#modal-container1').add('#modal-container1 .btn1--color2').add('#modal-container1 .close').add('#modal-container1 .btn1--color3').on("click", function() {
-        $("#modal-container1").addClass('out');
-        $('html,body').removeClass('of-h');
+    // BTN 1
+    $('#modal-container1 .btn1--color3').click(function() {
+        modalOut1($('#modal-container1'));
     });
 
-    // $('#modal-container1 .close').click(function() {
-    //     $("#modal-container1").addClass('out');
-    //     $('html,body').removeClass('of-h');
-    // });
+    $('#modal-container1 .btn1--color2').click(function() {
+        modalOut2($('#modal-container1'));
+    });
+
+    // BTN 2
+    $('#modal-container2 .btn1--color3').click(function() {
+        modalOut1($('#modal-container2'));
+    });
 
     $('#modal-container2 .btn1--color2').click(function() {
-        $("#modal-container2").addClass('out');
-        $('html,body').removeClass('of-h');
+        modalOut2($('#modal-container2'));
     });
 
-    $('#modal-container2 .close').click(function() {
-        $("#modal-container2").addClass('out');
-        $('html,body').removeClass('of-h');
+    // BTN 3
+    $('#modal-container3 .btn1--color3').click(function() {
+        modalOut1($('#modal-container3'));
     });
 
-    /*------------------------------------------------------------
-	    Admin Create Button
-    ------------------------------------------------------------*/
-    // $(".create-btn").on("click", function() {
-    //     $(".modal").addClass('dp-f');
-    //     $('html, body').addClass('of-h');
-    // })
+    $('#modal-container3 .btn1--color2').click(function() {
+        modalOut1($('#modal-container3'));
+    });
 
-    // $(".close").on("click", function() {
-    //     $(".modal").removeClass('dp-f');
-    //     document.getElementById("defaultOpen").click();
-    //     $('html, body').removeClass('of-h');
-    // })
+    // BTN 4
+    $('#modal-container4 .btn1--color3').click(function() {
+        modalOut1($('#modal-container4'));
+    });
 
-    // $("#defaultOpen").on("click", function() {
-    //     $(".modal").removeClass('dp-f');
-    //     $('html, body').removeClass('of-h');
-    // })
+    $('#modal-container4 .btn1--color2').click(function() {
+        modalOut2($('#modal-container4'));
+    });
 
-    // $(document).on("click", function() {
-    //     $(".dropdown-content").hide();
+    // BTN 5
+    $('#modal-container5 ').click(function() {
+        modalOut1($('#modal-container5'));
+    });
+
+    // $('#modal-container5 .btn1--color2').click(function() {
+    // modalOut2($('#modal-container5'));
     // });
 
-    /*------------------------------------------------------------
-	    Admin Edit Button
-    ------------------------------------------------------------*/
-    // $(".edit-btn").on("click", function() {
-    //     $(".modal1").addClass('dp-f');
-    //     $('html, body').addClass('of-h');
-    // })
+    // BTN 6
+    $('#modal-container6 ').click(function() {
+        modalOut1($('#modal-container6'));
+    });
 
-    // $(".close").on("click", function() {
-    //     $(".modal1").removeClass('dp-f');
-    //     document.getElementById("defaultOpen1").click();
-    //     $('html, body').removeClass('of-h');
-    // })
+    if ($('.chat-image').attr('src', 'undefined/')) {
+        $(this).addClass('dp-n');
+    }
 
-    // $("#defaultOpen1").on("click", function() {
-    //     $(".modal1").removeClass('dp-f');
-    //     $('html, body').removeClass('of-h');
-    // })
 
     /*------------------------------------------------------------
-	    Admin Edit Class Button
+	    Credit Calculate
     ------------------------------------------------------------*/
-    // $(".edit-btn1").on("click", function() {
-    //     $(".modal2").addClass('dp-f');
-    //     $('html, body').addClass('of-h');
-    // })
+    var sum = 0;
 
-    // $(".close").on("click", function() {
-    //     $(".modal2").removeClass('dp-f');
-    //     document.getElementById("defaultOpen2").click();
-    //     $('html, body').removeClass('of-h');
-    // })
+    $(".c-table__content tbody tr").each(function() {
+        var value = $(this).find(".credit-course").html();
+        var a = parseInt(value, 10)
+        sum += a;
+    });
 
-    // $("#defaultOpen2").on("click", function() {
-    //     $(".modal2").removeClass('dp-f');
-    //     $('html, body').removeClass('of-h');
-    // })
+    if (sum >= 24) {
+        $(".out-credit").toggleClass('dp-b');
+        $('.btn1--color2').click(function() { return false; });
+        $(".btn1--color2").addClass("no-c");
+    }
 
     /*------------------------------------------------------------
 	    Stop page loading
@@ -336,4 +335,39 @@ $(function() {
         }, 5000);
     });
 
+    /*------------------------------------------------------------
+	    Password Validation
+    ------------------------------------------------------------*/
+    $("#inputpw1").keyup(validatePassword1);
+    $("#inputpw2").keyup(validatePassword2);
 });
+
+function validatePassword1() {
+    var password1 = $("#inputpw1").val();
+
+    if (!password1.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z@%!]{6,}$/))
+        $(".registrationFormAlert").html("Password does not Strong Enough").css('color', 'red');
+    else
+        $(".registrationFormAlert").html("Password Valid").css('color', 'green');
+}
+
+function validatePassword2() {
+    var password1 = $("#inputpw1").val();
+    var password2 = $("#inputpw2").val();
+    if (password1 != password2)
+        $(".registrationFormAlert").html("Password does not Match").css('color', 'red');
+    else
+        $(".registrationFormAlert").html("Password Match").css('color', 'green');
+}
+
+function modalOut1(dataAttribute1) {
+    $(dataAttribute1).addClass('out');
+    $('html,body').removeClass('of-h');
+}
+
+function modalOut2(dataAttribute2) {
+    setTimeout(function() {
+        $(dataAttribute2).addClass('out');
+        $('html,body').removeClass('of-h');
+    }, 3000);
+}

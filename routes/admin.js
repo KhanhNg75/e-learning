@@ -101,6 +101,8 @@ router.post('/teacher', ensureAuthenticated, (req, res) => {
     var cLink = param.cLink
     var email = param.email
     var username = param.username
+    var fname = param.fname
+    var lname = param.lname
     var password = param.password
     var role = "teacher"
 
@@ -122,6 +124,8 @@ router.post('/teacher', ensureAuthenticated, (req, res) => {
             channelLink: cLink,
             email: email,
             username: username,
+            fname: fname,
+            lname: lname,
             password: password,
             role: role
         })
@@ -222,7 +226,7 @@ router.post('/course', ensureAuthenticated, (req, res) => {
 
     var courseid = param.courseid
     var coursename = param.coursename
-    var coursecredit = req.params.coursecredit
+    var coursecredit = param.coursecredit
     var semester = param.semester
     var year = param.year
     var teacher = param.teacher

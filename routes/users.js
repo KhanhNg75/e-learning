@@ -37,10 +37,10 @@ router.post('/register', (req, res) => {
             if (err) {
                 throw err
             } else if (user) {
-                req.flash('error_msg', 'Username Existed !!!')
+                req.flash('success_msg', 'You are registered and can now login')
                 res.redirect('/')
             } else {
-                req.flash('success_msg', 'You are registered and can now login')
+                req.flash('error_msg', 'Username Existed !!!')
                 res.redirect('/')
             }
         })

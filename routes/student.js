@@ -133,19 +133,30 @@ router.get('/watch/:id', ensureAuthenticated, function(req, res) {
     var user = req.user
     var room = req.params.id
 
-    User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
-        Class.find({ "_id": room }).then(result => {
-            for (var i = 0; i < result.length; i++) {
-                User.find({ "_id": ObjectID(result[i].teacher) }).then(teacherIDwatch => {
-                    res.render('student/watch', {
-                        data: adminProfile,
-                        data1: result,
-                        data2: teacherIDwatch,
-                        layout: 'layoutStudent',
-                        message: req.flash('success_msg') || req.flash('error_msg')
-                    })
-                })
+    Class.find({ "_id": room }).then(result => {
+        var userRoom = []
+        for (let i = 0; i < result.length; i++) {
+            userRoom.push(result[i].teacher)
+        }
+        User.find({}).then(teacherIDwatch => {
+            var teacherID = [];
+            for (let j = 0; j < userRoom.length; j++) {
+                for (let k = 0; k < teacherIDwatch.length; k++) {
+                    if (userRoom[j].toString() == teacherIDwatch[k]._id.toString()) {
+                        teacherID.push(teacherIDwatch[k])
+                    }
+                }
             }
+            User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
+                res.render('student/watch', {
+                    data: adminProfile,
+                    data1: result,
+                    data2: teacherID,
+                    layout: 'layoutStudent',
+                    message: req.flash('success_msg') || req.flash('error_msg')
+                })
+            })
+
         })
     }).catch(function(err) {
         res.send({ error: 400, message: err });

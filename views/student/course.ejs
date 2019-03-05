@@ -5,7 +5,10 @@
     </div>
 <% } %>
 <div class="title3">
-    <p>Courses</p>
+    <p>Classess</p>
+    <h1 class="out-credit">
+        Out of Credit. Please Remove Class to continue !!!
+    </h1>
 </div>
 <div class="c-table">
     <div class="c-table__content">
@@ -14,6 +17,7 @@
                 <tr>
                     <th>Course ID</th>
                     <th>Course Name</th>
+                    <th>Credit</th>
                     <th>Semester</th>
                     <th>Year</th>
                     <th>Date</th>
@@ -29,6 +33,9 @@
                         </td>
                         <td>
                             <%= result[i].coursename%>
+                        </td>
+                        <td class="credit-course">
+                            <%= result[i].coursecredit%>
                         </td>
                         <td>
                             <%= result[i].semester%>
@@ -63,3 +70,8 @@
         <a href="/dashboard">Go Back</a>
     </div>
 </div>
+
+<script type="text/javascript">
+    
+  
+</script>

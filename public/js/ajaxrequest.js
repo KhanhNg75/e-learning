@@ -51,12 +51,12 @@ $(function() {
                 url: href,
                 success: (data) => {
                     //clear old data
-                    $(".modal1 .uid").val(data._id);
-                    $(".modal1 .uname").val(data.username);
-                    $(".modal1 .email").val(data.email);
-                    $(".modal1 .fname").val(data.fname);
-                    $(".modal1 .lname").val(data.lname);
-                    $(".modal1 .cLink").val(data.channelLink);
+                    $("#modal-container3 .uid").val(data._id);
+                    $("#modal-container3 .uname").val(data.username);
+                    $("#modal-container3 .email").val(data.email);
+                    $("#modal-container3 .fname").val(data.fname);
+                    $("#modal-container3 .lname").val(data.lname);
+                    $("#modal-container3 .cLink").val(data.channelLink);
                 }
             });
             async: false
@@ -75,15 +75,15 @@ $(function() {
                 url: href,
                 success: (data) => {
                     //clear old data
-                    $(".modal2 .ciid").val(data._id);
-                    $(".modal2 .cid").val(data.courseid);
-                    $(".modal2 .cname").val(data.coursename);
-                    $(".modal2 .csemester").val(data.semester);
-                    $(".modal2 .cyear").val(data.year);
-                    $(".modal2 .cdate").val(moment(data.date).format("YYYY-MM-DD"));
-                    $(".modal2 .tstart1").val(data.time1);
-                    $(".modal2 .tstart2").val(data.time2);
-                    $(".modal2 .cdescrip").val(data.description);
+                    $("#modal-container4 .ciid").val(data._id);
+                    $("#modal-container4 .cid").val(data.courseid);
+                    $("#modal-container4 .cname").val(data.coursename);
+                    $("#modal-container4 .csemester").val(data.semester);
+                    $("#modal-container4 .cyear").val(data.year);
+                    $("#modal-container4 .cdate").val(moment(data.date).format("YYYY-MM-DD"));
+                    $("#modal-container4 .tstart1").val(data.time1);
+                    $("#modal-container4 .tstart2").val(data.time2);
+                    $("#modal-container4 .cdescrip").val(data.description);
                 }
             });
             async: false
@@ -92,8 +92,32 @@ $(function() {
     })
 
     /*------------------------------------------------------------
-	   Student Class Information AJAX
+	    Teacher View Student list
     ------------------------------------------------------------*/
+    $(".studentList").each(function() {
+        $(this).on("click", function(e) {
+            var href = $(this).attr('href');
+            $.ajax({
+                type: "GET",
+                url: href,
+                success: (data) => {
+                    $("#modal-container6 .c-table__content tbody").html("");
+                    $("#modal-container6 .c-table__content tbody").append('<tr>');
+                    $.each(data.userData, (index, file) => {
+                        $("#modal-container6 .c-table__content tbody").append('<tr>' +
+                            '<td>' + file.fname + ' ' + file.lname + '</td>' +
+                            '<td>' + file.email + '</td>' +
+                            '<td>' + moment(file.created).format("YYYY-MM-DD") + '</td>' +
+                            '</tr>')
+                    });
+                    $("#modal-container6 .c-table__content tbody").append('</tr>');
+                    $("#modal-container6 .c-btn a").attr('href', '/teacher/liveStream/' + data.courseID)
+                }
+            });
+            async: false
+            e.preventDefault();
+        })
+    })
 
     /*------------------------------------------------------------
 	    Admin Ajax Paginate BTN

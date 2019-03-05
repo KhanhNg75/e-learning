@@ -62,41 +62,9 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
         var db = client.db(dbName)
         if (user.role == "admin") {
 
-            // var pageNo = parseInt(req.query.pageNo)
-            // var size = 6
-            // var query = {}
-            // if (pageNo < 0 || pageNo === 0) {
-            //     response = { "error": true, "message": "invalid page number, should start with 1" };
-            //     return res.json(response)
-            // }
-            // query.skip = size * (pageNo - 1)
-            // query.limit = size
-
             User.find({ "_id": ObjectID(user._id) }).then(UserInfor => {
                 User.find({ "role": "teacher" }).then(teacherUser => {
                     User.find({ "role": "student" }).then(studentUser => {
-                        // Class.countDocuments({}, (err, totalCount) => {
-                        //     if (err) {
-                        //         response = { "error": true, "message": "Error fetching data" }
-                        //     }
-                        //     Class.find({}, {}, query, (err, classData) => {
-                        //         if (err) {
-                        //             response = { "error": true, "message": "Error fetching data" };
-                        //         } else {
-                        //             var totalPages = Math.ceil(totalCount / size)
-                        //             res.render('admin/admin', {
-                        //                 data: UserInfor,
-                        //                 tUser: teacherUser,
-                        //                 sUser: studentUser,
-                        //                 cData: classData,
-                        //                 pPage: totalPages,
-                        //                 layout: 'layoutAdmin',
-                        //                 message: req.flash('success_msg') || req.flash('error_msg')
-                        //             })
-
-                        //         }
-                        //     })
-                        // })
                         Class.find({}).then(classData => {
                             res.render('admin/admin', {
                                 data: UserInfor,
