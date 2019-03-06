@@ -171,6 +171,7 @@ $(function() {
     // BTN 6
     $('#modal-container6 ').click(function() {
         modalOut1($('#modal-container6'));
+        $("#modal-container6 .c-table__content tbody").html("");
     });
 
     if ($('.chat-image').attr('src', 'undefined/')) {
@@ -228,16 +229,6 @@ $(function() {
     /*------------------------------------------------------------
 	    Bottom Footer
     ------------------------------------------------------------*/
-    if ($('header').hasClass('c-header')) {
-        function autoHeight() {
-            $('main').css('min-height', 0);
-            $('main').css('min-height', (
-                $(document).height() +
-                $('.c-header').height() -
-                $('.c-footer').height()
-            ));
-        }
-    }
 
     // onDocumentReady
     // function bind
@@ -376,4 +367,64 @@ function modalOut2(dataAttribute2) {
         $(dataAttribute2).addClass('out');
         $('html,body').removeClass('of-h');
     }, 3000);
+}
+/*------------------------------------------------------------
+    Auto Calculate Height Function
+------------------------------------------------------------*/
+function autoHeight() {
+    $('main').css('min-height', 0);
+    $('main').css('min-height', (
+        $(document).height() +
+        $('.c-header').height() -
+        $('.c-footer').height()
+    ));
+    $('body').getNiceScroll().resize();
+}
+
+/*------------------------------------------------------------
+    Student Query Class
+------------------------------------------------------------*/
+filterSelection("all")
+
+function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("c-class__item");
+    if (c == "all") c = "";
+    for (i = 0; i < x.length; i++) {
+        w3RemoveClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+    }
+    autoHeight();
+}
+
+function w3AddClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+    }
+}
+
+function w3RemoveClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);
+        }
+    }
+    element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("btn_query");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
 }

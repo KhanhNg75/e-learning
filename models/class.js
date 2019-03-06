@@ -15,6 +15,9 @@ var ClassSchema = mongoose.Schema({
     coursecredit: {
         type: String
     },
+    type: {
+        type: String,
+    },
     semester: {
         type: String
     },

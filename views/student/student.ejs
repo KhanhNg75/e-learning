@@ -8,10 +8,16 @@
 <section class="c-class">
     <div class="title3">
         <p>Class Available</p>
+        <div id="btn_query">
+            <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+            <button class="btn" onclick="filterSelection('IT')"> IT</button>
+            <button class="btn" onclick="filterSelection('BA')"> BA</button>
+            <button class="btn" onclick="filterSelection('EE')"> EE</button>
+        </div>
     </div>
     <div class="c-class__content">
         <% for( var i = 0; i < data1.length ; i++){%>
-            <div class="c-class__item">
+            <div class="c-class__item <%= data1[i].type%>">
                 <a href="/student/classInfor/<%= data1[i]._id %>" class="student-class"></a>
                 <div class="c-class__meta">
                     <div class="photo">
@@ -41,7 +47,7 @@
                             <%= data1[i].inventory[j].fname%> <%= data1[i].inventory[j].lname%>
                         <% }; %>
                     </h2>
-                    <h3><%= data1[i].courseid%></h3>
+                    <h3><%= data1[i].courseid%> (<%= data1[i].type%>) - <%= data1[i].credit%> credits</h3>
                     <p><%= data1[i].description%></p>
                     <div class="readmore-btn">
                         <a class="test" href="/student/registClass/<%= data1[i]._id; %>">Register</a>

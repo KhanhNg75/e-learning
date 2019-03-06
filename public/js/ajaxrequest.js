@@ -75,6 +75,7 @@ $(function() {
                     $("#modal-container4 .ciid").val(data._id);
                     $("#modal-container4 .cid").val(data.courseid);
                     $("#modal-container4 .cname").val(data.coursename);
+                    $("#modal-container4 .faculty").val(data.type);
                     $("#modal-container4 .csemester").val(data.semester);
                     $("#modal-container4 .cyear").val(data.year);
                     $("#modal-container4 .cdate").val(moment(data.date).format("YYYY-MM-DD"));
@@ -98,17 +99,17 @@ $(function() {
                 type: "GET",
                 url: href,
                 success: (data) => {
-                    $("#modal-container6 .c-table__content tbody").html("");
-                    $("#modal-container6 .c-table__content tbody").append('<tr>');
+                    var countNo = 1;
                     $.each(data.userData, (index, file) => {
                         $("#modal-container6 .c-table__content tbody").append('<tr>' +
+                            '<td>' + countNo + '</td>' +
                             '<td>' + file.username + '</td>' +
                             '<td>' + file.fname + ' ' + file.lname + '</td>' +
                             '<td>' + file.email + '</td>' +
                             '<td>' + moment(file.created).format("YYYY-MM-DD") + '</td>' +
                             '</tr>')
+                        countNo++;
                     });
-                    $("#modal-container6 .c-table__content tbody").append('</tr>');
                     $("#modal-container6 .c-btn a").attr('href', '/teacher/liveStream/' + data.courseID)
                 }
             });

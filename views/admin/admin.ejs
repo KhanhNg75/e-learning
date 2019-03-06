@@ -114,6 +114,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Course Name</th>
+                                        <th>Faculty</th>
                                         <th>Semester</th>
                                         <th>Year</th>
                                         <th>Date Start</th>
@@ -130,6 +131,9 @@
                                             </td>
                                             <td>
                                                 <%= cData[i].coursename%>
+                                            </td>
+                                            <td>
+                                                <%= cData[i].type%>
                                             </td>
                                             <td>
                                                 <%= cData[i].semester%>
@@ -327,6 +331,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-25">
+                                            <p>Faculty:</p>
+                                        </div>
+                                        <div class="col-75">
+                                            <select name="faculty">
+                                                <option value="IT">IT</option>
+                                                <option value="BA">BA</option>
+                                                <option value="EE">EE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
                                             <p>Number of Credit:</p>
                                         </div>
                                         <div class="col-75">
@@ -346,6 +362,9 @@
                                             <input type="text" class="sem" name="semester" value="" readonly/>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="c-form__items">
                                     <div class="row">
                                         <div class="col-25">
                                             <p>Year:</p>
@@ -354,9 +373,6 @@
                                             <input type="text" class="year" name="year" value="" readonly>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="c-form__items">
                                     <div class="row">
                                         <div class="col-25">
                                             <p>Teacher Name:</p>
@@ -511,6 +527,14 @@
                                 </div>
                                 <div class="col-75">
                                     <input type="text" class="cname" value="" name="cname">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <p>Faculty:</p>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="faculty" value="" name="faculty">
                                 </div>
                             </div>
                             <div class="row">

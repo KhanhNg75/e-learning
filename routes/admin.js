@@ -227,6 +227,7 @@ router.post('/course', ensureAuthenticated, (req, res) => {
     var courseid = param.courseid
     var coursename = param.coursename
     var coursecredit = param.coursecredit
+    var faculty = param.faculty
     var semester = param.semester
     var year = param.year
     var teacher = param.teacher
@@ -255,6 +256,7 @@ router.post('/course', ensureAuthenticated, (req, res) => {
             courseid: courseid,
             coursename: coursename,
             coursecredit: coursecredit,
+            type: faculty,
             semester: semester,
             year: year,
             teacher: teacher,
@@ -307,6 +309,7 @@ router.post('/editCourse', ensureAuthenticated, (req, res) => {
     var courseiid = req.body.ciid
     var courseid = req.body.cid
     var coursename = req.body.cname
+    var faculty = req.body.faculty
     var semester = req.body.csemester
     var year = req.body.cyear
     var date = req.body.cdate
@@ -319,6 +322,7 @@ router.post('/editCourse', ensureAuthenticated, (req, res) => {
             'courseid': courseid,
             'coursename': coursename,
             'semester': semester,
+            'type': faculty,
             'year': year,
             'date': date,
             'time1': time1,
