@@ -4,14 +4,14 @@ socket.on('connect', function() {
     var a = $('#fname').val() + ' ' + $('#lname').val();
     var data = {
         linkroom: $('#linkroom').val(),
-        username: $('#fname').val()
+        username: a
     }
     socket.emit('creat-room', data);
 });
 
-socket.on('announcement', function(username, data) {
-    socket.emit("user-chat", { username: username, message: data });
-});
+// socket.on('announcement', function(username, data) {
+//     socket.emit("user-chat", { username: username, message: data });
+// });
 socket.on('update-users', function(data) {
     $('#users').empty();
     $.each(data, function(key, value) {

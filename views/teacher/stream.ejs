@@ -25,9 +25,9 @@
                 <canvas id="preview"></canvas>
                 <div id="logger"></div>
             </div>
-            <% for(var i = 0; i< data.length ; i++) { %>
+            <!-- <% for(var i = 0; i< data.length ; i++) { %>
                 <iframe src="https://player.twitch.tv/?channel=<%= data[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" frameborder="0"></iframe>
-            <%}%>
+            <%}%> -->
         </div>
 
         <div class="l-side">
@@ -79,8 +79,8 @@
                                 <input type="file" name="uploadfile" id="testfile">
                                 <ul class="choose-file"></ul>
                             </div>
-                            <input type="hidden" name="testinput" class="testinput" value="" />
-                            <input type="hidden" name="fileurl" class="testHolder" value="" />
+                            <input type="hidden" name="filename" class="filename" value="" />
+                            <input type="hidden" name="fileurl" id="userSlide" value="" />
                             <% for(var i = 0; i< data1.length ; i++) { %>
                                 <input id="linkroom" type="hidden" name="classId" class="testclass" value="<%= data1[i]._id %>" />
                             <%}%>

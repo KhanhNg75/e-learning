@@ -98,7 +98,7 @@ io.on('connection', function(socket) {
         usernames[socket.username] = socket.username;
         socket.emit("server-send-room-socket", data.linkroom)
         if (socket.username != null || socket.username != undefined) {
-            socket.broadcast.emit('announcement', 'SERVER', socket.username + ' has joined room');
+            // socket.broadcast.emit('announcement', 'SERVER', socket.username + ' has joined room');
             io.sockets.emit('update-users', usernames);
         }
     });
@@ -118,9 +118,9 @@ io.on('connection', function(socket) {
     socket.on('disconnect', () => {
         delete usernames[socket.username];
         io.sockets.emit('update-users', usernames);
-        if (socket.username != null) {
-            socket.broadcast.emit('announcement', 'SERVER', socket.username + ' has disconnected');
-        }
+        // if (socket.username != null) {
+        //     socket.broadcast.emit('announcement', 'SERVER', socket.username + ' has disconnected');
+        // }
     });
 
     socket.on('error', () => console.log('errored'));

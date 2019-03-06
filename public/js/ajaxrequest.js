@@ -2,21 +2,18 @@ $(function() {
     /*------------------------------------------------------------
 	    Send AJAX Teacher File
     ------------------------------------------------------------*/
-    $('#fileupload').on('submit', function(e) {
-        $('.testHolder').val($('#mySlide').attr('src'));
-        $.ajax({
-            type: 'post',
-            url: '/teacher/uploadSlide',
-            data: $('#fileupload').serialize(),
-            success: function(success_msg) {
-                console.log("Email has been sent!");
-                console.log(success_msg);
-            }
-        });
+    // $('#fileupload').on('submit', function(e) {
 
-        $('.choose-file li').html('');
-        e.preventDefault();
-    });
+    //     $.ajax({
+    //         type: 'post',
+    //         url: '/teacher/uploadSlide',
+    //         data: $('#fileupload').serialize(),
+    //         success: function(success_msg) {
+    //             console.log("Data has been sent!");
+    //         }
+    //     });
+    //     e.preventDefault();
+    // });
 
     /*------------------------------------------------------------
 	    GET AJAX Teacher File
@@ -105,6 +102,7 @@ $(function() {
                     $("#modal-container6 .c-table__content tbody").append('<tr>');
                     $.each(data.userData, (index, file) => {
                         $("#modal-container6 .c-table__content tbody").append('<tr>' +
+                            '<td>' + file.username + '</td>' +
                             '<td>' + file.fname + ' ' + file.lname + '</td>' +
                             '<td>' + file.email + '</td>' +
                             '<td>' + moment(file.created).format("YYYY-MM-DD") + '</td>' +

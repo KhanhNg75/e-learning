@@ -43,15 +43,16 @@ router.get('/showSlide/:id', ensureAuthenticated, function(req, res) {
 router.post('/uploadSlide', ensureAuthenticated, (req, res) => {
     var userid = req.user._id;
     var courseid = req.body.classId;
-    var filename = req.body.testinput;
+    var filename = req.body.filename;
     var fileurl = req.body.fileurl;
 
     var userFiledata = new File({
-            courseid: courseid,
-            teacherid: userid,
-            filename: filename,
-            fileurl: fileurl
-        })
+        courseid: courseid,
+        teacherid: userid,
+        filename: filename,
+        fileurl: fileurl
+    })
+    console.log(userFiledata)
         // Upload to firebase database
         // var newPostKey = ref.push().key;
 
@@ -147,7 +148,6 @@ router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
                 listArray.push(result[i])
             }
         }
-
         User.find({}).then(function(result2) {
             var listArray1 = []
             for (let j = 0; j < result2.length; j++) {
@@ -161,7 +161,8 @@ router.get('/listOfStudent/:id', ensureAuthenticated, function(req, res) {
             User.find({ "_id": ObjectID(user._id) }).then(adminProfile => {
                 var data = {
                     userData: listArray1,
-                    courseID: courseId
+                    courseID: courseId,
+                    listresult: result
                 }
                 res.send(data)
                     // res.render('teacher/studentList', {

@@ -27,7 +27,9 @@ var FileSchema = mongoose.Schema({
 var File = module.exports = mongoose.model('file', FileSchema)
 
 module.exports.saveFile = function(userFiledata, callback) {
-    userFiledata.save(callback)
+    if (userFiledata.fileurl == ' ')
+        callback(null, 'No URL')
+    else userFiledata.save(callback)
 }
 
 module.exports.showFile = function(courseid, callback) {

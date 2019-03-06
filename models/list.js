@@ -7,6 +7,10 @@ var ListStudentSchema = mongoose.Schema({
     },
     studentid: {
         type: mongoose.Schema.Types.ObjectId
+    },
+    registered_date: {
+        type: Date,
+        default: Date.now
     }
 })
 

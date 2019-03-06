@@ -213,7 +213,7 @@ $(function() {
 
             for (var i = 0; i < this.files.length; ++i) {
                 $('.choose-file').append($('<li>').html(this.files[i].name));
-                $('.testinput').val(this.files[i].name);
+                $('.filename').val(this.files[i].name);
             }
         }
     }
@@ -326,13 +326,19 @@ $(function() {
     ------------------------------------------------------------*/
     var button = $('.upload-btn');
 
-    button.click(function() {
+    button.click(function(e) {
+        e.preventDefault();
         setTimeout(function() {
-            button.addClass('is-completed');
-        }, 2000);
+            $('.upload-btn').addClass('is-completed')
+            $('.choose-file li').html('')
+        }, 4000);
+
         setTimeout(function() {
-            button.removeClass('is-completed');
-        }, 5000);
+            $('.upload-btn').removeClass('is-completed')
+            $('.choose-file li').html('No file choosen')
+            $('#fileupload').submit()
+        }, 7000);
+
     });
 
     /*------------------------------------------------------------

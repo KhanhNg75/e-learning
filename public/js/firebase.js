@@ -14,8 +14,6 @@ firebase.initializeApp(config);
 var fileButton = document.getElementById('fileButton');
 if (fileButton) {
     fileButton.addEventListener('change', function(e) {
-        // var MSSV = document.getElementById('getMSSVPerson');
-        // var getMSSVPerson = MSSV.value;
         var file = e.target.files[0];
         var storageRef = firebase.storage().ref('UserImage/' + file.name);
         var task = storageRef.put(file);
@@ -98,10 +96,8 @@ if (fileButton) {
             function() {
                 storageRef.getDownloadURL().then(function(linkUrl) {
                     console.log("File available at", linkUrl);
-                    var SlideHolder = document.getElementById('mySlide');
-                    // var valImg = document.getElementById('myVal');
-                    // valImg.value = linkUrl;
-                    SlideHolder.src = linkUrl;
+                    var SlideHolder = document.getElementById('userSlide');
+                    SlideHolder.value = linkUrl;
                 });
             });
     }, false);
