@@ -2876,13 +2876,13 @@ input[type="submit"]:focus {
 }
 
 .no-c {
-    cursor: not-allowed;
-    background: #000;
-    border-color: #706c6b;
+    cursor: not-allowed !important;
+    background: #000 !important;
+    border-color: #706c6b !important;
 }
 
 .no-c:hover {
-    background: #000;
+    background: #000 !important;
 }
 
 .out-credit {

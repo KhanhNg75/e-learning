@@ -348,12 +348,12 @@ function validatePassword1() {
         $(".registrationFormAlert").html("Password Valid").css('color', 'green');
 }
 
-function validatePassword2() {
+function validatePassword2(e) {
     var password1 = $("#inputpw1").val();
     var password2 = $("#inputpw2").val();
-    if (password1 != password2)
+    if (password1 != password2) {
         $(".registrationFormAlert").html("Password does not Match").css('color', 'red');
-    else
+    } else
         $(".registrationFormAlert").html("Password Match").css('color', 'green');
 }
 
