@@ -92,12 +92,13 @@ https://github.com/tpiros/advanced-chat **
 io.on('connection', function(socket) {
 
     socket.on("creat-room", (data) => {
+        var text = "undefined undefined";
         socket.join(data.linkroom)
         socket.room = data.linkroom
         socket.username = data.username
         usernames[socket.username] = socket.username;
         socket.emit("server-send-room-socket", data.linkroom)
-        if (socket.username != null || socket.username != undefined) {
+        if (socket.username != null && socket.username != text) {
             // socket.broadcast.emit('announcement', 'SERVER', socket.username + ' has joined room');
             io.sockets.emit('update-users', usernames);
         }

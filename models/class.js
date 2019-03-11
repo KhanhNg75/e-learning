@@ -39,6 +39,10 @@ var ClassSchema = mongoose.Schema({
     description: {
         type: String
     },
+    classimage: {
+        type: String,
+        default: "https://firebasestorage.googleapis.com/v0/b/uploadfile-f177e.appspot.com/o/UserImage%2Fimage-class.png?alt=media&token=e2c4768e-625f-4f53-8d8f-e76d0a4e58db"
+    },
     created_date: {
         type: Date,
         default: Date.now
