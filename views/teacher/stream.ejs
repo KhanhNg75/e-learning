@@ -1,73 +1,73 @@
 <% if (success_msg || error_msg) { %>
     <div class="alert user-alert">
         <%= success_msg %>
-        <%= error_msg %>
+            <%= error_msg %>
     </div>
-<% } %>
+    <% } %>
 
-<% for(var i = 0; i< data1.length ; i++) { %>
-    <input id="linkroom" type="hidden" value="<%= data1[i]._id %>" />
-<%}%>
+        <% for(var i = 0; i< data1.length ; i++) { %>
+            <input id="linkroom" type="hidden" value="<%= data1[i]._id %>" />
+            <%}%>
 
-<% for(var i = 0; i< data.length ; i++) { %>
-    <input type="hidden" id="fname" name="fname" value="<%= data[i].fname %>" />
-    <input type="hidden" id="lname" name="lname" value="<%= data[i].lname %>" />
-    <input type="hidden" id="img" name="img" value="<%= data[i].userimage %>" />
-    <input type="hidden" id="userid" name="userid" value="<%= data[i]._id %>" />
-<%}%>
+                <% for(var i = 0; i< data.length ; i++) { %>
+                    <input type="hidden" id="fname" name="fname" value="<%= data[i].fname %>" />
+                    <input type="hidden" id="lname" name="lname" value="<%= data[i].lname %>" />
+                    <input type="hidden" id="img" name="img" value="<%= data[i].userimage %>" />
+                    <input type="hidden" id="userid" name="userid" value="<%= data[i]._id %>" />
+                    <%}%>
 
-<div class="c-stream">
+                        <div class="c-stream">
 
-    <div class="c-stream__upper">
-        <div class="l-main">
-            <div class="c-stream__webcam">
-                <video src="" id="video" autoplay="true"></video>
-                <canvas id="preview"></canvas>
-                <div id="logger"></div>
-            </div>
-            <!-- <% for(var i = 0; i< data.length ; i++) { %>
-                <iframe src="https://player.twitch.tv/?channel=<%= data[i].channelLink %>" frameborder="0" allowfullscreen="true" scrolling="no" frameborder="0"></iframe>
-            <%}%> -->
-        </div>
+                            <div class="c-stream__upper">
+                                <div class="l-main">
+                                    <div class="c-stream__webcam">
+                                        <video src="" id="video" autoplay="true"></video>
+                                        <canvas id="preview"></canvas>
+                                        <div id="logger"></div>
+                                    </div>
+                                    <% for(var i = 0; i< data.length ; i++) { %>
+                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/live_stream?channel=<%= data[i].channelLink %>&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <%}%>
+                                </div>
 
-        <div class="l-side">
-            <h4 id="currentRoom">...</h4>
+                                <div class="l-side">
+                                    <h4 id="currentRoom">...</h4>
 
-            <div class="c-stream__chat">
-                <div class="title3">
-                    <p>Chatbox</p>
-                    <i class="material-icons">
+                                    <div class="c-stream__chat">
+                                        <div class="title3">
+                                            <p>Chatbox</p>
+                                            <i class="material-icons">
                         chat
                     </i>
-                </div>
-                <div class="c-stream__contentChat" id="right">
-                    <ul>
+                                        </div>
+                                        <div class="c-stream__contentChat" id="right">
+                                            <ul>
 
-                    </ul>
-                </div>
-                <div class="c-stream__btn">
-                    <input type="text" id="txtMessage" />
-                    <input type="button" id="btnChat" value="Chat" />
-                </div>
-            </div>
-        </div>
+                                            </ul>
+                                        </div>
+                                        <div class="c-stream__btn">
+                                            <input type="text" id="txtMessage" />
+                                            <input type="button" id="btnChat" value="Chat" />
+                                        </div>
+                                    </div>
+                                </div>
 
-    </div>
+                            </div>
 
-    <div class="c-stream__lower">
+                            <div class="c-stream__lower">
 
-        <div class="l-main">
-            <div class="c-stream__upload">
-                <div class="title2">
-                    <h4>Upload Slide</h4>
-                </div>
-                <div class="c-stream__slidebox">
+                                <div class="l-main">
+                                    <div class="c-stream__upload">
+                                        <div class="title2">
+                                            <h4>Upload Slide</h4>
+                                        </div>
+                                        <div class="c-stream__slidebox">
 
-                    <div class="c-stream__slideleft">
+                                            <div class="c-stream__slideleft">
 
-                        <form method="POST" id="fileupload" action="/teacher/uploadSlide">
-                            <div class="c-form__uploadbtn">
-                                <button type="submit" class="upload-btn" data-button>
+                                                <form method="POST" id="fileupload" action="/teacher/uploadSlide">
+                                                    <div class="c-form__uploadbtn">
+                                                        <button type="submit" class="upload-btn" data-button>
                                     <span class="button__text">
                                         <i class="fa fa-upload"></i> Upload
                                     </span>
@@ -75,108 +75,107 @@
                                         <i class="fa fa-check"></i>
                                     </span>
                                 </button>
-                                <!-- <button type="submit" class="btn1 btn1--color2">Upload</button> -->
-                            </div>
-                            <div class="c-files__upload">
-                                <label for="uploadfile"></label>
-                                <input type="file" name="uploadfile" id="testfile">
-                                <ul class="choose-file"></ul>
-                            </div>
-                            <input type="hidden" name="filename" class="filename" value="" />
-                            <input type="hidden" name="fileurl" id="userSlide" value="" />
-                            <% for(var i = 0; i< data1.length ; i++) { %>
-                                <input id="linkroom" type="hidden" name="classId" class="testclass" value="<%= data1[i]._id %>" />
-                            <%}%>
-                        </form>
+                                                        <!-- <button type="submit" class="btn1 btn1--color2">Upload</button> -->
+                                                    </div>
+                                                    <div class="c-files__upload">
+                                                        <label for="uploadfile"></label>
+                                                        <input type="file" name="uploadfile" id="testfile">
+                                                        <ul class="choose-file"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="filename" class="filename" value="" />
+                                                    <input type="hidden" name="fileurl" id="userSlide" value="" />
+                                                    <% for(var i = 0; i< data1.length ; i++) { %>
+                                                        <input id="linkroom" type="hidden" name="classId" class="testclass" value="<%= data1[i]._id %>" />
+                                                        <%}%>
+                                                </form>
 
-                    </div>
+                                            </div>
 
-                    <div class="c-stream__slideright">
-                        <input type="text" value="" id="progress" />
-                        <% for(var i = 0; i< data1.length ; i++) { %>
-                            <a href="/teacher/showSlide/<%= data1[i]._id; %>" class="btn1 btn1--color3" id="btnGetFiles2">
-                                <i class="material-icons">
+                                            <div class="c-stream__slideright">
+                                                <input type="text" value="" id="progress" />
+                                                <% for(var i = 0; i< data1.length ; i++) { %>
+                                                    <a href="/teacher/showSlide/<%= data1[i]._id; %>" class="btn1 btn1--color3" id="btnGetFiles2">
+                                                        <i class="material-icons">
                                     file_copy
-                                </i>
-                                Files
-                            </a>
-                        <%}%>
+                                </i> Files
+                                                    </a>
+                                                    <%}%>
 
-                        <div class="c-files__file" id="listFiles2">
-                            <ul>
+                                                        <div class="c-files__file" id="listFiles2">
+                                                            <ul>
 
-                            </ul>
-                        </div>
-                    </div>
+                                                            </ul>
+                                                        </div>
+                                            </div>
 
-                </div>
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="l-side">
-            <div class="c-stream__users">
-                <div class="title2">
-                    <h4>Online Users</h4>
-                    <i class="material-icons">
+                                <div class="l-side">
+                                    <div class="c-stream__users">
+                                        <div class="title2">
+                                            <h4>Online Users</h4>
+                                            <i class="material-icons">
                     people
                     </i>
-                </div>
-                <div id="users"></div>
-            </div>
-        </div>
+                                        </div>
+                                        <div id="users"></div>
+                                    </div>
+                                </div>
 
-    </div>
+                            </div>
 
-</div>
+                        </div>
 
-<script type="text/javascript">
-    var canvas = document.getElementById("preview");
-    var context = canvas.getContext("2d");
+                        <script type="text/javascript">
+                            var canvas = document.getElementById("preview");
+                            var context = canvas.getContext("2d");
 
-    canvas.width = 800;
-    canvas.height = 600;
+                            canvas.width = 800;
+                            canvas.height = 600;
 
-    context.height = canvas.height;
-    context.width = canvas.width;
+                            context.height = canvas.height;
+                            context.width = canvas.width;
 
-    var video = document.getElementById("video");
+                            var video = document.getElementById("video");
 
-    var socket = io();
+                            var socket = io();
 
-    function logger(msg) {
-        $("#logger").text(msg);
-    }
+                            function logger(msg) {
+                                $("#logger").text(msg);
+                            }
 
-    function loadCam(stream) {
-        video.srcObject = stream;
-        logger("Camera is connected!");
-    }
+                            function loadCam(stream) {
+                                video.srcObject = stream;
+                                logger("Camera is connected!");
+                            }
 
-    function loadFail() {
-        logger("Camera can not connect!");
-    }
+                            function loadFail() {
+                                logger("Camera can not connect!");
+                            }
 
-    function viewVideo() {
-        context.drawImage(video, 0, 0, context.width, context.height);
-        socket.emit('stream', canvas.toDataURL('image/webp'));
-    }
+                            function viewVideo() {
+                                context.drawImage(video, 0, 0, context.width, context.height);
+                                socket.emit('stream', canvas.toDataURL('image/webp'));
+                            }
 
-    $(function() {
-        navigator.getUserMedia = (navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msgGetUserMedia);
-        if (navigator.getUserMedia) {
-            navigator.getUserMedia({
-                video: true,
-                audio: true
-            }, loadCam, loadFail);
-        } else if (!navigator.getUserMedia) {
-            console.log('your browser unsupported webrtc.');
-            return false;
-        }
-        setInterval(function() {
-            viewVideo(video, context);
-        }, 70);
-    });
-</script>
+                            $(function() {
+                                navigator.getUserMedia = (navigator.getUserMedia ||
+                                    navigator.webkitGetUserMedia ||
+                                    navigator.mozGetUserMedia ||
+                                    navigator.msgGetUserMedia);
+                                if (navigator.getUserMedia) {
+                                    navigator.getUserMedia({
+                                        video: true,
+                                        audio: true
+                                    }, loadCam, loadFail);
+                                } else if (!navigator.getUserMedia) {
+                                    console.log('your browser unsupported webrtc.');
+                                    return false;
+                                }
+                                setInterval(function() {
+                                    viewVideo(video, context);
+                                }, 70);
+                            });
+                        </script>
